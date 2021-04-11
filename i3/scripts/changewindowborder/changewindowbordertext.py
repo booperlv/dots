@@ -1,0 +1,1 @@
+globalvalue=2
