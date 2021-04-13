@@ -65,3 +65,6 @@ require'lspconfig'.bashls.setup{}
 
 --Python Language Server
 require'lspconfig'.pyls.setup{}
+
+--C Language Server
+require'lspconfig'.clangd.setup{}
