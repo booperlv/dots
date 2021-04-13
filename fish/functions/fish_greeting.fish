@@ -18,6 +18,7 @@ function fish_greeting
 	set chosen_msg $powered_msgs[(math $chosen_msg"+1")]
 
 	# Output it to the console
-	printf (set_color F90)"Welcome! This terminal session is powered by %s\n" $chosen_msg
+	printf (set_color --bold)"Welcome! This terminal session is powered by %s\n" $chosen_msg
+	date '+%d/%m/%y' 
 
 end
