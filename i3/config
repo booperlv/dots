@@ -243,6 +243,6 @@ bindsym XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
 # exec --no-startup-id feh --randomize --no-fehbg --bg-center --bg-scale ~/.config/i3/pictures/*
 # set $wallpaperfeh exec --no-startup-id feh --randomize --no-fehbg --bg-center --bg-scale ~/.config/i3/pictures/*
 # bindsym $mod+backslash $wallpaperfeh
-exec --no-startup-id wal -R
 $pywal
 bindsym $mod+backslash $pywal
+exec --no-startup-id wal -R
