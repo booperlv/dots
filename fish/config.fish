@@ -1,2 +1,3 @@
 cat ~/.cache/wal/sequences &
-set -gx PATH $PATH /home/booperlv/.yarn/bin /home/booperlv/.local/bin /home/booperlv/.cargo/bin /home/booperlv/go/bin /home/booperlv/eww/target/release
+set -gx PATH /usr/local/sbin /usr/local/bin /usr/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/booperlv/.local/bin
+fish_vi_key_bindings

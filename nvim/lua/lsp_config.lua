@@ -64,7 +64,7 @@ require'lspconfig'.vimls.setup{}
 require'lspconfig'.bashls.setup{}
 
 --Python Language Server
-require'lspconfig'.pyls.setup{}
+require'lspconfig'.jedi_language_server.setup{}
 
 --C Language Server
 require'lspconfig'.clangd.setup{}
