@@ -3,13 +3,13 @@ Qtile - Picom - Sakura
 dotfiles :)
 
 Here's a peek!
-![Sweet Tiling, no borders.](https://github.com/booperlv/dots/blob/master/pics/neotermqtile.png?raw=true)
+![Sweet Tiling, no borders.](https://github.com/booperlv/dots/blob/main/pics/neotermqtile.png?raw=true)
 
 Pywal Generated GTK Theme, practically stolen from Flat Remix Dark
-![Pywal Generated GTK Theme](https://github.com/booperlv/dots/blob/master/pics/gtkshowcase.png?raw=true)
+![Pywal Generated GTK Theme](https://github.com/booperlv/dots/blob/main/pics/gtkshowcase.png?raw=true)
 
 Terminal command mode, and the usual Power Menu using sxlock.
-![Cool Rofi Modes](https://github.com/booperlv/dots/blob/master/pics/rofiapps.png?raw=true)
+![Cool Rofi Modes](https://github.com/booperlv/dots/blob/main/pics/rofiapps.png?raw=true)
 
 As you can see from just a sneak peek, these dotfiles are NOT made for general use. You will have to edit a number of paths and place these files in their corresponding places. I could've fixed a few things (such as ~ instead of /home/booperlv in python) but let's just say I'm too lazy for it :D.
 
