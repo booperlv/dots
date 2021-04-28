@@ -12,14 +12,19 @@ LOGOUT="Logout"
 LOGOUTICON="/usr/share/icons/Papirus/symbolic/actions/system-log-out-symbolic.svg"
 
 if [[ "$@" == "$SHUTDOWN" ]]; then
+	killall -q rofi
 	systemctl poweroff
 elif [[ "$@" == "$REBOOT" ]]; then
+	killall -q rofi
 	systemctl reboot
 elif [[ "$@" == "$LOCK" ]]; then
-	slimlock
+	killall -q rofi
+	sxlock
 elif [[ "$@" == "$SUSPEND" ]]; then
+	killall -q rofi
 	systemctl suspend
 elif [[ "$@" == "$LOGOUT" ]]; then
+	killall -q rofi
 	pkill -U $USER
 else
 	:

@@ -12,15 +12,13 @@ mod = "mod4"
 terminal = guess_terminal()
 # terminal = kitty
 
-def hide_show_bar():
-    bar = qtile.currentScreen.top
-    if bar.size == 0:
-        bar.size = 23
-        bar.window.unhide()
-    else:
-        bar.size = 0
-        bar.window.hide()
-    qtile.currentGroup.layoutAll()
+
+@hook.subscribe.startup_once
+def autostart():
+    autostartfile = "/.config/qtile/autostart.sh"
+    home = os.path.expanduser('~')
+    subprocess.call(["bash", home + autostartfile])
+
 
 keys = [
     # Switch between windows
@@ -261,6 +259,7 @@ screens = [
         top=bar.Bar([
             widget.TextBox(text="", padding=16,),
             widget.CurrentLayout(
+                foreground=palette['special']['background'],
                 background=palette['colors']['color3'],
             ),
             widget.TextBox(text="", padding=16,),
@@ -284,7 +283,8 @@ screens = [
             widget.TextBox(
                 text="launcher",
                 mouse_callbacks={'Button1': rofiselect},
-                background=palette['colors']['color3']
+                background=palette['colors']['color3'],
+                foreground=palette['special']['background'],
             ),
             widget.TextBox(text="", padding=16,),
         ], 23,
@@ -297,11 +297,3 @@ screens = [
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-
-@hook.subscribe.startup_once
-def autostart():
-    autostartfile = "/.config/qtile/autostart.sh"
-    home = os.path.expanduser('~')
-    subprocess.call(["bash", home + autostartfile])
-
-

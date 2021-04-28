@@ -126,6 +126,15 @@ nnoremap <silent><leader>r :NvimTreeRefresh<CR>
 
 " overwrite defaults
 nnoremap dd "_dd
+nnoremap <C-m> m
+nnoremap <C-,> ,
+nnoremap <C-.> .
+nnoremap <C-_> /
+
+nnoremap m h
+nnoremap , j
+nnoremap . k
+nnoremap / l
 
 " -----------
 " LUA SECTION

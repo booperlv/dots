@@ -1,1 +1,0 @@
-globalvalue=0
