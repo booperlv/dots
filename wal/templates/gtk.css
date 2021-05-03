@@ -4144,7 +4144,7 @@ row label.subtitle {{
   opacity: 0.55;
   text-shadow: none; }}
 row > box.header {{
-  margin-left: 12px;yay remove unused dependencies
+  margin-left: 12px;
   margin-right: 12px;
   min-height: 50px; }}
   row > box.header > box.title {{

@@ -3,22 +3,13 @@ from libqtile import qtile
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from colors import *
 
 mod = "mod4"
 terminal = guess_terminal()
-# terminal = kitty
-
-
-@hook.subscribe.startup_once
-def autostart():
-    autostartfile = "/.config/qtile/autostart.sh"
-    home = os.path.expanduser('~')
-    subprocess.call(["bash", home + autostartfile])
-
 
 keys = [
     # Switch between windows
@@ -30,11 +21,11 @@ keys = [
         lazy.layout.right(),
         desc="Move focus to right"
     ),
-    Key([mod], "comma", 
+    Key([mod], "period", 
         lazy.layout.down(), 
         desc="Move focus down"
     ),
-    Key([mod], "period", 
+    Key([mod], "comma", 
         lazy.layout.up(), 
         desc="Move focus up"
     ),
@@ -53,11 +44,11 @@ keys = [
         lazy.layout.shuffle_right(),
         desc="Move window to the right"
     ),
-    Key([mod, "shift"], "comma",
+    Key([mod, "shift"], "period",
         lazy.layout.shuffle_down(),
         desc="Move window down"
     ),
-    Key([mod, "shift"], "period", 
+    Key([mod, "shift"], "comma", 
         lazy.layout.shuffle_up(), 
         desc="Move window up"
     ),
@@ -72,11 +63,11 @@ keys = [
         lazy.layout.grow_right(),
         desc="Grow window to the right"
     ),
-    Key([mod, "control"], "comma", 
+    Key([mod, "control"], "period", 
         lazy.layout.grow_down(),
         desc="Grow window down"
     ),
-    Key([mod, "control"], "period", 
+    Key([mod, "control"], "comma", 
         lazy.layout.grow_up(), 
         desc="Grow window up"
     ),
@@ -129,7 +120,7 @@ keys = [
         lazy.shutdown(), 
         desc="Shutdown Qtile"
     ),
-    Key([mod],"b",
+    Key([mod],"g",
         lazy.spawn("rofi -show drun -theme /home/booperlv/.config/rofi/colors-rofi-dark.rasi"),
         desc="Spawn Rofi Drun"
     ),
@@ -142,7 +133,7 @@ keys = [
         desc="Change WALpaper :D"
     ),
     Key([mod], "t",
-        lazy.spawn('rofi -show term -theme /home/booperlv/.config/rofi/scripts/terminal.rasi'),
+        lazy.spawncmd(),
         desc="Launch Rofi Terminal"
     ),
     Key([mod], "p",
@@ -153,10 +144,10 @@ keys = [
         lazy.spawn('bash /home/booperlv/.config/rofi/scripts/selectmode.sh'),
         desc="Select which Rofi to Launch"
     ),
-    Key([mod, "control"], "b",
-        lazy.hide_show_bar("top"),
-        desc="hide bars"
-    ),
+    KeyChord([mod], "b", [
+        Key([], "b", lazy.hide_show_bar("bottom")),
+        Key([], "t", lazy.hide_show_bar("top"))
+    ]),
 ]
 
 
@@ -266,6 +257,7 @@ screens = [
             widget.Memory(),
             widget.TextBox(text="", padding=16,),
             widget.WindowName(), 
+            widget.Prompt(),
 
 
             widget.TextBox(text="", padding=16,),
@@ -289,7 +281,13 @@ screens = [
             widget.TextBox(text="", padding=16,),
         ], 23,
             background=palette['special']['background'],
-            margin=[6,6,0,6],
+        ),
+
+        bottom=bar.Bar([
+            widget.GroupBox(),
+            widget.CPU(),
+        ], 23,
+            background=palette['special']['background'],
         ),
     ),
 ]
@@ -297,3 +295,14 @@ screens = [
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup_once
+def autostart():
+    autostartfile = "/.config/qtile/autostart.sh"
+    home = os.path.expanduser('~')
+    subprocess.call(["bash", home + autostartfile])
+    commands.reload_screen()
+     
+@hook.subscribe.startup
+def startup():
+    bottom.show(False)

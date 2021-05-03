@@ -1,14 +1,14 @@
 --Deno Language Server (Javascript)
---require'lspconfig'.denols.setup{
---	init_options = {
---		enable = true,
---		lint= false,
---		unstable = false
---	}
---}
+require'lspconfig'.denols.setup{
+	init_options = {
+		enable = true,
+		lint= false,
+		unstable = false
+	}
+}
 
 --Typescript Language Server (Javascript, Typescript)
-require'lspconfig'.tsserver.setup{}
+--require'lspconfig'.tsserver.setup{}
 
 --Diagnostic Language Server, Eslint
 require'lspconfig'.diagnosticls.setup {
