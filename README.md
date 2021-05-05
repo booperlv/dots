@@ -16,4 +16,8 @@ As you may see from a little peek into the configs, these dotfiles are NOT made 
 These are fairly easy to configure though.
 I have a cool motd in there too! I use it for my emptty configuration. Couple of versions there.
 
-All the Wallpapers I have in local/share/pictures are modified versions from [LAM's](https://www.pixiv.net/en/users/17429) art.
+The Wallpapers I have in local/share/pictures named feh(index) are modified versions from [LAM's](https://www.pixiv.net/en/users/17429) art.
+
+A note about emptywindow.c:
+It is literally just an emptywindow that's transparent if you have a compositor. Like a placeholder in a tiling wm.
+Compile with "gcc -lX11 emptywindow.c -o emptywindow". You can copy the binary file to /usr/local/bin to execute.
