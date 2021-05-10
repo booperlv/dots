@@ -11,8 +11,8 @@ Plug 'sonph/onehalf', {'rtp': 'vim'}
 Plug 'kjssad/quantum.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'owozsh/amora'
-Plug 'dylanaraps/wal.vim'
 Plug 'folke/tokyonight.nvim'
+Plug 'shaunsingh/moonlight.nvim'
 " Css Colorizer
 Plug 'norcalli/nvim-colorizer.lua'
 
@@ -38,17 +38,19 @@ Plug 'kyazdani42/nvim-tree.lua'
 " Emmet
 Plug 'mattn/emmet-vim'
 
-" Multiple Cursors
-Plug 'terryma/vim-multiple-cursors'
-
 " Vim Surround
 Plug 'tpope/vim-surround'
 
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'thaerkh/vim-indentguides'
+"Plug 'Yggdroot/indentLine'
 
 " Status Line
 Plug 'hoob3rt/lualine.nvim'
+
+" Color Picker
+Plug 'DougBeney/pickachu'
 
 call plug#end()
 
@@ -91,9 +93,13 @@ set wrap!
 set fillchars=eob:\ 
 
 " Tab Width
-set tabstop=4
-set softtabstop=0 noexpandtab
-set shiftwidth=4
+set shiftwidth=4 tabstop=4
+set autoindent smartindent
+set expandtab
+
+"Alternative to indent guides since it can be a bit of a hassle sometimes
+"set cursorcolumn
+set cursorline
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -102,6 +108,13 @@ let mapleader=" "
 " -------------------------------------
 " PLUGIN CONFIG AND KEYBINDINGS SECTION
 " -------------------------------------
+
+" IndentLine and Indent-blankline
+let g:indentLine_char = '▏'
+
+" vim-indentline
+let g:indentguides_spacechar = '▏'
+let g:indentguides_tabchar = '▏'
 
 " emmet vim
 let g:user_emmet_leader_key='<C-Z>'
@@ -144,9 +157,9 @@ let g:pear_tree_ft_disabled = [ "TelescopePrompt" ]
 set completeopt=menuone,noinsert,noselect
 
 " Nvim Tree
-nnoremap <leader>oo :NvimTreeToggle<CR>
-nnoremap <leader>or :NvimTreeRefresh<CR>
-nnoremap <leader>of :NvimTreeFindFile<CR>
+nnoremap <leader>tt :NvimTreeToggle<CR>
+nnoremap <leader>tr :NvimTreeRefresh<CR>
+nnoremap <leader>tf :NvimTreeFindFile<CR>
 let g:nvim_tree_quit_on_open = 1
 
 " completion-nvim Bindings
@@ -154,7 +167,7 @@ inoremap <nowait>  <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <nowait>  <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " overwrite defaults
-nnoremap dd "_dd
+nnoremap d "_d
 
 nnoremap <C-m> m
 nnoremap <C-,> ,
@@ -239,6 +252,10 @@ function! SwitchThemes()
 		set termguicolors
 		return
 	elseif g:colors_name=="tokyonight"
+		lua require('material').set()	
+		set termguicolors
+		return
+	elseif g:colors_name=="material"
 		colorscheme default
 		set termguicolors!
 		return

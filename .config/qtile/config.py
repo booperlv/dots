@@ -184,22 +184,13 @@ focus_on_window_activation = "true"
 layouts = [
     layout.Columns(
         margin=6,
-        border_width=0,
-        #border_width=3,
-        #border_focus=palette['colors']['color3']
+        # border_width=0,
+        border_width=3,
+        border_focus=palette['colors']['color3']
     ),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    layout.TreeTab(),
+    layout.Zoomy(),
 ]
 
 
@@ -289,6 +280,12 @@ screens = [
         ], 23,
             background=palette['special']['background'],
         ),
+
+        #left=bar.Bar([
+        #    widget.GroupBox(),
+        #], 23,
+        #    background=palette['special']['foreground'],
+        #),
     ),
 ]
 
@@ -298,11 +295,6 @@ wmname = "LG3D"
 
 @hook.subscribe.startup_once
 def autostart():
-    autostartfile = "/.config/qtile/autostart.sh"
+    autostartfile = "/.config/qtile/scripts/autostart.sh"
     home = os.path.expanduser('~')
     subprocess.call(["bash", home + autostartfile])
-    periodnds.reload_screen()
-     
-@hook.subscribe.startup
-def startup():
-    bottom.show(False)

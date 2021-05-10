@@ -1,6 +1,5 @@
 # dots
-Qtile - Picom - Sakura
-dotfiles :)
+Qtile dotfiles :)
 
 Here's a peek!
 ![Sweet Tiling, no borders.](https://github.com/booperlv/dots/blob/main/pics/neotermqtile.png?raw=true)
@@ -21,3 +20,5 @@ The Wallpapers I have in local/share/pictures named feh(index) are modified vers
 A note about emptywindow.c:
 It is literally just an emptywindow that's transparent if you have a compositor. Like a placeholder in a tiling wm.
 Compile with "gcc -lX11 emptywindow.c -o emptywindow". You can copy the binary file to /usr/local/bin to execute.
+
+Self note: using Papirus and Vimix Black Icon themes, Breeze and Vimix Cursor Themes
