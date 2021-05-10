@@ -142,8 +142,8 @@ nnoremap <silent>    <A-w> :BufferClose<CR>
 let bufferline = get(g:, 'bufferline', {})
 let bufferline.animation = v:false
 let bufferline.closable = v:false
-let bufferline.icon_separator_active = '-> '
-let bufferline.icon_separator_inactive = '<-'
+let bufferline.icon_separator_active = ''
+let bufferline.icon_separator_inactive = ''
 let bufferline.icon_close_tab = ''
 let bufferline.icon_close_tab_modified = '●'
 
@@ -160,6 +160,18 @@ set completeopt=menuone,noinsert,noselect
 nnoremap <leader>tt :NvimTreeToggle<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tf :NvimTreeFindFile<CR>
+let g:nvim_tree_width = 40 "30 by default
+let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
+let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+let g:nvim_tree_width_allow_resize  = 1 "0 by default, will not resize the tree when opening a file
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 1,
+    \ 'files': 1,
+    \ }
 let g:nvim_tree_quit_on_open = 1
 
 " completion-nvim Bindings
