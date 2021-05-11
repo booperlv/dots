@@ -77,11 +77,24 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
 ins_left {
- function() return '▊' end,
+ function() return '' end,
  color = {fg = colors.blue}, -- Sets highlighting of component
  left_padding = 0 -- We don't need space before this
 }
+
 
 ins_left {
   -- mode component
@@ -91,13 +104,13 @@ ins_left {
       n      = colors.red,
       i      = colors.green,
       v      = colors.blue,
-      [''] = colors.blue,
+      [''] = colors.blue,
       V      = colors.blue,
       c      = colors.magenta,
       no     = colors.red,
       s      = colors.orange,
       S      = colors.orange,
-      [''] = colors.orange,
+      [''] = colors.orange,
       ic     = colors.yellow,
       R      = colors.violet,
       Rv     = colors.violet,
@@ -143,15 +156,10 @@ ins_left {
   color = {fg = colors.blue, gui = 'bold'},
 }
 
-ins_left {
-  'location',
-  color = {fg = colors.darkblue, gui = 'bold'}
-}
-
-ins_left {
-  'progress',
-  color = {fg = colors.darkblue, gui = 'bold'},
-}
+--ins_left {
+--  'location',
+--  color = {fg = colors.darkblue, gui = 'bold'}
+--}
 
 ins_left {
   'diagnostics',
@@ -165,6 +173,12 @@ ins_left {
 
 
 -- Add components to right sections
+
+ins_right {
+  'progress',
+  color = {fg = colors.darkblue, gui = 'bold'},
+}
+
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   condition = conditions.hide_in_width,
@@ -213,9 +227,10 @@ ins_right {
 }
 
 ins_right {
-  function() return '▊' end,
+  function() return '' end,
   color = {fg = colors.blue},
   right_padding = 0,
 }
+
 lualine.setup(config)
 

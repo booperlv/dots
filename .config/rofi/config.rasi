@@ -1,5 +1,5 @@
 configuration {
- 	modi: "drun,run,window,term:/home/booperlv/.config/rofi/scripts/terminal.sh,power:/home/booperlv/.config/rofi/scripts/powermenu.sh";
+ 	modi: "drun,run,window,power:/home/booperlv/.config/rofi/scripts/powermenu.sh";
 	lines: 7;
  	columns: 4;
  	font: "Iosevka 12";

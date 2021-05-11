@@ -43,7 +43,7 @@ Plug 'tpope/vim-surround'
 
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
-Plug 'thaerkh/vim-indentguides'
+"Plug 'thaerkh/vim-indentguides'
 "Plug 'Yggdroot/indentLine'
 
 " Status Line
@@ -59,9 +59,9 @@ call plug#end()
 " --------------
 
 " Colorscheme
-let ayucolor="dark"
+let ayucolor="mirage"
 let background="dark"
-colorscheme tokyonight
+colorscheme ayu
 set termguicolors
 
 " Set Font for GUI
@@ -97,9 +97,22 @@ set shiftwidth=4 tabstop=4
 set autoindent smartindent
 set expandtab
 
+" Search and Replace
+set ignorecase
+set smartcase
+set gdefault
+
 "Alternative to indent guides since it can be a bit of a hassle sometimes
 "set cursorcolumn
 set cursorline
+
+" Set Key Timeout
+set ttimeoutlen=0
+set notimeout
+
+" Remap Esc -command switch to normal
+inoremap z/ <esc>
+inoremap /z <esc>
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -113,8 +126,8 @@ let mapleader=" "
 let g:indentLine_char = '▏'
 
 " vim-indentline
-let g:indentguides_spacechar = '▏'
-let g:indentguides_tabchar = '▏'
+"let g:indentguides_spacechar = '▏'
+"let g:indentguides_tabchar = '▏'
 
 " emmet vim
 let g:user_emmet_leader_key='<C-Z>'
@@ -172,6 +185,10 @@ let g:nvim_tree_show_icons = {
     \ 'folders': 1,
     \ 'files': 1,
     \ }
+let g:nvim_tree_icons = {
+      \ 'default': '',
+      \ 'folder': {'default': '', 'open': '', 'empty': '', 'empty_open': ''},
+      \}
 let g:nvim_tree_quit_on_open = 1
 
 " completion-nvim Bindings
@@ -180,6 +197,7 @@ inoremap <nowait>  <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " overwrite defaults
 nnoremap d "_d
+vnoremap d "_d
 
 nnoremap <C-m> m
 nnoremap <C-,> ,
