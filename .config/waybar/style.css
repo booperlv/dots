@@ -1,0 +1,43 @@
+@import "/home/booperlv/.cache/wal/colors-waybar.css";
+
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   JetBrains Mono Nerd Font;
+    font-weight: bold;
+    font-size: 11.5px;
+    min-height: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: @background;
+    border-bottom: 2px solid @color3;
+    color: @foreground;
+    padding: 0px;
+}
+
+#workspaces button {
+    padding: 0px 2.5px;
+    background: rgba(100, 114, 125, 0.2);
+    border-bottom: 2px solid @color3;
+}
+
+#workspaces button.focused {
+    background: @color4;
+    color: @background;
+    border-bottom: 2px solid @foreground;
+}
+
+#custom-rofiselect {
+    padding: 0px 7.5px;
+    background: @color4;
+    color: @background;
+    border-bottom: 2px solid @foreground;
+}
+
+#sway-mode, #idle_inhibitor, #clock, #cpu, #custom-memory, #battery, #network {
+    padding: 0px 6px;
+    margin: 0px 3px;
+    border-bottom: 2px solid @color3;
+}

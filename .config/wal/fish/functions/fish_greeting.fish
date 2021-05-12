@@ -19,5 +19,6 @@ function fish_greeting
 
 	# Output it to the console
 	printf (set_color --bold)"Welcome! This terminal session is powered by %s\n" $chosen_msg
+	date '+%d/%m/%y' 
 
 end

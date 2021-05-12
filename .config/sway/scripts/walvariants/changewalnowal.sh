@@ -3,7 +3,7 @@
 # create an array with all the filer/dir inside ~/myDir
 arr=(~/.local/share/pictures/*)
 
-globalfile=(~/.config/sway/scripts/changewalcounter.txt)
+globalfile=(~/.config/sway/scripts/walvariants/changewalnowalcounter.txt)
 
 
 globalcounter=$(cat ${globalfile})
@@ -16,13 +16,12 @@ else
 fi
 
 echo $file
-rm -rf ~/.cache/swaywal
-ln -s $file ~/.cache/swaywal
 wal -n -i $file
 python ~/.config/foot/scripts/pywal.py
+
 bash ~/.config/sway/scripts/walchangepics.sh
 killall -q waybar
 waybar &
 
 echo $globalcounter
-echo $globalcounter > $globalfile 
+echo $globalcounter > $globalfile

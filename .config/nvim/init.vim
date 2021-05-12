@@ -42,8 +42,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 
 " Indent Guides
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
-"Plug 'thaerkh/vim-indentguides'
+"Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'thaerkh/vim-indentguides'
 "Plug 'Yggdroot/indentLine'
 
 " Status Line
@@ -61,7 +61,7 @@ call plug#end()
 " Colorscheme
 let ayucolor="mirage"
 let background="dark"
-colorscheme ayu
+colorscheme moonlight 
 set termguicolors
 
 " Set Font for GUI
@@ -107,12 +107,12 @@ set gdefault
 set cursorline
 
 " Set Key Timeout
-set ttimeoutlen=0
-set notimeout
+set ttimeoutlen=2
+"set notimeout
 
 " Remap Esc -command switch to normal
-inoremap z/ <esc>
-inoremap /z <esc>
+inoremap nn <esc>
+inoremap nn <esc>
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -282,10 +282,10 @@ function! SwitchThemes()
 		set termguicolors
 		return
 	elseif g:colors_name=="tokyonight"
-		lua require('material').set()	
-		set termguicolors
+		colorscheme moonlight
+        set termguicolors
 		return
-	elseif g:colors_name=="material"
+	elseif g:colors_name=="moonlight"
 		colorscheme default
 		set termguicolors!
 		return

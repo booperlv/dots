@@ -24,11 +24,10 @@ require('telescope').setup{
 }
 
 --Material/Moonlight colorscheme config
-vim.g.material_style = 'moonlight'         
-vim.g.material_italic_comments = true
-vim.g.material_italic_keywords = true
-vim.g.material_italic_functions = true
-vim.g.material_italic_variables = false
-vim.g.material_contrast = true
-vim.g.material_borders = false 
-vim.g.material_disable_background = false
+vim.g.moonlight_italic_comments = true
+vim.g.moonlight_italic_keywords = true
+vim.g.moonlight_italic_functions = true
+vim.g.moonlight_italic_variables = false
+vim.g.moonlight_contrast = true
+vim.g.moonlight_borders = false 
+vim.g.moonlight_disable_background = false

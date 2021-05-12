@@ -1,0 +1,72 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 25, // Waybar height (to be removed for auto height)
+
+    "modules-left": ["sway/workspaces", "custom/separate", "sway/window", "custom/separate", "custom/memory"],
+    "modules-center": [],
+    "modules-right": ["network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate", "custom/rofiselect"], 
+
+    "sway/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+        // "format": "{name} {icon}",
+        // "format-icons": {
+        //     "urgent": " ",
+        //     "focused": " ",
+        //     "default": " "
+        // }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
+    "clock": {
+        "format": "{:%a %d %b%l:%M}",
+        "format-alt": "{:%d-%b-%Y}"
+    },
+    "cpu": {
+        "format": "{usage}%  ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{capacity}%  ",
+        "format-plugged": "{capacity}%  ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "custom/memory": {
+        "exec" : "$HOME/.config/waybar/modules/memory.sh",
+        "interval": 3,
+        "format": " {}"
+    },
+    "custom/rofiselect": {
+        "on-click" : "$HOME/.config/rofi/scripts/selectmode.sh",
+        "format" : "launcher"
+    },
+    "custom/separate": {
+        "format": " "
+    }
+}

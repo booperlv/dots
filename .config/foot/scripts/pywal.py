@@ -1,3 +1,15 @@
+import os
+import subprocess
+import json
+import textwrap
+
+datafile = os.path.join( os.path.expanduser('~/.config/foot/scripts'), 'colors.json' )
+data = open(datafile).read().replace('#', '')
+dataparsed = json.loads(data)
+col = dataparsed['colors']
+sep = dataparsed['special']
+
+actualconfig=textwrap.dedent('''\
 # -*- conf -*-
 
 # shell=$SHELL (if set, otherwise user's default shell from /etc/passwd)
@@ -21,12 +33,9 @@ dpi-aware=yes
 pad=10x10 center                      # optionally append 'center'
 # resize-delay-ms=100
 
-# notify=notify-send -a foot -i foot ${title} ${body}
-# url-launch=xdg-open ${url}
 
-bold-text-in-bright=yes
+#bold-text-in-bright=yes
 # bell=none
-# word-delimiters=,│`|:"'()[]{}<>
 # jump-label-letters=sadfjklewcmpgh
 # selection-target=primary
 # workers=<number of logical CPUs>
@@ -39,8 +48,6 @@ lines=600
 # indicator-format=
 
 [cursor]
-# style=block
-# color=111111 dcdccc
 blink=yes
 
 [mouse]
@@ -48,25 +55,25 @@ blink=yes
 # alternate-scroll-mode=yes
 
 [colors]
-# alpha=1.0
-# foreground=dcdccc
-# background=111111
-# regular0=222222  # black
-# regular1=cc9393  # red
-# regular2=7f9f7f  # green
-# regular3=d0bf8f  # yellow
-# regular4=6ca0a3  # blue
-# regular5=dc8cc3  # magenta
-# regular6=93e0e3  # cyan
-# regular7=dcdccc  # white
-# bright0=666666   # bright black
-# bright1=dca3a3   # bright red
-# bright2=bfebbf   # bright green
-# bright3=f0dfaf   # bright yellow
-# bright4=8cd0d3   # bright blue
-# bright5=fcace3   # bright magenta
-# bright6=b3ffff   # bright cyan
-# bright7=ffffff   # bright white
+alpha=1.0
+foreground={0}
+background={1}
+regular0={2}
+regular1={3}
+regular2={4}
+regular3={5}
+regular4={6}
+regular5={7}
+regular6={8}
+regular7={9}
+bright0={10}
+bright1={11}
+bright2={12}
+bright3={13}
+bright4={14}
+bright5={15}
+bright6={16}
+bright7={17}
 # selection-foreground=<inverse foreground/background>
 # selection-background=<inverse foreground/background>
 # jump-labels=<regular0> <regular3>
@@ -138,3 +145,30 @@ blink=yes
 # select-word=BTN_LEFT-2
 # select-word-whitespace=Control+BTN_LEFT-2
 # select-row=BTN_LEFT-3
+
+''').format(
+    sep['foreground'],
+    sep['background'],
+#Placeholder Comment To Separate
+    col['color0'],
+    col['color1'],
+    col['color2'],
+    col['color3'],
+    col['color4'],
+    col['color5'],
+    col['color6'],
+    col['color7'],
+    col['color8'],
+    col['color9'],
+    col['color10'],
+    col['color11'],
+    col['color12'],
+    col['color13'],
+    col['color14'],
+    col['color15'],
+)
+
+userfile = os.path.join( os.path.expanduser('~/.config/foot/scripts'), 'placeholder.ini' )
+tempfile=open(userfile, "w")
+tempfile.write(actualconfig)
+tempfile.close()

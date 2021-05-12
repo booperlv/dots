@@ -27,19 +27,16 @@
     spacing: 2;
 }}
 
-configuration {
-    lines: 1;
-}
-
 #window {{
     background-color: @background;
     border: 3px;
-	border-radius: 2%;
+	border-radius: 0;
 	border-color: @border-color;
-	width: 60%;
-	location: center;
-	x-offset: 0;
-	y-offset: 0;
+	width: 40%;
+	location: south west;
+    anchor: south west;
+	x-offset: 8;
+	y-offset: -8;
 }}
 
 #mainbox {{
@@ -47,7 +44,7 @@ configuration {
     border: 0;
     padding: 0;
 	spacing: 0;
-	children: [inputbar, listview];
+	children: [inputbar];
 }}
 
 #message {{
@@ -67,7 +64,7 @@ configuration {
 	text-color: @background;
 	border: 0;
 	margin: 0;
-    padding: 1.5%;
+    padding: 0.5%;
 }}
 
 #textbox-prompt-colon {{
