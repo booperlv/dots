@@ -7,17 +7,22 @@ function fish_greeting
 		"uranus" \
 		"PRINTER GO BRRRRR" \
 		"Bird Labor" \
-		"FUCKING WEEBS" \
-		"what the absolute fuckityfuck" \
-		"YOURMOM" \
+		"weeb degeneracy" \
+		"- what the absolute frickityfrick" \
+		"YOURMOM (in a good way)" \
 		"an MX brown switch" \
-		"ONIICHAN JANAI, ANIKI DAYO"
+		"ONIICHAN JANAI, ANIKI DAYO" \
+        "AAAAAAAAAAAAAAAA"
 
 	# Randomly pick a message
 	set chosen_msg (random)"%"(count $powered_msgs)
 	set chosen_msg $powered_msgs[(math $chosen_msg"+1")]
 
 	# Output it to the console
-	printf (set_color --bold)"Welcome! This terminal session is powered by %s\n" $chosen_msg
-
+    set output "Welcome $USER! Today's special session is powered by $chosen_msg!"
+    set_color -o purple 
+    echo ""
+    printf $output
+    echo ""
+    echo ""
 end

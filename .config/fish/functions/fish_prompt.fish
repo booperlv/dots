@@ -1,11 +1,8 @@
-# Defined interactively
 function fish_prompt
-    echo 
-
-	if not set -q VIRTUAL_ENV_DISABLE_PROMPT
+    if not set -q VIRTUAL_ENV_DISABLE_PROMPT
         set -g VIRTUAL_ENV_DISABLE_PROMPT true
     end
-    set_color yellow
+    set_color --bold yellow
     printf '%s' $USER
     set_color normal
     printf ' at '
@@ -25,20 +22,25 @@ function fish_prompt
         printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
     end
 
-	switch $fish_bind_mode
-    case default
-      printf 'N '
-    case insert
-      printf 'I '
-    case replace_one
-      printf 'R '
-    case visual
-      printf 'V '
-    case '*'
-      printf '? '
-  	end
-  	set_color normal
+    switch $fish_bind_mode
+        case default
+          set_color --bold red
+          printf 'N '
+        case insert
+          set_color --bold green
+          printf 'I '
+        case replace_one
+          set_color --bold green
+          printf 'R '
+        case visual
+          set_color --bold brmagenta
+          printf 'V '
+        case '*'
+          set_color --bold red
+          printf '? '
+    end
 
-    printf '↪ '
+    set_color normal
+    printf ' '
     set_color normal
 end
