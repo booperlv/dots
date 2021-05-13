@@ -7,7 +7,7 @@ TERM="rofi -show term -theme /home/booperlv/.config/rofi/scripts/terminal.rasi"
 POWER="rofi -show power -theme /home/booperlv/.config/rofi/scripts/powermenu.rasi"
 
 MODEARRAY='DRUN\nRUN\nWINDOW\nTERM\nPOWER'
-ROFIOUTPUT=$(echo -e $MODEARRAY | rofi -dmenu -theme /home/booperlv/.config/rofi/scripts/powermenu.rasi)
+ROFIOUTPUT=$(echo -e $MODEARRAY | rofi -dmenu -theme /home/booperlv/.cache/wal/rofipowermenu.rasi)
 
 if [[ "$ROFIOUTPUT" == 'DRUN' ]]; then
 	eval $DRUN

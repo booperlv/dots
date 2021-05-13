@@ -3,7 +3,7 @@ import subprocess
 import json
 import textwrap
 
-datafile = os.path.join( os.path.expanduser('~/.config/foot/scripts'), 'colors.json' )
+datafile = os.path.join( os.path.expanduser('~/.config/foot/scripts/'), 'colors.json' )
 data = open(datafile).read().replace('#', '')
 dataparsed = json.loads(data)
 col = dataparsed['colors']
@@ -168,7 +168,7 @@ bright7={17}
     col['color15'],
 )
 
-userfile = os.path.join( os.path.expanduser('~/.config/foot/scripts'), 'placeholder.ini' )
+userfile = os.path.join( os.path.expanduser('~/.config/foot/'), 'foot.ini' )
 tempfile=open(userfile, "w")
 tempfile.write(actualconfig)
 tempfile.close()

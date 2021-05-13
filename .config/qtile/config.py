@@ -121,11 +121,11 @@ keys = [
         desc="Shutdown Qtile"
     ),
     Key([mod],"g",
-        lazy.spawn("rofi -show drun -theme /home/booperlv/.config/rofi/colors-rofi-dark.rasi"),
+        lazy.spawn("rofi -show drun -theme /home/booperlv/.cache/wal/rofinobar.rasi"),
         desc="Spawn Rofi Drun"
     ),
     Key([mod],"d",
-        lazy.spawn("rofi -show drun -theme /home/booperlv/.config/rofi/inputbar-rofi-dark.rasi"),
+        lazy.spawn("rofi -show drun -theme /home/booperlv/.cache/wal/rofiinputbar.rasi"),
         desc="Input Bar Rofi Drun Spawn"
     ),
     Key([mod], "backslash",
@@ -137,7 +137,7 @@ keys = [
         desc="Launch Rofi Terminal"
     ),
     Key([mod], "p",
-        lazy.spawn('rofi -show power -theme /home/booperlv/.config/rofi/scripts/powermenu.rasi'),
+        lazy.spawn('rofi -show power -theme /home/booperlv/.cache/wal/rofiterminal.rasi'),
         desc="Launch Rofi PowerMenu"
     ),
     Key([mod], "s",

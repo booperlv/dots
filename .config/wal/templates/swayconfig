@@ -6,8 +6,6 @@ set $up period
 set $right slash
 
 set $term foot
-set $menu rofi -show drun -theme /home/booperlv/.config/rofi/inputbar-rofi-dark.rasi | xargs swaymsg exec --
-set $menunoinput rofi -show drun -theme /home/booperlv/.config/rofi/colors-rofi-dark.rasi | xargs swaymsg exec --
 
 # Clipboard manager
 exec wl-paste -t text --watch clipman store
@@ -43,6 +41,9 @@ gaps inner 8
 
 # Border, Remove Title Bar
 default_border none
+
+# Font
+font pango:JetBrains Mono Nerd Font Bold 9
 
 # Colors
 set $fg {foreground} 
@@ -85,10 +86,10 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # Start your launcher
-bindsym $mod+d exec $menu
-bindsym $mod+g exec $menunoinput
-bindsym $mod+p exec rofi -show power -theme /home/booperlv/.config/rofi/scripts/powermenu.rasi | xargs swaymsg exec --
-bindsym $mod+t exec rofi -dmenu -p 'Run Command' -theme /home/booperlv/.config/rofi/scripts/terminal.rasi -lines 1 | xargs swaymsg exec --
+bindsym $mod+d exec rofi -show drun -theme /home/booperlv/.cache/wal/rofiinputbar.rasi | xargs swaymsg exec --
+bindsym $mod+g exec rofi -show drun -theme /home/booperlv/.cache/wal/rofinobar.rasi | xargs swaymsg exec --
+bindsym $mod+p exec rofi -show power -theme /home/booperlv/.cache/wal/rofipowermenu.rasi | xargs swaymsg exec --
+bindsym $mod+t exec rofi -dmenu -p 'Run Command' -theme /home/booperlv/.cache/wal/rofiterminal.rasi -lines 1 | xargs swaymsg exec --
 
 # Mouse management
 floating_modifier $mod normal
