@@ -6,7 +6,6 @@ arr=(~/.local/share/pictures/*)
 globalcounter=$(cat ~/.config/sway/scripts/changewalcounter.txt)
 file=${arr[$globalcounter]}
 
-echo $file
 wal -n -i $file 
 python ~/.config/foot/scripts/pywal.py
 

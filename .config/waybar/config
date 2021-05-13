@@ -5,7 +5,7 @@
 
     "modules-left": ["sway/workspaces", "custom/separate", "sway/window", "custom/separate", "custom/memory"],
     "modules-center": [],
-    "modules-right": ["network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate", "custom/rofiselect"], 
+    "modules-right": ["sway/mode", "custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate", "custom/rofiselect"], 
 
     "sway/workspaces": {
          "disable-scroll": true,
@@ -28,7 +28,7 @@
         }
     },
     "clock": {
-        "format": "{:%a %d %b%l:%M}",
+        "format": "{:%a %d %b %l:%M}",
         "format-alt": "{:%d-%b-%Y}"
     },
     "cpu": {

@@ -36,7 +36,7 @@ window#waybar {
     border-bottom: 2px solid @foreground;
 }
 
-#sway-mode, #idle_inhibitor, #clock, #cpu, #custom-memory, #battery, #network {
+#sway-window, #sway-mode, #idle_inhibitor, #clock, #cpu, #custom-memory, #battery, #network {
     padding: 0px 6px;
     margin: 0px 3px;
     border-bottom: 2px solid @color3;

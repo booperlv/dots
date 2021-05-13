@@ -73,12 +73,13 @@ bindsym $mod+Ctrl+r reload
 bindsym $mod+Ctrl+q exec swaymsg exit
 
 # Change Wallpaper
-mode "wallpaper" {
-    bindsym s exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode "default"
+mode "wallpaper set color refresh" {
+    bindsym w exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode "default"
     bindsym r exec bash /home/booperlv/.config/sway/scripts/resetcurrentwal.sh; mode "default"
     bindsym c exec bash /home/booperlv/.config/sway/scripts/walvariants/changewalnowal.sh; mode "default"
+    bindsym space mode default
 }
-bindsym $mod+backslash mode "wallpaper"
+bindsym $mod+backslash mode "wallpaper set color refresh"
 
 # Empty Window
 bindsym $mod+x exec emptywindow
@@ -110,15 +111,15 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Resize the focused window with the same, but add Ctrl
-bindsym $mod+Ctrl+$left resize shrink width 10px
+bindsym $mod+Ctrl+$left resize grow width 10px
 bindsym $mod+Ctrl+$down resize grow height 10px
 bindsym $mod+Ctrl+$up resize shrink height 10px
-bindsym $mod+Ctrl+$right resize grow width 10px
+bindsym $mod+Ctrl+$right resize shrink width 10px
 # Ditto, with arrow keys
-bindsym $mod+Ctrl+Left resize shrink width 10px
+bindsym $mod+Ctrl+Left resize grow width 10px
 bindsym $mod+Ctrl+Down resize grow height 10px
 bindsym $mod+Ctrl+Up resize shrink height 10px
-bindsym $mod+Ctrl+Right resize grow width 10px
+bindsym $mod+Ctrl+Right resize shrink width 10px
 
 
 # Workspaces:
