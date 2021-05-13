@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+notify-send '(wal)lpaper changing!' -t 2000
+
 arr=(~/.local/share/pictures/*)
 
 globalfile=(~/.config/sway/scripts/changewalcounter.txt)
@@ -24,3 +26,6 @@ python ~/.config/foot/scripts/pywal.py
 bash ~/.config/sway/scripts/walchangepics.sh
 killall -q waybar
 waybar &
+
+killall -q mako
+mako &

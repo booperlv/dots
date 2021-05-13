@@ -4,6 +4,9 @@ require('lsp_config')
 --Require Status Line Configuration File
 require('statusline')
 
+--Require TreeSitter Configuration File
+require('treesitter_config')
+
 --Hex,RGB,... Code Colorizer
 require'colorizer'.setup()
 

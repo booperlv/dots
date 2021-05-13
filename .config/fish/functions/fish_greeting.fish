@@ -24,5 +24,4 @@ function fish_greeting
     echo ""
     printf $output
     echo ""
-    echo ""
 end

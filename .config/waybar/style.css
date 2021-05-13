@@ -12,7 +12,7 @@
 
 window#waybar {
     background: @background;
-    border-bottom: 2px solid @color3;
+    border-bottom: 2px solid @color5;
     color: @foreground;
     padding: 0px;
 }
@@ -20,18 +20,18 @@ window#waybar {
 #workspaces button {
     padding: 0px 2.5px;
     background: rgba(100, 114, 125, 0.2);
-    border-bottom: 2px solid @color3;
+    border-bottom: 2px solid @color5;
 }
 
 #workspaces button.focused {
-    background: @color4;
+    background: @color3;
     color: @background;
     border-bottom: 2px solid @foreground;
 }
 
 #custom-rofiselect {
     padding: 0px 7.5px;
-    background: @color4;
+    background: @color3;
     color: @background;
     border-bottom: 2px solid @foreground;
 }
@@ -39,5 +39,5 @@ window#waybar {
 #sway-window, #sway-mode, #idle_inhibitor, #clock, #cpu, #custom-memory, #battery, #network {
     padding: 0px 6px;
     margin: 0px 3px;
-    border-bottom: 2px solid @color3;
+    border-bottom: 2px solid @color5;
 }

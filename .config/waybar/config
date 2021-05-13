@@ -59,7 +59,7 @@
     },
     "custom/memory": {
         "exec" : "$HOME/.config/waybar/modules/memory.sh",
-        "interval": 3,
+        "interval": 2,
         "format": " {}"
     },
     "custom/rofiselect": {

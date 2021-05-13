@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+notify-send 'resetting the current wal!' -t 2000
+
 # create an array with all the filer/dir inside ~/myDir
 arr=(~/.local/share/pictures/*)
 
@@ -12,3 +14,6 @@ python ~/.config/foot/scripts/pywal.py
 bash ~/.config/sway/scripts/walchangepics.sh
 killall -q waybar
 waybar &
+
+killall -q mako
+mako &
