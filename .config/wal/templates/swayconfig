@@ -208,11 +208,10 @@ bindsym $mod+a focus parent
 
 
 # capture all screens to clipboard    
-bindsym $mod+Shift+z exec grim -g (slurp) - | wl-copy    
+bindsym $mod+Shift+z exec grim /home/booperlv/.cache/screenshotclipboard.png && wl-copy < /home/booperlv/.cache/screenshotclipboard.png && notify-send 'copied screenshot to clipboard!' -t 1500 
     
 # Save the pictures to directory    
-bindsym $mod+z exec grim -g (slurp) /home/booperlv/Pictures/
-
+bindsym $mod+z exec grim /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) && notify-send 'saved screenshot to pictures!' -t 1500
 
 
 # Scratchpad:
