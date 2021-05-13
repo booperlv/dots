@@ -23,7 +23,7 @@ rm -rf ~/.cache/swaywal
 ln -s $file ~/.cache/swaywal
 wal -n -i $file
 python ~/.config/foot/scripts/pywal.py
-bash ~/.config/sway/scripts/walchangepics.sh
+bash ~/.cache/wal/walchangepics.sh
 killall -q waybar
 waybar &
 

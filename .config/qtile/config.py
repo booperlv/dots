@@ -6,6 +6,9 @@ from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+
+import sys
+sys.path.append('/home/booperlv/.cache/wal')
 from colors import *
 
 mod = "mod4"

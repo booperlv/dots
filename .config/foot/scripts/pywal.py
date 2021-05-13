@@ -3,7 +3,7 @@ import subprocess
 import json
 import textwrap
 
-datafile = os.path.join( os.path.expanduser('~/.config/foot/scripts/'), 'colors.json' )
+datafile = os.path.join( os.path.expanduser('~/.cache/wal/'), 'colors.json' )
 data = open(datafile).read().replace('#', '')
 dataparsed = json.loads(data)
 col = dataparsed['colors']
