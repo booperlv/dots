@@ -228,25 +228,18 @@ mode "copy focus window screen output area" {{
     bindsym escape mode default
 }}
 mode "save focus window screen output area" {{
-    bindsym f exec grimshot --notify save active /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym w exec grimshot --notify save window /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym s exec grimshot --notify save screen /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym o exec grimshot --notify save output /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym a exec grimshot --notify save area   /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym f exec grimshot --notify save active /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym w exec grimshot --notify save window /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym s exec grimshot --notify save screen /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym o exec grimshot --notify save output /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym a exec grimshot --notify save area   /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
     
     bindsym space mode default
     bindsym escape mode default
 }}
 
-# capture all screens to clipboard    
-#bindsym $mod+Shift+z exec grim /home/booperlv/.cache/screenshotclipboard.png && wl-copy < /home/booperlv/.cache/screenshotclipboard.png && notify-send 'copied screenshot to clipboard!' -t 1500 
-# Save the pictures to directory    
-#bindsym $mod+z exec grim /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) && notify-send 'saved screenshot to pictures!' -t 1500
-
 
 # Scratchpad:
-
-
 
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -257,8 +250,6 @@ mode "save focus window screen output area" {{
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-
-
 
 
 # Status Bar:
