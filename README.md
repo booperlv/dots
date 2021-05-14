@@ -6,15 +6,19 @@ I'm on a low resolution 11.6 inch screen btw :((
 # Sway
 Here's a peek!
 ![Swaying ~(-_-)~](https://github.com/booperlv/dots/blob/main/screenshots/sway1.png?raw=true)
+
+Change the theme using $mod+backslash then s
 ![Sway (Switched Theme)](https://github.com/booperlv/dots/blob/main/screenshots/sway1changedtheme.png?raw=true)
 
 Pywal Generated GTK Theme, practically stolen from Flat Remix Dark
 ![Pywal Generated GTK Theme](https://github.com/booperlv/dots/blob/main/screenshots/gtkandnvimsway.png?raw=true)
 
 # Qtile
+Don't really use this much anymore since sway is so good, but keep it here just in case. Barely maintain the scripts here.
 ![Qtie(cutie) tile](https://github.com/booperlv/dots/blob/main/screenshots/qtile1.png?raw=true)
 
 # Extras
+Generated gtk theme on Thunar, and Rofi :)
 ![On qtile, with the generated gtk theme and a little rofi on top :)](https://github.com/booperlv/dots/blob/main/screenshots/qtileandmoregtk.png?raw=true)
 
 As you may see from a little peek into the configs, these dotfiles are NOT made for general use. You will have to edit a number of paths and place these files in their corresponding places.
