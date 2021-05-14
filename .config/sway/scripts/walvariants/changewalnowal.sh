@@ -2,16 +2,17 @@
 
 notify-send 'wal colors changing!' -t 2000
 
-# create an array with all the filer/dir inside ~/myDir
 arr=(~/.local/share/pictures/*)
 globalfile=(~/.config/sway/scripts/walvariants/changewalnowalcounter.txt)
 
 globalcounter=$(cat ${globalfile})
 
-if [ "${globalcounter}" -lt "${#arr[@]}" ]; then
-    globalcounter=$((globalcounter+1))
-else
+arrlength=`expr ${#arr[@]} - 1`
+
+if [ "${globalcounter}" -ge "$arrlength" ]; then
     globalcounter=0
+else
+    globalcounter=$((globalcounter+1))
 fi
 
 echo $globalcounter
@@ -22,10 +23,13 @@ file=${arr[$updatedglobalcounter]}
 
 echo $file
 wal -n -i $file
+
 python ~/.config/foot/scripts/pywal.py
-bash ~/.cache/wal/walchangepics.sh
+
 killall -q waybar
 waybar &
 
 killall -q mako
 mako &
+
+bash ~/.cache/wal/walchangepics.sh
