@@ -102,12 +102,13 @@ bindsym $mod+Ctrl+q exec swaymsg exit
 
 # Change Wallpaper
 mode "wallpaper set color refresh" {{
-    bindsym s exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode "default"
-    bindsym r exec bash /home/booperlv/.config/sway/scripts/resetcurrentwal.sh; mode "default"
-    bindsym c exec bash /home/booperlv/.config/sway/scripts/walvariants/changewalnowal.sh; mode "default"
+    bindsym s exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode default
+    bindsym r exec bash /home/booperlv/.config/sway/scripts/resetcurrentwal.sh; mode default
+    bindsym c exec bash /home/booperlv/.config/sway/scripts/walvariants/changewalnowal.sh; mode default
     
-    bindsym space mode "default"
-    bindsym $mod+backslash mode "default"
+    bindsym space mode default
+    bindsym $mod+backslash mode default
+    bindsym escape mode default
 }}
 bindsym $mod+backslash mode "wallpaper set color refresh"
 
@@ -206,12 +207,41 @@ bindsym $mod+a focus parent
 
 # Screenshots
 
+mode "screenshot copy save" {{
+    bindsym c mode "copy focus window screen output area"
+    bindsym s mode "save focus window screen output area"
+    
+    bindsym space mode default
+    bindsym escape mode default
+}}
+bindsym $mod+z mode "screenshot copy save"
+
+# ScreenShot Sub Modes
+mode "copy focus window screen output area" {{
+    bindsym f exec grimshot --notify copy active; mode default
+    bindsym w exec grimshot --notify copy window; mode default
+    bindsym s exec grimshot --notify copy screen; mode default
+    bindsym o exec grimshot --notify copy output; mode default
+    bindsym a exec grimshot --notify copy area; mode default
+    
+    bindsym space mode default
+    bindsym escape mode default
+}}
+mode "save focus window screen output area" {{
+    bindsym f exec grimshot --notify save active $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym w exec grimshot --notify save window $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym s exec grimshot --notify save screen $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym o exec grimshot --notify save output $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym a exec grimshot --notify save area   $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    
+    bindsym space mode default
+    bindsym escape mode default
+}}
 
 # capture all screens to clipboard    
-bindsym $mod+Shift+z exec grim /home/booperlv/.cache/screenshotclipboard.png && wl-copy < /home/booperlv/.cache/screenshotclipboard.png && notify-send 'copied screenshot to clipboard!' -t 1500 
-    
+#bindsym $mod+Shift+z exec grim /home/booperlv/.cache/screenshotclipboard.png && wl-copy < /home/booperlv/.cache/screenshotclipboard.png && notify-send 'copied screenshot to clipboard!' -t 1500 
 # Save the pictures to directory    
-bindsym $mod+z exec grim /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) && notify-send 'saved screenshot to pictures!' -t 1500
+#bindsym $mod+z exec grim /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) && notify-send 'saved screenshot to pictures!' -t 1500
 
 
 # Scratchpad:
