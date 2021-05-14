@@ -228,11 +228,11 @@ mode "copy focus window screen output area" {{
     bindsym escape mode default
 }}
 mode "save focus window screen output area" {{
-    bindsym f exec grimshot --notify save active $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym w exec grimshot --notify save window $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym s exec grimshot --notify save screen $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym o exec grimshot --notify save output $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym a exec grimshot --notify save area   $(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym f exec grimshot --notify save active /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym w exec grimshot --notify save window /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym s exec grimshot --notify save screen /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym o exec grimshot --notify save output /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym a exec grimshot --notify save area   /home/booperlv/Pictures/$(rofi -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
     
     bindsym space mode default
     bindsym escape mode default
