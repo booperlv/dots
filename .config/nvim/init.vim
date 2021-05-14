@@ -24,7 +24,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'tmsvg/pear-tree'
 
 " TabLine
-Plug 'romgrk/barbar.nvim'
+"Plug 'romgrk/barbar.nvim'
+Plug 'akinsho/nvim-bufferline.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File Explorer
@@ -60,7 +61,7 @@ call plug#end()
 " Colorscheme
 let ayucolor="mirage"
 let background="dark"
-colorscheme ayu 
+colorscheme onehalfdark 
 set termguicolors
 
 " Set Font for GUI
@@ -111,7 +112,6 @@ set ttimeoutlen=2
 
 " Remap Esc -command switch to normal
 inoremap nn <esc>
-inoremap nn <esc>
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -132,32 +132,14 @@ let g:indentLine_char = '▏'
 let g:user_emmet_leader_key='<C-Z>'
 nnoremap <leader>em :call feedkeys("<C-Z>,")<CR>
 
-" barbar.nvim
-" Move to previous/next
-nnoremap <silent>    <A-,> :BufferPrevious<CR>
-nnoremap <silent>    <A-.> :BufferNext<CR>
-" Re-order to previous/next
-nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
-nnoremap <silent>    <A->> :BufferMoveNext<CR>
-" Goto buffer in position...
-nnoremap <silent>    <A-1> :BufferGoto 1<CR>
-nnoremap <silent>    <A-2> :BufferGoto 2<CR>
-nnoremap <silent>    <A-3> :BufferGoto 3<CR>
-nnoremap <silent>    <A-4> :BufferGoto 4<CR>
-nnoremap <silent>    <A-5> :BufferGoto 5<CR>
-nnoremap <silent>    <A-6> :BufferGoto 6<CR>
-nnoremap <silent>    <A-7> :BufferGoto 7<CR>
-nnoremap <silent>    <A-8> :BufferGoto 8<CR>
-nnoremap <silent>    <A-9> :BufferLast<CR>
+" nvim bufferline
+nnoremap <silent><leader>/ :BufferLineCycleNext<CR>
+nnoremap <silent><leader>m :BufferLineCyclePrev<CR>
+" These commands will move the current buffer backwards or forwards in the bufferline
+nnoremap <silent><leader>? :BufferLineMoveNext<CR>
+nnoremap <silent><leader>M :BufferLineMovePrev<CR>
 " Close buffer
-nnoremap <silent>    <A-w> :BufferClose<CR>
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.animation = v:false
-let bufferline.closable = v:false
-let bufferline.icon_separator_active = ''
-let bufferline.icon_separator_inactive = ''
-let bufferline.icon_close_tab = ''
-let bufferline.icon_close_tab_modified = '●'
+nnoremap <silent><leader>w :bdelete<CR>
 
 " pear-tree
 let g:pear_tree_smart_openers = 1
@@ -172,7 +154,8 @@ set completeopt=menuone,noinsert,noselect
 nnoremap <leader>tt :NvimTreeToggle<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tf :NvimTreeFindFile<CR>
-let g:nvim_tree_width = 40 "30 by default
+let g:nvim_tree_side = 'left' "left by default
+let g:nvim_tree_width = 25 "30 by default
 let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
 let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open

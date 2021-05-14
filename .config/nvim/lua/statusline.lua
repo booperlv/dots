@@ -90,7 +90,8 @@ end
 
 
 ins_left {
- function() return '' end,
+ --function() return '' end,
+ function() return '▌' end,
  color = {fg = colors.blue}, -- Sets highlighting of component
  left_padding = 0 -- We don't need space before this
 }
@@ -227,7 +228,7 @@ ins_right {
 }
 
 ins_right {
-  function() return '' end,
+  function() return '▐' end,
   color = {fg = colors.blue},
   right_padding = 0,
 }
