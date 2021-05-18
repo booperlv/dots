@@ -1,12 +1,15 @@
 --evilline
 local lualine = require'lualine'
 
+vim.g.StatusLineBackground = vim.fn.ReturnHighlightTerm('VertSplit', 'guifg')
+vim.g.StatusLineForeground = vim.fn.ReturnHighlightTerm('StatusLine', 'guifg')
+vim.g.StatusLineHorizontalSplit = vim.fn.ReturnHighlightTerm('VertSplit', 'guifg')
+
 -- Color table for highlights
-vim.g.statuslinebackground = 'synIDattr(synIDtrans(hlID("StatusLine")), "bg#")'
-vim.g.statuslineforeground = 'synIDattr(synIDtrans(hlID("StatusLine")), "fg#")'
 local colors = {
-  bg       = vim.g.statuslinebackground,
-  fg       = vim.g.statuslineforeground,
+  bg       = vim.g.StatusLineBackground,
+  fg       = vim.g.StatusLineForeground,
+  split    = vim.g.StatusLineHorizontalSplit,
   yellow   = '#ffc777',
   cyan     = '#04d1f9',
   darkblue = '#a1abe0',
@@ -39,11 +42,8 @@ local config = {
     component_separators = "",
     section_separators = "",
     theme = {
-      -- We are going to use lualine_c and lualine_x as left and
-      -- right section. Both are highlighted by c theme .  So we
-      -- are just setting default looks o statusline
       normal = { c = {fg = colors.fg, bg = colors.bg}},
-      inactive = { c = {fg = colors.fg, bg = colors.bg}}
+      inactive = { c = {fg = vim.g.StatusLineHorizontalSplit, guibg = 'none', gui = 'underline'}}
     },
   },
   sections = {
@@ -57,8 +57,8 @@ local config = {
     lualine_x = {},
   },
   inactive_sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
+    -- The one section with text for a horizontal separator
+    lualine_a = {' '},
     lualine_v = {},
     lualine_y = {},
     lualine_z = {},
@@ -124,31 +124,10 @@ ins_left {
       t      = colors.red
     }
     vim.api.nvim_command('hi! LualineMode guifg='..mode_color[vim.fn.mode()] .. " guibg="..colors.bg)
-    return '  '
+    return '  ﲎ '
   end,
   color = "LualineMode",
   left_padding = 0,
-}
-
-ins_left {
-  -- filesize component
-  function()
-    local function format_file_size(file)
-      local size = vim.fn.getfsize(file)
-      if size <= 0 then return '' end
-      local sufixes = {'b', 'k', 'm', 'g'}
-      local i = 1
-      while size > 1024 do
-        size = size / 1024
-        i = i + 1
-      end
-      return string.format('%.1f%s', size, sufixes[i])
-    end
-    local file = vim.fn.expand('%:p')
-    if string.len(file) == 0 then return '' end
-    return format_file_size(file)
-  end,
-  condition = conditions.buffer_not_empty,
 }
 
 ins_left {
@@ -234,4 +213,3 @@ ins_right {
 }
 
 lualine.setup(config)
-

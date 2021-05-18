@@ -16,15 +16,15 @@ actualconfig=textwrap.dedent('''\
 # term=foot (or xterm-256color if built with -Dterminfo=disabled)
 # login-shell=no
 
-font=JetBrains Mono Nerd Font:size=8
-# font-bold=<bold variant of regular font>
-# font-italic=<italic variant of regular font>
-# font-bold-italic=<bold+italic variant of regular font>
+font=Iosevka Nerd Font:size=8.5
+#font-bold=Iosevka Nerd Font:style=
+#font-italic=<italic variant of regular font>
+#font-bold-italic=<bold+italic variant of regular font>
 # line-height=<font metrics>
 # letter-spacing=0
 # horizontal-letter-offset=0
 # vertical-letter-offset=0
-#box-drawings-uses-font-glyphs=yes
+box-drawings-uses-font-glyphs=yes
 dpi-aware=yes
 
 # initial-window-size-pixels=700x500  # Or,
@@ -169,6 +169,7 @@ bright7={17}
 )
 
 userfile = os.path.join( os.path.expanduser('~/.config/foot/'), 'foot.ini' )
+
 tempfile=open(userfile, "w")
 tempfile.write(actualconfig)
 tempfile.close()

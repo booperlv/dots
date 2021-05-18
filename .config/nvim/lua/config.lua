@@ -1,11 +1,11 @@
 --Require Language Server Configuration File
 require('lsp_config')
 
---Require Status Line Configuration File
-require('statusline')
-
 --Hex,RGB,... Code Colorizer
 require'colorizer'.setup()
+
+--Autoparis and stuff
+require("nvim-autopairs").setup()
 
 --Telescope, Fuzzy Finder, File Explorer
 local actions = require('telescope.actions')
@@ -20,6 +20,7 @@ require('telescope').setup{
         ["<C-i>"] = my_cool_custom_action,
       },
     },
+    inactive_sections = {" "},
   }
 }
 
@@ -32,33 +33,39 @@ vim.g.moonlight_contrast = true
 vim.g.moonlight_borders = false 
 vim.g.moonlight_disable_background = false
 
--- Bufferline setup
-require('bufferline').setup {
-    options = {
-        offsets = {{filetype = "NvimTree", text = "Explorer"}},
-        buffer_close_icon = "",
-        modified_icon = "",
-        close_icon = " ",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
-        max_name_length = 14,
-        max_prefix_length = 13,
-        tab_size = 20,
-        show_tab_indicators = true,
-        enforce_regular_tabs = false,
-        view = "multiwindow",
-        show_buffer_close_icons = true,
-        separator_style = "thin",
-        mappings = "true"
-    },
-    highlights = {
-        fill = {
-            guifg = bar_fg,
-            guibg = "#252931"
-        },
-        background = {
-            guifg = bar_fg,
-            guibg = "#252931"
-        },
+--Nvim Tree Bindings
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+    vim.g.nvim_tree_bindings = {
+      ["<CR>"] = ":YourVimFunction()<cr>",
+      ["u"] = ":lua require'some_module'.some_function()<cr>",
+
+      -- default mappings
+      ["<CR>"]           = tree_cb("edit"),
+      ["o"]              = tree_cb("edit"),
+      ["<2-LeftMouse>"]  = tree_cb("edit"),
+      ["<2-RightMouse>"] = tree_cb("cd"),
+      ["<"]          = tree_cb("cd"),
+      ["V"]          = tree_cb("vsplit"),
+      ["H"]          = tree_cb("split"),
+      ["T"]          = tree_cb("tabnew"),
+      ["<BS>"]           = tree_cb("close_node"),
+      ["<S-CR>"]         = tree_cb("close_node"),
+      ["<Tab>"]          = tree_cb("preview"),
+      ["R"]              = tree_cb("refresh"),
+      ["c"]              = tree_cb("create"),
+      ["r"]              = tree_cb("remove"),
+      ["n"]              = tree_cb("rename"),
+      ["N"]          = tree_cb("full_rename"),
+      [">"]              = tree_cb("dir_up"),
+      ["q"]              = tree_cb("close"),
     }
-}
+
+--Require Nvim-Compe Configuration File
+require('compe-completion')
+
+--Require Status Line Configuration File
+dofile("/home/booperlv/.config/nvim/lua/statusline.lua")
+
+--Require Buffer Line Configuration File
+dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")
+

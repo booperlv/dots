@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 25, // Waybar height (to be removed for auto height)
+    "height": 22, // Waybar height (to be removed for auto height)
 
     "modules-left": ["sway/workspaces", "custom/separate", "sway/window", "custom/separate", "custom/memory"],
     "modules-center": [],
@@ -17,6 +17,9 @@
         //     "default": " "
         // }
     },
+    "sway/window": {
+
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -28,7 +31,7 @@
         }
     },
     "clock": {
-        "format": "{:%a %d %b %l:%M}",
+        "format": "{:  %a %d %b  %l:%M}",
         "format-alt": "{:%d-%b-%Y}"
     },
     "cpu": {
@@ -60,13 +63,13 @@
     "custom/memory": {
         "exec" : "$HOME/.config/waybar/modules/memory.sh",
         "interval": 2,
-        "format": " {}"
+        "format": " {}"
     },
     "custom/rofiselect": {
         "on-click" : "$HOME/.config/rofi/scripts/selectmode.sh",
         "format" : "launcher"
     },
     "custom/separate": {
-        "format": " "
+        "format": "  "
     }
 }

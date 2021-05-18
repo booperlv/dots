@@ -1,8 +1,19 @@
+-- General Settings
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
 --Deno Language Server (Javascript)
 --require'lspconfig'.denols.setup{
 --	init_options = {
 --		enable = true,
---		lint= false,
+--		lint= true,
 --		unstable = false
 --	}
 --}
@@ -11,9 +22,6 @@
 require'lspconfig'.tsserver.setup{}
 
 --HTML Language Server
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 require'lspconfig'.html.setup {
     capabilities = capabilities,
 }
