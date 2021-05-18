@@ -260,11 +260,11 @@ mode "copy focus window screen output area" {{
     bindsym escape mode default
 }}
 mode "save focus window screen output area" {{
-    bindsym f exec grimshot --notify save active /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym w exec grimshot --notify save window /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym s exec grimshot --notify save screen /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym o exec grimshot --notify save output /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
-    bindsym a exec grimshot --notify save area   /home/booperlv/Pictures/$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi) ; mode default
+    bindsym f exec bash /home/booperlv/.config/sway/scripts/screenshot.sh active; mode default
+    bindsym w exec bash /home/booperlv/.config/sway/scripts/screenshot.sh window; mode default 
+    bindsym s exec bash /home/booperlv/.config/sway/scripts/screenshot.sh screen; mode default 
+    bindsym o exec bash /home/booperlv/.config/sway/scripts/screenshot.sh output; mode default 
+    bindsym a exec bash /home/booperlv/.config/sway/scripts/screenshot.sh area  ; mode default 
     
     bindsym space mode default
     bindsym q mode default
