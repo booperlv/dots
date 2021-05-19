@@ -125,7 +125,7 @@ set ttimeoutlen=2
 
 " Remap Esc -command switch to normal
 inoremap nn <esc>
-inoremap nxn nn
+inoremap nx nn
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -155,7 +155,7 @@ nnoremap <silent><leader>m :BufferLineCyclePrev<CR>
 nnoremap <silent><leader>? :BufferLineMoveNext<CR>
 nnoremap <silent><leader>M :BufferLineMovePrev<CR>
 " Close buffer
-nnoremap <silent><leader>w :bdelete<CR>
+nnoremap <silent><leader>q :bdelete<CR>
 
 " pear-tree
 let g:pear_tree_smart_openers = 1
@@ -210,10 +210,10 @@ nnoremap , <Down>
 nnoremap . <Up>
 nnoremap / <Right>
 
-nnoremap <leader>qq <S-m>
-nnoremap <leader>qw <
-nnoremap <leader>qf >
-nnoremap <leader>qp ? 
+nnoremap <C-S-m> <S-m>
+nnoremap <C-S-,> <
+nnoremap <C-S-.> >
+nnoremap <C-S-/> ? 
 
 nnoremap <S-m> <S-Left>
 nnoremap < <S-Down>
@@ -230,15 +230,33 @@ vnoremap , <Down>
 vnoremap . <Up>
 vnoremap / <Right>
 
-vnoremap <leader>qq <S-m>
-vnoremap <leader>qw <
-vnoremap <leader>qf >
-vnoremap <leader>qp ? 
+vnoremap <C-S-m> <S-m>
+vnoremap <C-S-,> <
+vnoremap <C-S-.> >
+vnoremap <C-S-/> ? 
 
 vnoremap <S-m> <S-Left>
 vnoremap < <S-Down>
 vnoremap > <S-Up>
 vnoremap ? <S-Right>
+
+" Splits
+" Arrow Keys
+nnoremap <leader>wm :wincmd h<CR>
+nnoremap <leader>w, :wincmd j<CR>
+nnoremap <leader>w. :wincmd k<CR>
+nnoremap <leader>w/ :wincmd l<CR>
+" Move focus between
+nnoremap <leader>ww :wincmd w<CR>
+"Split Management
+" window vertical, window horizontal, window resize vertical etc
+nnoremap <leader>wv :vsplit<CR>
+nnoremap <leader>wh :split<CR>
+"nnoremap <leader>wrv :vertical resize +1<CR>
+"nnoremap <leader>wrh :resize +1<CR>
+
+nnoremap <leader>w <C-w>
+
 
 " ----------------
 " CUSTOM FUNCTIONS
