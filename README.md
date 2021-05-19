@@ -1,7 +1,7 @@
 # dots
 Sway & Qtile :)
 Mainly use sway though, so qtile may be rough around the edges, especially when it comes to the scripts.
-I'm on a low resolution 11.6 inch screen btw :((
+I'm on a low resolution 11.6 inch screen btw, so things might look different.
 
 # Sway
 Here's a peek!
