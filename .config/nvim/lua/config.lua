@@ -60,6 +60,15 @@ local tree_cb = require'nvim-tree.config'.nvim_tree_callback
       ["q"]              = tree_cb("close"),
     }
 
+--Trouble/LSP error indicator
+require("trouble").setup {}
+
+--Zen Mode
+require("zen-mode").setup {}
+
+
+
+
 --Require Nvim-Compe Configuration File
 require('compe-completion')
 

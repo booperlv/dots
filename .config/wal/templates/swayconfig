@@ -115,9 +115,10 @@ bindsym $mod+backslash mode "wallpaper select change refresh"
 
 # Toggle Gaps and Borders
 bindsym $mod+Ctrl+b border toggle
-mode "gaps inner outer" {{
+mode "gaps inner outer default" {{
     bindsym i mode "gaps inner plus minus"
     bindsym o mode "gaps outer plus minus"
+    bindsym d gaps inner 8; mode default
     
     bindsym space mode default
     bindsym q mode default
@@ -140,7 +141,7 @@ mode "gaps outer plus minus" {{
     bindsym q mode default
     bindsym escape mode default
 }}
-bindsym $mod+Ctrl+g mode "gaps inner outer"
+bindsym $mod+Ctrl+g mode "gaps inner outer default"
 
 # Empty Window
 bindsym $mod+x exec emptywindow

@@ -57,6 +57,12 @@ Plug 'hoob3rt/lualine.nvim'
 " Color Picker
 Plug 'DougBeney/pickachu'
 
+" Pretty LSP Errors and Things indicator
+Plug 'folke/trouble.nvim'
+
+" Zen Mode, focus :D
+Plug 'folke/zen-mode.nvim'
+
 call plug#end()
 
 " --------------
@@ -170,6 +176,14 @@ inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+" lsp trouble mapping
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle lsp_document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr> LSP trouble.nvim
 
 " Nvim Tree
 nnoremap <leader>tt :NvimTreeToggle<CR>

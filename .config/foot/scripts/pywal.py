@@ -170,6 +170,6 @@ bright7={17}
 
 userfile = os.path.join( os.path.expanduser('~/.config/foot/'), 'foot.ini' )
 
-tempfile=open(userfile, "w")
-tempfile.write(actualconfig)
-tempfile.close()
+file=open(userfile, "w")
+file.write(actualconfig)
+file.close()
