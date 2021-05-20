@@ -24,13 +24,13 @@ font=Iosevka Nerd Font:size=8.5
 # letter-spacing=0
 # horizontal-letter-offset=0
 # vertical-letter-offset=0
-box-drawings-uses-font-glyphs=yes
-dpi-aware=yes
+#box-drawings-uses-font-glyphs=yes
+#dpi-aware=yes
 
 # initial-window-size-pixels=700x500  # Or,
 # initial-window-size-chars=<COLSxROWS>
 # initial-window-mode=windowed
-pad=10x10 center                      # optionally append 'center'
+pad=7x7 center                      # optionally append 'center'
 # resize-delay-ms=100
 
 
@@ -42,7 +42,7 @@ pad=10x10 center                      # optionally append 'center'
 # osc8-underline=url-mode
 
 [scrollback]
-lines=600
+#lines=600
 # multiplier=3.0
 # indicator-position=relative
 # indicator-format=

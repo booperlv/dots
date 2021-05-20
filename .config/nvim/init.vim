@@ -126,7 +126,7 @@ set autoread
 set cursorline
 
 " Set Key Timeout
-set ttimeoutlen=2
+set ttimeoutlen=1
 "set notimeout
 
 " Remap Esc -command switch to normal
@@ -178,12 +178,15 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " lsp trouble mapping
-nnoremap <leader>xx <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle lsp_document_diagnostics<cr>
-nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap <leader>xx :TroubleToggle<cr>
+nnoremap <leader>xw :TroubleToggle lsp_workspace_diagnostics<cr>
+nnoremap <leader>xd :TroubleToggle lsp_document_diagnostics<cr>
+nnoremap <leader>xq :TroubleToggle quickfix<cr>
+nnoremap <leader>xl :TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr> LSP trouble.nvim
+
+" zen-mode mapping
+nnoremap <leader>zm :ZenMode
 
 " Nvim Tree
 nnoremap <leader>tt :NvimTreeToggle<CR>
@@ -287,8 +290,11 @@ endfunction
 " Toggle Themes and Reset Source Bind
 function! SwitchThemes()
 	if g:colors_name=="onehalfdark"
-		colorscheme ayu
+		colorscheme onehalflight 
 		set termguicolors
+    elseif g:colors_name=="onehalflight"
+        colorscheme ayu
+        set termguicolors
 	elseif g:colors_name=="ayu"
 		colorscheme quantum
 		set termguicolors
