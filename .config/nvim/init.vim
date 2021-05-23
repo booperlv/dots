@@ -86,9 +86,6 @@ syntax enable
 " Encoding
 set encoding=UTF-8
 
-" Clipboard
-set clipboard=unnamedplus
-
 " Allow Buffer Change No Save
 set hidden
 
@@ -132,6 +129,7 @@ set ttimeoutlen=1
 " Remap Esc -command switch to normal
 inoremap nn <esc>
 inoremap nx nn
+inoremap n<space> n
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -186,7 +184,7 @@ nnoremap <leader>xl :TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr> LSP trouble.nvim
 
 " zen-mode mapping
-nnoremap <leader>zm :ZenMode
+nnoremap <leader>zm :ZenMode<cr>
 
 " Nvim Tree
 nnoremap <leader>tt :NvimTreeToggle<CR>
@@ -214,8 +212,10 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " overwrite defaults
-nnoremap d "_d
-vnoremap d "_d
+nnoremap <leader>y "+y 
+nnoremap <leader>p "+p 
+vnoremap <leader>y "+y 
+vnoremap <leader>p "+p 
 
 nnoremap <C-m> m
 nnoremap <C-,> ,

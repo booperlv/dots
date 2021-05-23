@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
-DRUN="rofi -show drun -theme /home/booperlv/.config/rofi/colors-rofi-dark.rasi"
-RUN="rofi -show run -theme /home/booperlv/.config/rofi/colors-rofi-dark.rasi"
-WINDOW="rofi -show window -theme /home/booperlv/.config/rofi/colors-rofi-dark.rasi"
-TERM="rofi -show term -theme /home/booperlv/.config/rofi/scripts/terminal.rasi"
-POWER="rofi -show power -theme /home/booperlv/.config/rofi/scripts/powermenu.rasi"
+DRUN="rofi -show drun -theme ~/.cache/wal/rofiinputbar.rasi"
+RUN="rofi -show run -theme ~/.cache/wal/rofiinputbar.rasi"
+WINDOW="rofi -show window -theme ~/.cache/wal/rofiinputbar.rasi"
+TERM="rofi -show term -theme ~/.cache/wal/rofiterminal.rasi"
+POWER="rofi -show power -theme ~/.cache/wal/rofipowermenu.rasi"
 
 MODEARRAY='DRUN\nRUN\nWINDOW\nTERM\nPOWER'
 ROFIOUTPUT=$(echo -e $MODEARRAY | rofi -dmenu -theme /home/booperlv/.cache/wal/rofipowermenu.rasi)

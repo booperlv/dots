@@ -35,6 +35,10 @@ input * {{
     xkb_variant "colemak"
     xkb_options "caps:backspace"
 }}
+# Autostart Ibus
+exec ibus-daemon --xim --daemonize -r
+exec ibus engine xkb:us:colemak:eng
+bindsym $mod+Ctrl+i exec bash /home/booperlv/.config/sway/scripts/inputmethodtoggle.sh 
 
 # Set the Gaps or Margin
 gaps inner 8
@@ -43,7 +47,7 @@ gaps inner 8
 default_border none
 
 # Font
-font pango:JetBrains Mono Nerd Font Bold 9
+font pango:JetBrains Mono 9
 
 # Colors
 set $fg {foreground} 
@@ -101,17 +105,18 @@ bindsym $mod+Ctrl+r reload
 bindsym $mod+Ctrl+q exec swaymsg exit
 
 # Change Wallpaper
-mode "wallpaper select change refresh" {{
+mode "wallpaper select change refresh light" {{
     bindsym c exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode default
     bindsym r exec bash /home/booperlv/.config/sway/scripts/resetcurrentwal.sh; mode default
     bindsym s exec bash /home/booperlv/.config/sway/scripts/changewalselect.sh; mode default
+    bindsym l exec bash /home/booperlv/.config/sway/scripts/lightcurrent.sh; mode default
     
     bindsym space mode default
     bindsym q mode default
     bindsym $mod+backslash mode default
     bindsym escape mode default
 }}
-bindsym $mod+backslash mode "wallpaper select change refresh"
+bindsym $mod+backslash mode "wallpaper select change refresh light"
 
 # Toggle Gaps and Borders
 bindsym $mod+Ctrl+b border toggle

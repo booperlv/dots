@@ -62,7 +62,7 @@ URxvt*scrollBar:         false
 
 URxvt*transparent:       false
 
-URxvt.font: xft:JetBrains Mono:pixelsize=12
+URxvt.font: xft:Iosevka, Symbols Nerd Font:pixelsize=12
 URxvt.letterSpace: 0
 
 *antialias:  true

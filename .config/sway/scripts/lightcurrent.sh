@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
-notify-send 'resetting the current wal!' -t 2000
+notify-send 'converting to light theme' -t 2000 
 
 file=(~/.cache/swaywal)
 
-wal -n -i $file 
+wal -n -l -i $file
 
 python ~/.config/foot/scripts/pywal.py
 

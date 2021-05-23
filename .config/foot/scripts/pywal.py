@@ -16,7 +16,7 @@ actualconfig=textwrap.dedent('''\
 # term=foot (or xterm-256color if built with -Dterminfo=disabled)
 # login-shell=no
 
-font=Iosevka Nerd Font:size=8.5
+font=FantasqueSansMono,Symbols Nerd Font:size=9
 #font-bold=Iosevka Nerd Font:style=
 #font-italic=<italic variant of regular font>
 #font-bold-italic=<bold+italic variant of regular font>
@@ -24,8 +24,8 @@ font=Iosevka Nerd Font:size=8.5
 # letter-spacing=0
 # horizontal-letter-offset=0
 # vertical-letter-offset=0
-#box-drawings-uses-font-glyphs=yes
-#dpi-aware=yes
+# box-drawings-uses-font-glyphs=no
+# dpi-aware=auto
 
 # initial-window-size-pixels=700x500  # Or,
 # initial-window-size-chars=<COLSxROWS>
