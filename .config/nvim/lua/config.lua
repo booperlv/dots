@@ -24,15 +24,6 @@ require('telescope').setup{
   }
 }
 
---Material/Moonlight colorscheme config
-vim.g.moonlight_italic_comments = true
-vim.g.moonlight_italic_keywords = true
-vim.g.moonlight_italic_functions = true
-vim.g.moonlight_italic_variables = false
-vim.g.moonlight_contrast = true
-vim.g.moonlight_borders = false 
-vim.g.moonlight_disable_background = false
-
 --Nvim Tree Bindings
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {

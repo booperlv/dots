@@ -6,8 +6,6 @@ file=(~/.cache/swaywal)
 
 wal -n -i $file 
 
-python ~/.config/foot/scripts/pywal.py
-
 killall -q waybar
 waybar &
 

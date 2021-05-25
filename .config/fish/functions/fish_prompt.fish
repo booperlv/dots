@@ -20,23 +20,23 @@ function fish_prompt
         printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
     end
 
-    switch $fish_bind_mode
-        case default
-          set_color --bold white
-          printf 'N '
-        case insert
-          set_color --bold white
-          printf 'I '
-        case replace_one
-          set_color --bold white
-          printf 'R '
-        case visual
-          set_color --bold white
-          printf 'V '
-        case '*'
-          set_color --bold white
-          printf '? '
-    end
+#    switch $fish_bind_mode
+#        case default
+#          set_color --bold white
+#          printf 'N '
+#        case insert
+#          set_color --bold white
+#          printf 'I '
+#        case replace_one
+#          set_color --bold white
+#          printf 'R '
+#        case visual
+#          set_color --bold white
+#          printf 'V '
+#        case '*'
+#          set_color --bold white
+#          printf '? '
+#    end
 
     set_color --bold magenta 
     printf ' '

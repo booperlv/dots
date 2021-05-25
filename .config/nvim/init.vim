@@ -12,7 +12,7 @@ Plug 'sonph/onehalf', {'rtp': 'vim'}
 Plug 'kjssad/quantum.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'folke/tokyonight.nvim'
-Plug 'shaunsingh/moonlight.nvim'
+Plug 'monsonjeremy/onedark.nvim'
 " Css Colorizer
 Plug 'norcalli/nvim-colorizer.lua'
 
@@ -305,9 +305,9 @@ function! SwitchThemes()
 		colorscheme tokyonight
 		set termguicolors
 	elseif g:colors_name=="tokyonight"
-		colorscheme moonlight
+		colorscheme onedark 
         set termguicolors
-	elseif g:colors_name=="moonlight"
+	elseif g:colors_name=="onedark"
 		colorscheme onehalfdark 
 		set termguicolors
 	endif
