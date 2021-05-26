@@ -1,26 +1,41 @@
 --evilline
 local lualine = require'lualine'
 
-vim.g.StatusLineBackground = vim.fn.ReturnHighlightTerm('VertSplit', 'guifg')
+vim.g.StatusLineBackground = vim.fn.ReturnHighlightTerm('StatusLine', 'guibg')
 vim.g.StatusLineForeground = vim.fn.ReturnHighlightTerm('StatusLine', 'guifg')
 vim.g.StatusLineHorizontalSplit = vim.fn.ReturnHighlightTerm('VertSplit', 'guifg')
+--vim.g.StatusLineYellow = vim.fn.ReturnHighlightTerm('Search', 'guibg')
+--vim.g.StatusLineCyan = vim.fn.ReturnHighlightTerm('Folded', 'guibg')
+--vim.g.StatusLineDarkBlue = vim.fn.ReturnHighlightTerm('Question', 'guifg')
+--vim.g.StatusLineGreen = vim.fn.ReturnHighlightTerm('Folded', 'guifg')
+--vim.g.StatusLineOrange = vim.fn.ReturnHighlightTerm('WarningMsg', 'guifg')
+--vim.g.StatusLineViolet = vim.fn.ReturnHighlightTerm('CursorLineNr', 'guifg')
+--vim.g.StatusLineMagenta = vim.fn.ReturnHighlightTerm('PurpleSign', 'guifg')
+--vim.g.StatusLineBlue = vim.fn.ReturnHighlightTerm('Title', 'guifg')
+--vim.g.StatusLineRed = vim.fn.ReturnHighlightTerm('ErrorMsg', 'guifg')
 
 -- Color table for highlights
 local colors = {
   bg       = vim.g.StatusLineBackground,
   fg       = vim.g.StatusLineForeground,
   split    = vim.g.StatusLineHorizontalSplit,
-  yellow   = '#ffc777',
-  cyan     = '#04d1f9',
-  darkblue = '#a1abe0',
-  green    = '#2df4c0',
-  orange   = '#f67f81',
-  violet   = '#ecb2f0',
-  magenta  = '#b4a4f4',
-  blue     = '#04d1f9';
-  red      = '#ff757f';
+  yellow   = '#EBCB8B',
+  cyan     = '#C0C6CF',
+  green    = '#BBE67E',
+  orange   = '#DE563A',
+  blue     = '#81A1C1';
+  red      = '#DF8890';
+  
+  --yellow   = vim.g.StatusLineYellow,
+  --cyan     = vim.g.StatusLineCyan,
+  --darkblue = vim.g.StatusLineDarkBlue,
+  --green    = vim.g.StatusLineGreen,
+  --orange   = vim.g.StatusLineOrange,
+  --violet   = vim.g.StatusLineViolet,
+  --magenta  = vim.g.StatusLineMagenta,
+  --blue     = vim.g.StatusLineBlue,
+  --red      = vim.g.StatusLineRed,
 }
-
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -92,7 +107,7 @@ end
 ins_left {
  --function() return '' end,
  function() return '▌' end,
- color = {fg = colors.blue}, -- Sets highlighting of component
+ color = {fg = colors.fg}, -- Sets highlighting of component
  left_padding = 0 -- We don't need space before this
 }
 
@@ -103,25 +118,25 @@ ins_left {
     -- auto change color according to neovims mode
     local mode_color = {
       n      = colors.red,
-      i      = colors.green,
-      v      = colors.blue,
-      [''] = colors.blue,
-      V      = colors.blue,
-      c      = colors.magenta,
+      i      = colors.fg,
+      v      = colors.yellow,
+      [''] = colors.yellow,
+      V      = colors.yellow,
+      c      = colors.blue,
       no     = colors.red,
       s      = colors.orange,
       S      = colors.orange,
       [''] = colors.orange,
-      ic     = colors.yellow,
-      R      = colors.violet,
-      Rv     = colors.violet,
+      ic     = colors.green,
+      R      = colors.green,
+      Rv     = colors.green,
       cv     = colors.red,
       ce     = colors.red,
       r      = colors.cyan,
       rm     = colors.cyan,
       ['r?'] = colors.cyan,
       ['!']  = colors.red,
-      t      = colors.red
+      t      = colors.remagentad
     }
     vim.api.nvim_command('hi! LualineMode guifg='..mode_color[vim.fn.mode()] .. " guibg="..colors.bg)
     return '  ﲎ '
@@ -133,7 +148,7 @@ ins_left {
 ins_left {
   'filename',
   condition = conditions.buffer_not_empty,
-  color = {fg = colors.blue, gui = 'bold'},
+  color = {fg = colors.fg, gui = 'bold'},
 }
 
 --ins_left {
@@ -156,26 +171,26 @@ ins_left {
 
 ins_right {
   'progress',
-  color = {fg = colors.darkblue, gui = 'bold'},
+  color = {fg = colors.fg, gui = 'bold'},
 }
 
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   condition = conditions.hide_in_width,
-  color = {fg = colors.darkblue, gui = 'bold'}
+  color = {fg = colors.fg, gui = 'bold'}
 }
 
 ins_right {
   'fileformat',
   icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = {fg = colors.darkblue, gui='bold'},
+  color = {fg = colors.fg, gui='bold'},
 }
 
 ins_right {
   'branch',
   icon = '',
   condition = conditions.check_git_workspace,
-  color = {fg = colors.green, gui = 'bold'},
+  color = {fg = colors.fg, gui = 'bold'},
 }
 
 ins_right {
@@ -203,12 +218,12 @@ ins_right {
     end
     return msg
   end,
-  color = {fg = colors.cyan, gui = 'bold'}
+  color = {fg = colors.fg, gui = 'bold'}
 }
 
 ins_right {
   function() return '▐' end,
-  color = {fg = colors.blue},
+  color = {fg = colors.fg},
   right_padding = 0,
 }
 

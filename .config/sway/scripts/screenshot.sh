@@ -5,10 +5,14 @@ echo $1
 takescreenshot() {
     filename="$(rofi -p 'file name' -dmenu -theme /home/booperlv/.cache/wal/rofiterminal.rasi || true)"
     echo $filename
-    if [ "$filename" ]; then
-       grimshot --notify save $1 /home/booperlv/Pictures/$filename
+    if [ $"$filename" == "exit" ]; then
+        return
     else
-        grimshot --notify save $1
+        if [ "$filename" ]; then
+            grimshot --notify save $1 /home/booperlv/Pictures/$filename
+       else
+            grimshot --notify save $1 - 
+        fi
     fi
 }
 if [ -z "$1" ]; then
@@ -22,5 +26,5 @@ elif [ $1 = "screen" ]; then
 elif [ $1 = "output" ]; then
     takescreenshot output
 elif [ $1 = "area" ]; then
-    takescreenshot area
+    takescreenshot area 
 fi

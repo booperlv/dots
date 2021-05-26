@@ -9,12 +9,15 @@ call plug#begin("~/.config/nvim/plugged")
 " Colors
 Plug 'ayu-theme/ayu-vim'
 Plug 'sonph/onehalf', {'rtp': 'vim'}
-Plug 'kjssad/quantum.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'folke/tokyonight.nvim'
 Plug 'monsonjeremy/onedark.nvim'
+Plug 'franbach/miramare'
 " Css Colorizer
 Plug 'norcalli/nvim-colorizer.lua'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " Language Servers
 Plug 'neovim/nvim-lspconfig'
@@ -47,6 +50,9 @@ Plug 'mattn/emmet-vim'
 " Vim Surround
 Plug 'tpope/vim-surround'
 
+" Vim Move
+Plug 'matze/vim-move'
+
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 "Plug 'thaerkh/vim-indentguides'
@@ -72,9 +78,9 @@ call plug#end()
 " Colorscheme
 let ayucolor="mirage"
 let background="dark"
-colorscheme ayu 
+colorscheme miramare 
 set termguicolors
-set t_Co=16
+set t_Co=256
 
 " Set Font for GUI
 set guifont=Iosevka:h11
@@ -151,6 +157,18 @@ let g:indent_blankline_show_first_indent_level = v:false
 " emmet vim
 let g:user_emmet_leader_key='<C-Z>'
 nnoremap <leader>em :call feedkeys("<C-Z>,")<CR>
+
+" vim-move mappings
+let g:move_map_keys = 0
+vmap <A-m> <Plug>MoveBlockLeft
+vmap <A-,> <Plug>MoveBlockDown
+vmap <A-.> <Plug>MoveBlockUp
+vmap <A-/> <Plug>MoveBlockRight
+nmap <A-m> <Plug>MoveCharLeft
+nmap <A-,> <Plug>MoveLineDown
+nmap <A-.> <Plug>MoveLineUp
+nmap <A-/> <Plug>MoveCharRight
+
 
 " nvim bufferline
 nnoremap <silent><leader>/ :BufferLineCycleNext<CR>
@@ -296,11 +314,11 @@ function! SwitchThemes()
         colorscheme ayu
         set termguicolors
 	elseif g:colors_name=="ayu"
-		colorscheme quantum
+		colorscheme miramare 
 		set termguicolors
-	elseif g:colors_name=="quantum"
-		colorscheme nord
-		set termguicolors
+    elseif g:colors_name=="miramare"
+        colorscheme nord 
+        set termguicolors
 	elseif g:colors_name=="nord"
 		colorscheme tokyonight
 		set termguicolors

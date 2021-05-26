@@ -1,5 +1,7 @@
 --Require Language Server Configuration File
 require('lsp_config')
+--Require Treesitter Configuration File
+require('treesitter')
 
 --Hex,RGB,... Code Colorizer
 require'colorizer'.setup()
