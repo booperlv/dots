@@ -3,9 +3,6 @@ require('lsp_config')
 --Require Treesitter Configuration File
 require('treesitter')
 
---Hex,RGB,... Code Colorizer
-require'colorizer'.setup()
-
 --Autoparis and stuff
 require("nvim-autopairs").setup()
 
@@ -44,11 +41,10 @@ local tree_cb = require'nvim-tree.config'.nvim_tree_callback
       ["<BS>"]           = tree_cb("close_node"),
       ["<S-CR>"]         = tree_cb("close_node"),
       ["<Tab>"]          = tree_cb("preview"),
-      ["R"]              = tree_cb("refresh"),
       ["c"]              = tree_cb("create"),
       ["r"]              = tree_cb("remove"),
-      ["n"]              = tree_cb("rename"),
-      ["N"]          = tree_cb("full_rename"),
+      ["R"]              = tree_cb("rename"),
+      ["n"]          = tree_cb("full_rename"),
       [">"]              = tree_cb("dir_up"),
       ["q"]              = tree_cb("close"),
     }

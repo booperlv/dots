@@ -12,14 +12,18 @@ function install {
 
     echo
     printf 'Removing Old Versions...'
-    sudo pacman -Rns $(pacman -Qsq neovim)
+    pacmancommand=$(sudo pacman -Rns $(pacman -Qsq neovim) --noconfirm &>/dev/null || :)
+    if [ "$pacmancommand" ]; then
+        printf 'Deleting pacman neovim package'
+    else
+        printf 'No neovim package found in pacman...'
+    fi
     #cleanup some appimages
     whereis nvim | grep -o '/[^ ]*' | while read -r line; do
-        echo "$line"
         sudo rm -rf $line
     done
 
-    printf ' Removed Old Versions!'
+    printf 'Removed Old Versions!'
 
     echo
     printf 'Placing Appimage in Correct Directory...'
@@ -52,9 +56,9 @@ function confirminstall {
 }
 
 currentrelease=$(wget https://api.github.com/repos/neovim/neovim/releases -q -O - | jq -r '.[] | .name' | grep 'NVIM v0.5.0')
-echo $currentrelease
-currentversion=$(nvim -v | grep 'NVIM v0.5.0' || : )
-echo $currentversion
+echo "Current Release is $currentrelease"
+currentversion=$(nvim -v | grep 'NVIM v' || : )
+echo "Current Version is $currentversion"
 
 if [ "$currentversion" ]; then
     if [[ "${currentrelease}" == "${currentversion}" ]]; then

@@ -6,19 +6,18 @@
 " Vim-plug
 call plug#begin("~/.config/nvim/plugged")
 
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
 " Colors
 Plug 'ayu-theme/ayu-vim'
 Plug 'sonph/onehalf', {'rtp': 'vim'}
 Plug 'arcticicestudio/nord-vim'
 Plug 'folke/tokyonight.nvim'
 Plug 'monsonjeremy/onedark.nvim'
-Plug 'franbach/miramare'
+Plug 'booperlv/miramare'
 " Css Colorizer
-Plug 'norcalli/nvim-colorizer.lua'
-
-" Treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Language Servers
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -26,48 +25,39 @@ Plug 'hrsh7th/nvim-compe'
 " Snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-
 " Auto Closer
 " Plug 'tmsvg/pear-tree'
 Plug 'windwp/nvim-autopairs'
 
 " TabLine
-"Plug 'romgrk/barbar.nvim'
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'kyazdani42/nvim-web-devicons'
+" Status Line
+Plug 'hoob3rt/lualine.nvim'
 
 " File Explorer
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
 " File Tree
 Plug 'kyazdani42/nvim-tree.lua'
 
 " Emmet
 Plug 'mattn/emmet-vim'
-
 " Vim Surround
 Plug 'tpope/vim-surround'
-
 " Vim Move
 Plug 'matze/vim-move'
 
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
-"Plug 'thaerkh/vim-indentguides'
-
-" Status Line
-Plug 'hoob3rt/lualine.nvim'
+" Pretty LSP Errors and Things indicator
+Plug 'folke/trouble.nvim'
+" Zen Mode, focus :D
+Plug 'folke/zen-mode.nvim'
 
 " Color Picker
 Plug 'DougBeney/pickachu'
-
-" Pretty LSP Errors and Things indicator
-Plug 'folke/trouble.nvim'
-
-" Zen Mode, focus :D
-Plug 'folke/zen-mode.nvim'
 
 call plug#end()
 
@@ -150,9 +140,9 @@ let g:indentLine_enabled = 1
 let g:indent_blankline_char = "▏"
 let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:indent_blankline_show_first_indent_level = v:false
-" vim-indentline
-"let g:indentguides_spacechar = '▏'
-"let g:indentguides_tabchar = '▏'
+
+" CSS Colorizer (vim-hexokinase)
+let g:Hexokinase_highlighters = ['backgroundfull']
 
 " emmet vim
 let g:user_emmet_leader_key='<C-Z>'
@@ -287,8 +277,8 @@ nnoremap <leader>ww :wincmd w<CR>
 " window vertical, window horizontal, window resize vertical etc
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>wh :split<CR>
-"nnoremap <leader>wrv :vertical resize +1<CR>
-"nnoremap <leader>wrh :resize +1<CR>
+nnoremap <leader>wrv :vertical resize +3<CR>
+nnoremap <leader>wrh :resize +3<CR>
 
 nnoremap <leader>w <C-w>
 
