@@ -1,0 +1,179 @@
+syntax on
+
+" Mouse
+set mouse=a
+
+" Tab Width
+set shiftwidth=4 tabstop=4
+set autoindent smartindent
+
+" Search and Replace
+set ignorecase
+set smartcase
+set gdefault
+
+" Update Files when changed from other source
+set autoread
+
+"Alternative to indent guides since it can be a bit of a hassle sometimes
+"set cursorcolumn
+"set cursorline
+
+" Set Key Timeout
+set ttimeoutlen=500
+"set notimeout
+
+" Remap Esc -command switch to normal
+inoremap nn <esc>
+inoremap nx nn
+
+" Map Leader to space
+nnoremap <SPACE> <NOP>
+let mapleader=" "
+
+" overwrite defaults
+nnoremap <leader>y "+y
+xnoremap <leader>y "+y
+nnoremap <leader>p "+p
+xnoremap <leader>p "+p
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+
+nnoremap <C-m> m
+nnoremap <C-,> ,
+nnoremap <C-.> .
+nnoremap <C-_> /
+
+nnoremap m <Left>
+nnoremap , <Down>
+nnoremap . <Up>
+nnoremap / <Right>
+
+nnoremap <C-S-m> <S-m>
+nnoremap <C-S-,> <
+nnoremap <C-S-.> >
+nnoremap <C-S-/> ?
+
+nnoremap <S-m> <S-Left>
+nnoremap < <S-Down>
+nnoremap > <S-Up>
+nnoremap ? <S-Right>
+
+nnoremap <C-m> m
+nnoremap <C-,> ,
+nnoremap <C-.> .
+nnoremap <C-_> /
+
+xnoremap m <Left>
+xnoremap , <Down>
+xnoremap . <Up>
+xnoremap / <Right>
+
+xnoremap <C-S-m> <S-m>
+xnoremap <C-S-,> <
+xnoremap <C-S-.> >
+xnoremap <C-S-/> ?
+
+xnoremap <S-m> <S-Left>
+xnoremap < <S-Down>
+xnoremap > <S-Up>
+xnoremap ? <S-Right>
+
+" Splits
+" Arrow Keys
+nnoremap <leader>wm :wincmd h<CR>
+nnoremap <leader>w, :wincmd j<CR>
+nnoremap <leader>w. :wincmd k<CR>
+nnoremap <leader>w/ :wincmd l<CR>
+nnoremap <leader>wM :wincmd H<CR>
+nnoremap <leader>w< :wincmd J<CR>
+nnoremap <leader>w> :wincmd K<CR>
+nnoremap <leader>w? :wincmd L<CR>
+" Move focus between
+nnoremap <leader>ww :wincmd w<CR>
+"Split Management
+" window vertical, window horizontal, window resize vertical etc
+nnoremap <leader>wv :vsplit<CR>
+nnoremap <leader>wh :split<CR>
+nnoremap <leader>wrv :vertical resize +3<CR>
+nnoremap <leader>wrh :resize +3<CR>
+
+nnoremap <leader>w <C-w>
+
+" Extra Functions for some functionality
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+nnoremap <leader>tt :call ToggleNetrw()<CR>
+
+nnoremap <leader>m :tabprevious<CR>
+nnoremap <leader>/ :tabnext<CR>
+
+function! ShowWhitespace(flags)
+  let bad = ''
+  let pat = []
+  for c in split(a:flags, '\zs')
+    if c == 'e'
+      call add(pat, '\s\+$')
+    elseif c == 'i'
+      call add(pat, '^\t*\zs \+')
+    elseif c == 's'
+      call add(pat, ' \+\ze\t')
+    elseif c == 't'
+      call add(pat, '[^\t]\zs\t\+')
+    else
+      let bad .= c
+    endif
+  endfor
+  if len(pat) > 0
+    let s = join(pat, '\|')
+    exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
+  else
+    syntax clear ExtraWhitespace
+  endif
+  if len(bad) > 0
+    echo 'ShowWhitespace ignored: '.bad
+  endif
+endfunction
+
+function! ToggleShowWhitespace()
+  if !exists('b:ws_show')
+    let b:ws_show = 0
+  endif
+  if !exists('b:ws_flags')
+    let b:ws_flags = 'est'  " default (which whitespace to show)
+  endif
+  let b:ws_show = !b:ws_show
+  if b:ws_show
+    call ShowWhitespace(b:ws_flags)
+  else
+    call ShowWhitespace('')
+  endif
+endfunction
+
+nnoremap <Leader>ws :call ToggleShowWhitespace()<CR>
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+
+" Testing
+function! WrapAWord(...)
+	let localchar = getchar()
+	let @s = nr2char(localchar)
+	normal eb
+	normal "sP
+	normal e
+	normal "sp
+endfunction
+nnoremap <silent> <leader>ss :call WrapAWord()<CR>

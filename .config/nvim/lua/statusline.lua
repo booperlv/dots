@@ -4,37 +4,27 @@ local lualine = require'lualine'
 vim.g.StatusLineBackground = vim.fn.ReturnHighlightTerm('StatusLine', 'guibg')
 vim.g.StatusLineForeground = vim.fn.ReturnHighlightTerm('StatusLine', 'guifg')
 vim.g.StatusLineHorizontalSplit = vim.fn.ReturnHighlightTerm('VertSplit', 'guifg')
---vim.g.StatusLineYellow = vim.fn.ReturnHighlightTerm('Search', 'guibg')
---vim.g.StatusLineCyan = vim.fn.ReturnHighlightTerm('Folded', 'guibg')
---vim.g.StatusLineDarkBlue = vim.fn.ReturnHighlightTerm('Question', 'guifg')
---vim.g.StatusLineGreen = vim.fn.ReturnHighlightTerm('Folded', 'guifg')
---vim.g.StatusLineOrange = vim.fn.ReturnHighlightTerm('WarningMsg', 'guifg')
---vim.g.StatusLineViolet = vim.fn.ReturnHighlightTerm('CursorLineNr', 'guifg')
---vim.g.StatusLineMagenta = vim.fn.ReturnHighlightTerm('PurpleSign', 'guifg')
---vim.g.StatusLineBlue = vim.fn.ReturnHighlightTerm('Title', 'guifg')
---vim.g.StatusLineRed = vim.fn.ReturnHighlightTerm('ErrorMsg', 'guifg')
+vim.g.TabLineSel = vim.fn.ReturnHighlightTerm('TabLineSel', 'guibg')
+local function isempty(s)
+  return s == nil or s == ''
+end
+
+if isempty(vim.g.TabLineSel) then
+    vim.g.TabLineSel = vim.fn.ReturnHighlightTerm('Normal', 'guibg')
+end
 
 -- Color table for highlights
 local colors = {
   bg       = vim.g.StatusLineBackground,
   fg       = vim.g.StatusLineForeground,
   split    = vim.g.StatusLineHorizontalSplit,
+  sel      = vim.g.TabLineSel,
   yellow   = '#EBCB8B',
   cyan     = '#C0C6CF',
   green    = '#BBE67E',
   orange   = '#DE563A',
   blue     = '#81A1C1';
   red      = '#DF8890';
-  
-  --yellow   = vim.g.StatusLineYellow,
-  --cyan     = vim.g.StatusLineCyan,
-  --darkblue = vim.g.StatusLineDarkBlue,
-  --green    = vim.g.StatusLineGreen,
-  --orange   = vim.g.StatusLineOrange,
-  --violet   = vim.g.StatusLineViolet,
-  --magenta  = vim.g.StatusLineMagenta,
-  --blue     = vim.g.StatusLineBlue,
-  --red      = vim.g.StatusLineRed,
 }
 local conditions = {
   buffer_not_empty = function()
@@ -107,7 +97,7 @@ end
 ins_left {
  --function() return '' end,
  function() return '▌' end,
- color = {fg = colors.fg}, -- Sets highlighting of component
+ color = {fg = colors.sel}, -- Sets highlighting of component
  left_padding = 0 -- We don't need space before this
 }
 
@@ -223,7 +213,7 @@ ins_right {
 
 ins_right {
   function() return '▐' end,
-  color = {fg = colors.fg},
+  color = {fg = colors.sel},
   right_padding = 0,
 }
 

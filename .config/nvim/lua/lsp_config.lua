@@ -5,7 +5,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
     'documentation',
     'detail',
-    'additionalTextEdits',
+    --'additionalTextEdits',
   }
 }
 

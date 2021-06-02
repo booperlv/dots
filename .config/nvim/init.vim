@@ -1,4 +1,3 @@
-
 " --------------
 " PLUGIN SECTION
 " --------------
@@ -7,17 +6,18 @@
 call plug#begin("~/.config/nvim/plugged")
 
 " Treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Colors
 Plug 'ayu-theme/ayu-vim'
-Plug 'sonph/onehalf', {'rtp': 'vim'}
-Plug 'arcticicestudio/nord-vim'
-Plug 'folke/tokyonight.nvim'
-Plug 'monsonjeremy/onedark.nvim'
 Plug 'booperlv/miramare'
+Plug 'folke/tokyonight.nvim'
+Plug 'shaunsingh/seoul256.nvim'
+" Colors for LSP even when the colorscheme doesn't support it
+Plug 'folke/lsp-colors.nvim'
 " Css Colorizer
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
 " Language Servers
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -25,15 +25,15 @@ Plug 'hrsh7th/nvim-compe'
 " Snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-" Auto Closer
-" Plug 'tmsvg/pear-tree'
-Plug 'windwp/nvim-autopairs'
+
 
 " TabLine
 Plug 'akinsho/nvim-bufferline.lua'
-Plug 'kyazdani42/nvim-web-devicons'
 " Status Line
 Plug 'hoob3rt/lualine.nvim'
+
+" Icons
+Plug 'kyazdani42/nvim-web-devicons'
 
 " File Explorer
 Plug 'nvim-lua/popup.nvim'
@@ -42,6 +42,9 @@ Plug 'nvim-telescope/telescope.nvim'
 " File Tree
 Plug 'kyazdani42/nvim-tree.lua'
 
+" Auto Closer
+" Plug 'tmsvg/pear-tree'
+Plug 'windwp/nvim-autopairs'
 " Emmet
 Plug 'mattn/emmet-vim'
 " Vim Surround
@@ -55,7 +58,6 @@ Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 Plug 'folke/trouble.nvim'
 " Zen Mode, focus :D
 Plug 'folke/zen-mode.nvim'
-
 " Color Picker
 Plug 'DougBeney/pickachu'
 
@@ -68,19 +70,12 @@ call plug#end()
 " Colorscheme
 let ayucolor="mirage"
 let background="dark"
-colorscheme miramare 
 set termguicolors
-set t_Co=256
+let g:seoul256_borders = v:true
+colorscheme miramare 
 
 " Set Font for GUI
 set guifont=Iosevka:h11
-
-" Plugin Global
-filetype plugin indent on
-syntax enable
-
-" Encoding
-set encoding=UTF-8
 
 " Allow Buffer Change No Save
 set hidden
@@ -119,13 +114,12 @@ set autoread
 set cursorline
 
 " Set Key Timeout
-set ttimeoutlen=1
+set timeoutlen=500
 "set notimeout
 
 " Remap Esc -command switch to normal
 inoremap nn <esc>
-inoremap nx nn
-inoremap n<space> n
+inoremap nz nn
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -142,7 +136,10 @@ let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:indent_blankline_show_first_indent_level = v:false
 
 " CSS Colorizer (vim-hexokinase)
-let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Hexokinase_highlighters = ['virtual']
+
+" Color Picker
+nnoremap <leader>cp :Pick<CR>
 
 " emmet vim
 let g:user_emmet_leader_key='<C-Z>'
@@ -150,15 +147,14 @@ nnoremap <leader>em :call feedkeys("<C-Z>,")<CR>
 
 " vim-move mappings
 let g:move_map_keys = 0
-vmap <A-m> <Plug>MoveBlockLeft
-vmap <A-,> <Plug>MoveBlockDown
-vmap <A-.> <Plug>MoveBlockUp
-vmap <A-/> <Plug>MoveBlockRight
+xmap <A-m> <Plug>MoveBlockLeft
+xmap <A-,> <Plug>MoveBlockDown
+xmap <A-.> <Plug>MoveBlockUp
+xmap <A-/> <Plug>MoveBlockRight
 nmap <A-m> <Plug>MoveCharLeft
 nmap <A-,> <Plug>MoveLineDown
 nmap <A-.> <Plug>MoveLineUp
 nmap <A-/> <Plug>MoveCharRight
-
 
 " nvim bufferline
 nnoremap <silent><leader>/ :BufferLineCycleNext<CR>
@@ -168,12 +164,6 @@ nnoremap <silent><leader>? :BufferLineMoveNext<CR>
 nnoremap <silent><leader>M :BufferLineMovePrev<CR>
 " Close buffer
 nnoremap <silent><leader>q :bdelete<CR>
-
-" pear-tree
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 1
-let g:pear_tree_smart_backspace = 1
-let g:pear_tree_ft_disabled = [ "TelescopePrompt" ]
 
 " nvim-compe
 set completeopt=menuone,noselect
@@ -189,7 +179,6 @@ nnoremap <leader>xw :TroubleToggle lsp_workspace_diagnostics<cr>
 nnoremap <leader>xd :TroubleToggle lsp_document_diagnostics<cr>
 nnoremap <leader>xq :TroubleToggle quickfix<cr>
 nnoremap <leader>xl :TroubleToggle loclist<cr>
-nnoremap gR <cmd>TroubleToggle lsp_references<cr> LSP trouble.nvim
 
 " zen-mode mapping
 nnoremap <leader>zm :ZenMode<cr>
@@ -201,6 +190,8 @@ nnoremap <leader>tf :NvimTreeFindFile<CR>
 let g:nvim_tree_side = 'left' "left by default
 let g:nvim_tree_width = 25 "30 by default
 let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+let g:nvim_tree_quit_on_open = 1
 let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
@@ -210,7 +201,6 @@ let g:nvim_tree_show_icons = {
     \ 'folders': 1,
     \ 'files': 1,
     \ }
-let g:nvim_tree_quit_on_open = 1
 
 " Telescope.nvim
 " Using lua functions
@@ -221,9 +211,11 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " overwrite defaults
 nnoremap <leader>y "+y 
+xnoremap <leader>y "+y 
 nnoremap <leader>p "+p 
-vnoremap <leader>y "+y 
-vnoremap <leader>p "+p 
+xnoremap <leader>p "+p 
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
 
 nnoremap <C-m> m
 nnoremap <C-,> ,
@@ -236,34 +228,34 @@ nnoremap . <Up>
 nnoremap / <Right>
 
 nnoremap <C-S-m> <S-m>
-nnoremap <C-S-,> <
-nnoremap <C-S-.> >
-nnoremap <C-S-/> ? 
+nnoremap <C-S-,> <S-,>
+nnoremap <C-S-.> <S-.>
+nnoremap <C-S-/> <S-/> 
 
 nnoremap <S-m> <S-Left>
-nnoremap < <S-Down>
-nnoremap > <S-Up>
-nnoremap ? <S-Right>
+nnoremap <S-,> <S-Down>
+nnoremap <S-.> <S-Up>
+nnoremap <S-/> <S-Right>
 
-nnoremap <C-m> m
-nnoremap <C-,> ,
-nnoremap <C-.> .
-nnoremap <C-_> /
+xnoremap <C-m> m
+xnoremap <C-,> ,
+xnoremap <C-.> .
+xnoremap <C-_> /
 
-vnoremap m <Left>
-vnoremap , <Down>
-vnoremap . <Up>
-vnoremap / <Right>
+xnoremap m <Left>
+xnoremap , <Down>
+xnoremap . <Up>
+xnoremap / <Right>
 
-vnoremap <C-S-m> <S-m>
-vnoremap <C-S-,> <
-vnoremap <C-S-.> >
-vnoremap <C-S-/> ? 
+xnoremap <C-S-m> <S-m>
+xnoremap <C-S-,> <S-,>
+xnoremap <C-S-.> <S-.>
+xnoremap <C-S-/> <S-/> 
 
-vnoremap <S-m> <S-Left>
-vnoremap < <S-Down>
-vnoremap > <S-Up>
-vnoremap ? <S-Right>
+xnoremap <S-m> <S-Left>
+xnoremap <S-,> <S-Down>
+xnoremap <S-.> <S-Up>
+xnoremap <S-/> <S-Right>
 
 " Splits
 " Arrow Keys
@@ -271,6 +263,10 @@ nnoremap <leader>wm :wincmd h<CR>
 nnoremap <leader>w, :wincmd j<CR>
 nnoremap <leader>w. :wincmd k<CR>
 nnoremap <leader>w/ :wincmd l<CR>
+nnoremap <leader>wM :wincmd H<CR>
+nnoremap <leader>w< :wincmd J<CR>
+nnoremap <leader>w> :wincmd K<CR>
+nnoremap <leader>w? :wincmd L<CR>
 " Move focus between
 nnoremap <leader>ww :wincmd w<CR>
 "Split Management
@@ -281,7 +277,6 @@ nnoremap <leader>wrv :vertical resize +3<CR>
 nnoremap <leader>wrh :resize +3<CR>
 
 nnoremap <leader>w <C-w>
-
 
 " ----------------
 " CUSTOM FUNCTIONS
@@ -297,49 +292,27 @@ endfunction
 
 " Toggle Themes and Reset Source Bind
 function! SwitchThemes()
-	if g:colors_name=="onehalfdark"
-		colorscheme onehalflight 
-		set termguicolors
-    elseif g:colors_name=="onehalflight"
+    if g:colors_name=="seoul256"
         colorscheme ayu
         set termguicolors
 	elseif g:colors_name=="ayu"
-		colorscheme miramare 
+        colorscheme miramare
 		set termguicolors
     elseif g:colors_name=="miramare"
-        colorscheme nord 
+        colorscheme tokyonight 
         set termguicolors
-	elseif g:colors_name=="nord"
-		colorscheme tokyonight
-		set termguicolors
-	elseif g:colors_name=="tokyonight"
-		colorscheme onedark 
+    elseif g:colors_name=="tokyonight"
+        colorscheme seoul256
         set termguicolors
-	elseif g:colors_name=="onedark"
-		colorscheme onehalfdark 
-		set termguicolors
 	endif
 
     call plug#load('lualine.nvim')
     lua dofile("/home/booperlv/.config/nvim/lua/statusline.lua")
     lua dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")
-
-    echo 'changed colorscheme, unset variables, reloaded lualine'
-
+    " echo 'changed colorscheme, unset variables, reloaded lualine'
     return
 endfunction
-
 nnoremap <leader>ct :call SwitchThemes()<CR>
-
-"function! DeleteBGColor()
-"	hi Normal guibg=NONE
-"	hi TabLine guibg=NONE
-"	hi TabLineFill guibg=NONE
-"	hi TabLineSel guibg=NONE
-"	hi LineNr guibg=NONE
-"	set termguicolors
-"endfunction
-"nnoremap <leader>cc :call DeleteBGColor()<CR>
 
 " -----------
 " LUA SECTION

@@ -20,6 +20,7 @@ require('telescope').setup{
       },
     },
     inactive_sections = {" "},
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
   }
 }
 
@@ -56,8 +57,6 @@ require("trouble").setup {}
 require("zen-mode").setup {}
 
 
-
-
 --Require Nvim-Compe Configuration File
 require('compe-completion')
 
@@ -66,4 +65,3 @@ dofile("/home/booperlv/.config/nvim/lua/statusline.lua")
 
 --Require Buffer Line Configuration File
 dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")
-
