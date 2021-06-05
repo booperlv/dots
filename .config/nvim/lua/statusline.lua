@@ -4,13 +4,17 @@ local lualine = require'lualine'
 vim.g.StatusLineBackground = vim.fn.ReturnHighlightTerm('StatusLine', 'guibg')
 vim.g.StatusLineForeground = vim.fn.ReturnHighlightTerm('StatusLine', 'guifg')
 vim.g.StatusLineHorizontalSplit = vim.fn.ReturnHighlightTerm('VertSplit', 'guifg')
-vim.g.TabLineSel = vim.fn.ReturnHighlightTerm('TabLineSel', 'guibg')
+
+vim.g.TabLineSelBackground = vim.fn.ReturnHighlightTerm('TabLineSel', 'guibg')
+vim.g.TabLineSelForeground = vim.fn.ReturnHighlightTerm('TabLineSel', 'guifg')
 local function isempty(s)
   return s == nil or s == ''
 end
-
-if isempty(vim.g.TabLineSel) then
-    vim.g.TabLineSel = vim.fn.ReturnHighlightTerm('Normal', 'guibg')
+if isempty(vim.g.TabLineSelBackground) then
+    vim.g.TabLineSelBackground = vim.fn.ReturnHighlightTerm('Normal', 'guibg')
+end
+if isempty(vim.g.TabLineSelForeground) then 
+    vim.g.TabLineSelForeground = vim.fn.ReturnHighlightTerm('Normal', 'guifg')
 end
 
 -- Color table for highlights
@@ -18,7 +22,8 @@ local colors = {
   bg       = vim.g.StatusLineBackground,
   fg       = vim.g.StatusLineForeground,
   split    = vim.g.StatusLineHorizontalSplit,
-  sel      = vim.g.TabLineSel,
+  colbg    = vim.g.TabLineSelBackground,
+  colfg    = vim.g.TabLineSelForeground,
   yellow   = '#EBCB8B',
   cyan     = '#C0C6CF',
   green    = '#BBE67E',
@@ -95,10 +100,9 @@ end
 
 
 ins_left {
- --function() return '' end,
  function() return '▌' end,
- color = {fg = colors.sel}, -- Sets highlighting of component
- left_padding = 0 -- We don't need space before this
+ color = {fg=colors.fg, bg=colors.colbg},
+ padding = 0
 }
 
 
@@ -107,8 +111,8 @@ ins_left {
   function()
     -- auto change color according to neovims mode
     local mode_color = {
-      n      = colors.red,
-      i      = colors.fg,
+      n      = colors.colbg,
+      i      = colors.red,
       v      = colors.yellow,
       [''] = colors.yellow,
       V      = colors.yellow,
@@ -128,11 +132,10 @@ ins_left {
       ['!']  = colors.red,
       t      = colors.remagentad
     }
-    vim.api.nvim_command('hi! LualineMode guifg='..mode_color[vim.fn.mode()] .. " guibg="..colors.bg)
+    vim.api.nvim_command('hi! LualineMode guifg=' ..colors.colfg .." guibg="..mode_color[vim.fn.mode()])
     return '  ﲎ '
   end,
-  color = "LualineMode",
-  left_padding = 0,
+  color = "LualineMode", 
 }
 
 ins_left {
@@ -140,11 +143,6 @@ ins_left {
   condition = conditions.buffer_not_empty,
   color = {fg = colors.fg, gui = 'bold'},
 }
-
---ins_left {
---  'location',
---  color = {fg = colors.darkblue, gui = 'bold'}
---}
 
 ins_left {
   'diagnostics',
@@ -164,17 +162,6 @@ ins_right {
   color = {fg = colors.fg, gui = 'bold'},
 }
 
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  condition = conditions.hide_in_width,
-  color = {fg = colors.fg, gui = 'bold'}
-}
-
-ins_right {
-  'fileformat',
-  icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = {fg = colors.fg, gui='bold'},
-}
 
 ins_right {
   'branch',
@@ -185,12 +172,18 @@ ins_right {
 
 ins_right {
   'diff',
-  -- Is it me or the symbol for modified us really weird
   symbols = {added= ' ', modified= ' ', removed= ' '},
   color_added = colors.green,
   color_modified = colors.orange,
   color_removed = colors.red,
-  condition = conditions.hide_in_width
+  condition = conditions.hide_in_width,
+  color = {fg = colors.fg},
+}
+
+ins_right {
+    'fileformat',
+    icons_enabled = true,
+    color = {fg = colors.colfg, bg=colors.colbg, gui='bold'},
 }
 
 ins_right {
@@ -208,13 +201,13 @@ ins_right {
     end
     return msg
   end,
-  color = {fg = colors.fg, gui = 'bold'}
+  color = {fg = colors.colfg, bg=colors.colbg, gui = 'bold'},
 }
 
 ins_right {
   function() return '▐' end,
-  color = {fg = colors.sel},
-  right_padding = 0,
+  color = {fg=colors.fg, bg=colors.colbg},
+  padding = 0,
 }
 
 lualine.setup(config)

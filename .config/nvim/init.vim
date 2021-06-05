@@ -26,7 +26,6 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 
-
 " TabLine
 Plug 'akinsho/nvim-bufferline.lua'
 " Status Line
@@ -61,6 +60,9 @@ Plug 'folke/zen-mode.nvim'
 " Color Picker
 Plug 'DougBeney/pickachu'
 
+" Development
+Plug '~/Projects/gomove.nvim'
+
 call plug#end()
 
 " --------------
@@ -72,7 +74,7 @@ let ayucolor="mirage"
 let background="dark"
 set termguicolors
 let g:seoul256_borders = v:true
-colorscheme miramare 
+colorscheme seoul256
 
 " Set Font for GUI
 set guifont=Iosevka:h11
@@ -111,7 +113,7 @@ set autoread
 
 "Alternative to indent guides since it can be a bit of a hassle sometimes
 "set cursorcolumn
-set cursorline
+"set cursorline
 
 " Set Key Timeout
 set timeoutlen=500
@@ -119,7 +121,7 @@ set timeoutlen=500
 
 " Remap Esc -command switch to normal
 inoremap nn <esc>
-inoremap nz nn
+inoremap nx nn
 
 " Map Leader to space
 nnoremap <SPACE> <NOP>
@@ -278,15 +280,15 @@ nnoremap <leader>wrh :resize +3<CR>
 
 nnoremap <leader>w <C-w>
 
+" Source vimrc
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
 " ----------------
 " CUSTOM FUNCTIONS
 " ----------------
 
 function! ReturnHighlightTerm(group, term)
-   " Store output of group to variable
    let output = execute('hi ' . a:group)
-
-   " Find the term we're looking for
    return matchstr(output, a:term.'=\zs\S*')
 endfunction
 

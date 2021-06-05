@@ -9,9 +9,9 @@ require "bufferline".setup {
         tab_size = 18,
         show_tab_indicators = true,
         enforce_regular_tabs = false,
-        view = "multiwindow",
         show_buffer_close_icons = false,
-        separator_style = {"",""}, 
+        view = "default",
+        separator_style = {"",""},
         indicator_icon = "",
         mappings = "true"
     },
@@ -45,31 +45,51 @@ require "bufferline".setup {
             guibg = {attribute="bg",highlight="TabLine"} 
         },
 
-        separator = {
-            guifg = {attribute="bg",highlight="TabLine"},
-            guibg = {attribute="bg",highlight="TabLine"}
+        duplicate_selected = {
+            guifg = {attribute="fg",highlight="TabLineSel"},
+            guibg = {attribute="bg",highlight="TabLineSel"},
+            gui = "italic",
         },
-        separator_selected = {
-            guifg = {attribute="bg",highlight="TabLine"},
-            guibg = {attribute="bg",highlight="TabLine"}
+        duplicate_visible = {
+            guifg = {attribute="fg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"},
+            gui = "italic",
         },
-        separator_visible = {
-            guifg = {attribute="bg",highlight="TabLine"},
-            guibg = {attribute="bg",highlight="TabLine"}
-        },
-
-        indicator_selected = {
-            guifg = {attribute="bg",highlight="TabLine"},
-            guibg = {attribute="bg",highlight="TabLine"}
+        duplicate = {
+            guifg = {attribute="fg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"},
+            gui = "italic",
         },
 
+        modified = {
+            guifg = {attribute="fg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"}
+        },
         modified_selected = {
             guifg = {attribute="fg",highlight="TabLineSel"},
             guibg = {attribute="bg",highlight="TabLineSel"}
         },
         modified_visible = {
             guifg = {attribute="fg",highlight="TabLine"},
-            guibg = {attribute="bg",highlight="TabLine"} 
-        }
+            guibg = {attribute="bg",highlight="TabLine"}
+        },
+
+        separator = {
+            guifg = {attribute="bg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"}
+        },
+        separator_selected = {
+            guifg = {attribute="bg",highlight="TabLineSel"},
+            guibg = {attribute="bg",highlight="TabLineSel"}
+        },
+        separator_visible = {
+            guifg = {attribute="bg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"}
+        },
+        indicator_selected = {
+            guifg = {attribute="bg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"}
+        },
+
     }
 }

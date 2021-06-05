@@ -3,7 +3,7 @@ require('lsp_config')
 --Require Treesitter Configuration File
 require('treesitter')
 
---Autoparis and stuff
+--Autopairs and stuff
 require("nvim-autopairs").setup()
 
 --Telescope, Fuzzy Finder, File Explorer
@@ -16,7 +16,6 @@ require('telescope').setup{
 	[","] = actions.move_selection_next,
 	["."] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
-        ["<C-i>"] = my_cool_custom_action,
       },
     },
     inactive_sections = {" "},
@@ -27,26 +26,24 @@ require('telescope').setup{
 --Nvim Tree Bindings
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
-      ["<CR>"] = ":YourVimFunction()<cr>",
-      ["u"] = ":lua require'some_module'.some_function()<cr>",
-
       -- default mappings
       ["<CR>"]           = tree_cb("edit"),
       ["o"]              = tree_cb("edit"),
       ["<2-LeftMouse>"]  = tree_cb("edit"),
       ["<2-RightMouse>"] = tree_cb("cd"),
-      ["<"]          = tree_cb("cd"),
+      ["<S-CR>"]          = tree_cb("cd"),
       ["V"]          = tree_cb("vsplit"),
       ["H"]          = tree_cb("split"),
       ["T"]          = tree_cb("tabnew"),
+      ["<"]              = tree_cb("prev_sibling"),
+      [">"]              = tree_cb("next_sibling"),
       ["<BS>"]           = tree_cb("close_node"),
-      ["<S-CR>"]         = tree_cb("close_node"),
       ["<Tab>"]          = tree_cb("preview"),
+      ["R"]              = tree_cb("refresh"),
       ["c"]              = tree_cb("create"),
       ["r"]              = tree_cb("remove"),
-      ["R"]              = tree_cb("rename"),
-      ["n"]          = tree_cb("full_rename"),
-      [">"]              = tree_cb("dir_up"),
+      ["n"]              = tree_cb("rename"),
+      ["N"]          = tree_cb("full_rename"),
       ["q"]              = tree_cb("close"),
     }
 
