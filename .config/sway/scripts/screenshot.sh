@@ -11,7 +11,7 @@ takescreenshot() {
         if [ "$filename" ]; then
             grimshot --notify save $1 /home/booperlv/Pictures/$filename
        else
-            grimshot --notify save $1 - 
+            grimshot --notify save $1 
         fi
     fi
 }

@@ -61,7 +61,7 @@ Plug 'folke/zen-mode.nvim'
 Plug 'DougBeney/pickachu'
 
 " Development
-Plug '~/Projects/gomove.nvim'
+" Plug '~/Projects/gomove.nvim'
 
 call plug#end()
 
@@ -70,9 +70,9 @@ call plug#end()
 " --------------
 
 " Colorscheme
+set termguicolors
 let ayucolor="mirage"
 let background="dark"
-set termguicolors
 let g:seoul256_borders = v:true
 colorscheme seoul256
 

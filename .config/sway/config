@@ -8,6 +8,7 @@ set $up period
 set $right slash
 
 set $term foot
+set $browser brave
 
 # Clipboard manager
 exec wl-paste -t text --watch clipman store
@@ -62,6 +63,8 @@ font pango:JetBrains Mono 9
 
 # Start a terminal
 bindsym $mod+Return exec $term
+# Start browser
+bindsym $mod+b exec $browser
 
 # Kill focused window
 bindsym $mod+q kill
@@ -270,7 +273,7 @@ mode "save focus window screen output area" {
 
 # Status Bar:
 exec waybar
-bindsym $mod+b exec bash /home/booperlv/.config/waybar/scripts/togglelaunch.sh
+bindsym $mod+Shift+b exec bash /home/booperlv/.config/waybar/scripts/togglelaunch.sh
 
 # Gtk Fix:
 set $gnome-schema org.gnome.desktop.interface
