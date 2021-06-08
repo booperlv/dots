@@ -3,6 +3,7 @@ I'm on a low resolution 11.6 inch screen, so things might look different.
 
 # Take Note!
 These dotfiles are ever changing as I am still keep finding more ways to make my experience better :D
+
 I am using colemak, so my bindings are rather unusual.
 
 # Sway
