@@ -3,9 +3,9 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 22, // Waybar height (to be removed for auto height)
 
-    "modules-left": ["sway/workspaces", "custom/separate", "sway/window", "custom/separate", "custom/memory"],
-    "modules-center": [],
-    "modules-right": ["sway/mode", "custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate", "custom/rofiselect"], 
+    "modules-left": ["sway/workspaces", "custom/separate", "custom/memory", "custom/separate", "sway/mode", "custom/separate"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock"],
 
     "sway/workspaces": {
          "disable-scroll": true,
@@ -17,9 +17,7 @@
         //     "default": " "
         // }
     },
-    "sway/window": {
-
-    },
+    "sway/window": {},
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -31,7 +29,7 @@
         }
     },
     "clock": {
-        "format": "{:  %a %d %b  %l:%M}",
+        "format": "{: %l:%M   %a %d %b}",
         "format-alt": "{:%d-%b-%Y}"
     },
     "cpu": {
@@ -65,11 +63,7 @@
         "interval": 2,
         "format": " {}"
     },
-    "custom/rofiselect": {
-        "on-click" : "$HOME/.config/rofi/scripts/selectmode.sh",
-        "format" : "launcher"
-    },
     "custom/separate": {
-        "format": "  "
+        "format": " > "
     }
 }

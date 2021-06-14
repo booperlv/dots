@@ -18,12 +18,12 @@ require "bufferline".setup {
 
     highlights = {
         fill = {
-            guifg = {attribute="fg",highlight="TabLine"}, 
-            guibg = {attribute="bg",highlight="TabLine"} 
+            guifg = {attribute="fg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"}
         },
         background = {
-            guifg = {attribute="fg",highlight="TabLine"}, 
-            guibg = {attribute="bg",highlight="TabLine"} 
+            guifg = {attribute="fg",highlight="TabLine"},
+            guibg = {attribute="bg",highlight="TabLine"}
         },
 
         buffer_selected = {
@@ -37,12 +37,12 @@ require "bufferline".setup {
         },
 
         tab_selected = {
-            guifg = {attribute="fg",highlight="TabLineSel"}, 
-            guibg = {attribute="bg",highlight="TabLineSel"} 
+            guifg = {attribute="fg",highlight="TabLineSel"},
+            guibg = {attribute="bg",highlight="TabLineSel"}
         },
         tab = {
             guifg = {attribute="fg",highlight="TabLine"},
-            guibg = {attribute="bg",highlight="TabLine"} 
+            guibg = {attribute="bg",highlight="TabLine"}
         },
 
         duplicate_selected = {

@@ -9,7 +9,8 @@ call plug#begin("~/.config/nvim/plugged")
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Colors
-Plug 'ayu-theme/ayu-vim'
+Plug 'Shatur/neovim-ayu'
+Plug 'ful1e5/onedark.nvim'
 Plug 'booperlv/miramare'
 Plug 'folke/tokyonight.nvim'
 Plug 'shaunsingh/seoul256.nvim'
@@ -21,10 +22,6 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Language Servers
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-
-" Snippets
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
 
 " TabLine
 Plug 'akinsho/nvim-bufferline.lua'
@@ -59,6 +56,8 @@ Plug 'folke/trouble.nvim'
 Plug 'folke/zen-mode.nvim'
 " Color Picker
 Plug 'DougBeney/pickachu'
+" Dashboard/startup screen
+Plug 'glepnir/dashboard-nvim'
 
 " Development
 " Plug '~/Projects/gomove.nvim'
@@ -71,7 +70,7 @@ call plug#end()
 
 " Colorscheme
 set termguicolors
-let ayucolor="mirage"
+let g:ayu_mirage=v:true
 let background="dark"
 let g:seoul256_borders = v:true
 colorscheme seoul256
@@ -135,10 +134,9 @@ let mapleader=" "
 let g:indentLine_enabled = 1
 let g:indent_blankline_char = "▏"
 let g:indent_blankline_show_trailing_blankline_indent = v:false
-let g:indent_blankline_show_first_indent_level = v:false
 
 " CSS Colorizer (vim-hexokinase)
-let g:Hexokinase_highlighters = ['virtual']
+let g:Hexokinase_highlighters = ['backgroundfull']
 
 " Color Picker
 nnoremap <leader>cp :Pick<CR>
@@ -219,6 +217,7 @@ xnoremap <leader>p "+p
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
+" Arrow Keys
 nnoremap <C-m> m
 nnoremap <C-,> ,
 nnoremap <C-.> .
@@ -260,7 +259,6 @@ xnoremap <S-.> <S-Up>
 xnoremap <S-/> <S-Right>
 
 " Splits
-" Arrow Keys
 nnoremap <leader>wm :wincmd h<CR>
 nnoremap <leader>w, :wincmd j<CR>
 nnoremap <leader>w. :wincmd k<CR>
@@ -292,6 +290,52 @@ function! ReturnHighlightTerm(group, term)
    return matchstr(output, a:term.'=\zs\S*')
 endfunction
 
+function! ShowWhitespace(flags)
+  let bad = ''
+  let pat = []
+  for c in split(a:flags, '\zs')
+    if c == 'e'
+      call add(pat, '\s\+$')
+    elseif c == 'i'
+      call add(pat, '^\t*\zs \+')
+    elseif c == 's'
+      call add(pat, ' \+\ze\t')
+    elseif c == 't'
+      call add(pat, '[^\t]\zs\t\+')
+    else
+      let bad .= c
+    endif
+  endfor
+  if len(pat) > 0
+    let s = join(pat, '\|')
+    exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
+  else
+    syntax clear ExtraWhitespace
+  endif
+  if len(bad) > 0
+    echo 'ShowWhitespace ignored: '.bad
+  endif
+endfunction
+
+function! ToggleShowWhitespace()
+  if !exists('b:ws_show')
+    let b:ws_show = 0
+  endif
+  if !exists('b:ws_flags')
+    let b:ws_flags = 'est'  " default (which whitespace to show)
+  endif
+  let b:ws_show = !b:ws_show
+  if b:ws_show
+    call ShowWhitespace(b:ws_flags)
+  else
+    call ShowWhitespace('')
+  endif
+endfunction
+
+nnoremap <Leader>ws :call ToggleShowWhitespace()<CR>
+highlight ExtraWhitespace ctermbg=white guibg=white
+
+
 " Toggle Themes and Reset Source Bind
 function! SwitchThemes()
     if g:colors_name=="seoul256"
@@ -301,9 +345,12 @@ function! SwitchThemes()
         colorscheme miramare
 		set termguicolors
     elseif g:colors_name=="miramare"
-        colorscheme tokyonight 
+        colorscheme tokyonight
         set termguicolors
     elseif g:colors_name=="tokyonight"
+        colorscheme onedark
+        set termguicolors
+    elseif g:colors_name=="onedark"
         colorscheme seoul256
         set termguicolors
 	endif

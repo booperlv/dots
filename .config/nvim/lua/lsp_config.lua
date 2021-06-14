@@ -5,7 +5,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
     'documentation',
     'detail',
-    --'additionalTextEdits',
+    'additionalTextEdits',
   }
 }
 
@@ -23,7 +23,7 @@ require'lspconfig'.tsserver.setup{}
 
 --HTML Language Server
 require'lspconfig'.html.setup {
-    capabilities = capabilities,
+    capabilities=capabilities,
 }
 
 --CSS Language Server
@@ -47,7 +47,6 @@ require'lspconfig'.clangd.setup{}
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local sumneko_root_path = '/usr'
 local sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
-
 require'lspconfig'.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
