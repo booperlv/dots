@@ -25,7 +25,6 @@ ln -s $file ~/.cache/swaywal
 wal -n -i $file
 
 killall -q waybar
-waybar &
 
 killall -q mako
 mako &

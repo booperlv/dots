@@ -13,7 +13,6 @@ if [ $basename ]; then
     wal -n -i $file
     
     killall -q waybar
-    waybar &
     
     killall -q mako
     mako &

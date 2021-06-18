@@ -3,8 +3,8 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   FantasqueSansMono, Symbols Nerd Font;
-    font-size: 11.5px;
+    font-family:   JetBrains Mono, Symbols Nerd Font;
+    font-size: 10.5px;
     font-weight: 600;
     min-height: 0;
     margin: 0;
@@ -18,20 +18,16 @@ window#waybar {
 
 #workspaces button {
     padding: 2.5px;
-    background: @background;
+    background: @color6;
     color: @color3;
 }
 
 #workspaces button.focused {
     background: @color3;
-    color: @foreground;
-}
-
-#mode, #idle_inhibitor, #clock, #cpu, #custom-memory, #battery, #network {
-    padding: 0px 6px;
+    color: @background;
 }
 
 #custom-separate {
-    font-weight: bold;
-    color: @color4;
+    padding: 0 12px;
+    color: @color5;
 }

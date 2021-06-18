@@ -3,9 +3,9 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 22, // Waybar height (to be removed for auto height)
 
-    "modules-left": ["sway/workspaces", "custom/separate", "custom/memory", "custom/separate", "sway/mode", "custom/separate"],
+    "modules-left": [ "sway/workspaces", "custom/separate",  "custom/memory", "custom/separate",  "cpu", "custom/separate",  "sway/mode", "custom/separate"],
     "modules-center": ["sway/window"],
-    "modules-right": ["custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock"],
+    "modules-right": [ "custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate"],
 
     "sway/workspaces": {
          "disable-scroll": true,
@@ -23,11 +23,11 @@
         }
     },
     "clock": {
-        "format": "{: %l:%M   %a %d %b}",
+        "format": "{: %l:%M   %a,%d %b}",
         "format-alt": "{:%d-%b-%Y}"
     },
     "cpu": {
-        "format": "{usage}%  ",
+        "format": " {usage}%",
         "tooltip": false
     },
     "memory": {
@@ -43,10 +43,10 @@
         "format-charging": "{icon}{capacity}%  ",
         "format-plugged": "{icon}{capacity}%  ",
         "format-alt": "{time} {icon}",
-        "format-icons": ["  ", "  ", "  ", "  ", "  "]
+        "format-icons": [" ", " ", " ", " ", " "]
     },
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-wifi": " {essid} ({signalStrength}%)",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
         "format-linked": "{ifname} (No IP)  ",
         "format-disconnected": "Disconnected ⚠ ",
@@ -58,6 +58,6 @@
         "format": " {}"
     },
     "custom/separate": {
-        "format": " > "
-    }
+        "format": ">"
+    },
 }
