@@ -10,18 +10,20 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Colors
 Plug 'Shatur/neovim-ayu'
-Plug 'ful1e5/onedark.nvim'
 Plug 'booperlv/miramare'
 Plug 'folke/tokyonight.nvim'
 Plug 'shaunsingh/seoul256.nvim'
-" Colors for LSP even when the colorscheme doesn't support it
+" Colors for LSP when the colorscheme doesn't support it
 Plug 'folke/lsp-colors.nvim'
 " Css Colorizer
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 " Language Servers
 Plug 'neovim/nvim-lspconfig'
+" Completion
 Plug 'hrsh7th/nvim-compe'
+" Lsp signatures
+Plug 'ray-x/lsp_signature.nvim'
 
 " TabLine
 Plug 'akinsho/nvim-bufferline.lua'
@@ -32,9 +34,9 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File Explorer
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 " File Tree
 Plug 'kyazdani42/nvim-tree.lua'
 
@@ -47,6 +49,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 " Vim Move
 Plug 'matze/vim-move'
+" Commenter
+Plug 'gennaro-tedesco/nvim-commaround'
 
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
@@ -54,13 +58,14 @@ Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 Plug 'folke/trouble.nvim'
 " Zen Mode, focus :D
 Plug 'folke/zen-mode.nvim'
-" Color Picker
+" Color (hex) Picker
 Plug 'DougBeney/pickachu'
-" Dashboard/startup screen
-Plug 'glepnir/dashboard-nvim'
+" Colorscheme picker
+Plug 'booperlv/cyclecolo.lua'
 
 " Development
 " Plug '~/Projects/gomove.nvim'
+"Plug '~/Projects/cyclecolo.lua'
 
 call plug#end()
 
@@ -73,7 +78,7 @@ set termguicolors
 let g:ayu_mirage=v:true
 let background="dark"
 let g:seoul256_borders = v:true
-colorscheme seoul256
+colorscheme miramare
 
 " Set Font for GUI
 set guifont=Iosevka:h11
@@ -137,6 +142,9 @@ let g:indent_blankline_show_trailing_blankline_indent = v:false
 
 " CSS Colorizer (vim-hexokinase)
 let g:Hexokinase_highlighters = ['backgroundfull']
+
+" Cycle Colorscheme
+nnoremap <leader>ct :ColoToggle<CR>
 
 " Color Picker
 nnoremap <leader>cp :Pick<CR>
@@ -203,11 +211,10 @@ let g:nvim_tree_show_icons = {
     \ }
 
 " Telescope.nvim
-" Using lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " overwrite defaults
 nnoremap <leader>y "+y 
@@ -228,16 +235,6 @@ nnoremap , <Down>
 nnoremap . <Up>
 nnoremap / <Right>
 
-nnoremap <C-S-m> <S-m>
-nnoremap <C-S-,> <S-,>
-nnoremap <C-S-.> <S-.>
-nnoremap <C-S-/> <S-/> 
-
-nnoremap <S-m> <S-Left>
-nnoremap <S-,> <S-Down>
-nnoremap <S-.> <S-Up>
-nnoremap <S-/> <S-Right>
-
 xnoremap <C-m> m
 xnoremap <C-,> ,
 xnoremap <C-.> .
@@ -247,16 +244,6 @@ xnoremap m <Left>
 xnoremap , <Down>
 xnoremap . <Up>
 xnoremap / <Right>
-
-xnoremap <C-S-m> <S-m>
-xnoremap <C-S-,> <S-,>
-xnoremap <C-S-.> <S-.>
-xnoremap <C-S-/> <S-/> 
-
-xnoremap <S-m> <S-Left>
-xnoremap <S-,> <S-Down>
-xnoremap <S-.> <S-Up>
-xnoremap <S-/> <S-Right>
 
 " Splits
 nnoremap <leader>wm :wincmd h<CR>
@@ -335,36 +322,9 @@ endfunction
 nnoremap <Leader>ws :call ToggleShowWhitespace()<CR>
 highlight ExtraWhitespace ctermbg=white guibg=white
 
-
-" Toggle Themes and Reset Source Bind
-function! SwitchThemes()
-    if g:colors_name=="seoul256"
-        colorscheme ayu
-        set termguicolors
-	elseif g:colors_name=="ayu"
-        colorscheme miramare
-		set termguicolors
-    elseif g:colors_name=="miramare"
-        colorscheme tokyonight
-        set termguicolors
-    elseif g:colors_name=="tokyonight"
-        colorscheme onedark
-        set termguicolors
-    elseif g:colors_name=="onedark"
-        colorscheme seoul256
-        set termguicolors
-	endif
-
-    call plug#load('lualine.nvim')
-    lua dofile("/home/booperlv/.config/nvim/lua/statusline.lua")
-    lua dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")
-    " echo 'changed colorscheme, unset variables, reloaded lualine'
-    return
-endfunction
-nnoremap <leader>ct :call SwitchThemes()<CR>
-
 " -----------
 " LUA SECTION
 " -----------
 
+" let g:cyclecolo_attach_events = ['dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")']
 lua require('config')

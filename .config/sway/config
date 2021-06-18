@@ -38,6 +38,11 @@ input * {
     xkb_variant "colemak"
     xkb_options "caps:backspace"
 }
+input "1267:42:Elan_Touchpad" {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
+}
 # Autostart Ibus
 exec ibus-daemon --xim --daemonize -r
 exec ibus engine xkb:us:colemak:eng
@@ -272,7 +277,9 @@ mode "save focus window screen output area" {
 
 
 # Status Bar:
-exec waybar
+bar {
+    swaybar_command waybar
+}
 bindsym $mod+Shift+b exec bash /home/booperlv/.config/waybar/scripts/togglelaunch.sh
 
 # Gtk Fix:

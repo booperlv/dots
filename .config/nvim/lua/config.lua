@@ -6,22 +6,25 @@ require('treesitter')
 --Autopairs and stuff
 require("nvim-autopairs").setup()
 
+vim.g.cyclecolo_attach_events = { 'dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")',}
+require("cyclecolo").setup()
+
 --Telescope, Fuzzy Finder, File Explorer
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {},
-      n = {
-	[","] = actions.move_selection_next,
-	["."] = actions.move_selection_previous,
-        ["<esc>"] = actions.close,
-      },
-    },
-    inactive_sections = {" "},
-    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-  }
-}
+--local actions = require('telescope.actions')
+--require('telescope').setup{
+--  defaults = {
+--    mappings = {
+--      i = {},
+--      n = {
+--	[","] = actions.move_selection_next,
+--	["."] = actions.move_selection_previous,
+--        ["<esc>"] = actions.close,
+--      },
+--    },
+--    inactive_sections = {" "},
+--    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+--  }
+--}
 
 --Nvim Tree Bindings
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
@@ -29,21 +32,17 @@ local tree_cb = require'nvim-tree.config'.nvim_tree_callback
       -- default mappings
       ["<CR>"]           = tree_cb("edit"),
       ["o"]              = tree_cb("edit"),
-      ["<2-LeftMouse>"]  = tree_cb("edit"),
-      ["<2-RightMouse>"] = tree_cb("cd"),
-      ["<S-CR>"]          = tree_cb("cd"),
-      ["V"]          = tree_cb("vsplit"),
-      ["H"]          = tree_cb("split"),
-      ["T"]          = tree_cb("tabnew"),
-      ["<"]              = tree_cb("prev_sibling"),
-      [">"]              = tree_cb("next_sibling"),
+      ["<S-CR>"]         = tree_cb("cd"),
+      ["V"]              = tree_cb("vsplit"),
+      ["H"]              = tree_cb("split"),
+      ["T"]              = tree_cb("tabnew"),
       ["<BS>"]           = tree_cb("close_node"),
       ["<Tab>"]          = tree_cb("preview"),
-      ["R"]              = tree_cb("refresh"),
+      ["<C-r>"]          = tree_cb("refresh"),
       ["c"]              = tree_cb("create"),
-      ["r"]              = tree_cb("remove"),
-      ["n"]              = tree_cb("rename"),
-      ["N"]          = tree_cb("full_rename"),
+      ["r"]              = tree_cb("rename"),
+      ["R"]              = tree_cb("remove"),
+      ["N"]              = tree_cb("full_rename"),
       ["q"]              = tree_cb("close"),
     }
 
@@ -52,6 +51,9 @@ require("trouble").setup {}
 
 --Zen Mode
 require("zen-mode").setup {}
+
+--LSP Signatures
+require'lsp_signature'.on_attach()
 
 
 --Require Nvim-Compe Configuration File
