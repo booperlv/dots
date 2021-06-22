@@ -33,10 +33,6 @@ Plug 'hoob3rt/lualine.nvim'
 " Icons
 Plug 'kyazdani42/nvim-web-devicons'
 
-" File Explorer
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
 " File Tree
 Plug 'kyazdani42/nvim-tree.lua'
 
@@ -58,14 +54,13 @@ Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 Plug 'folke/trouble.nvim'
 " Zen Mode, focus :D
 Plug 'folke/zen-mode.nvim'
-" Color (hex) Picker
-Plug 'DougBeney/pickachu'
 " Colorscheme picker
 Plug 'booperlv/cyclecolo.lua'
 
 " Development
 " Plug '~/Projects/gomove.nvim'
 "Plug '~/Projects/cyclecolo.lua'
+"Plug '~/Projects/neovimplugins/exibuf.nvim'
 
 call plug#end()
 
@@ -171,7 +166,7 @@ nnoremap <silent><leader>m :BufferLineCyclePrev<CR>
 nnoremap <silent><leader>? :BufferLineMoveNext<CR>
 nnoremap <silent><leader>M :BufferLineMovePrev<CR>
 " Close buffer
-nnoremap <silent><leader>q :bdelete<CR>
+nnoremap <silent><leader>q :bwipeout<CR>
 
 " nvim-compe
 set completeopt=menuone,noselect
@@ -197,6 +192,8 @@ nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tf :NvimTreeFindFile<CR>
 let g:nvim_tree_side = 'left' "left by default
 let g:nvim_tree_width = 25 "30 by default
+"let g:nvim_tree_width_as_percent = v:true
+"let g:nvim_tree_width = 20 
 let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
 let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
 let g:nvim_tree_quit_on_open = 1
@@ -260,8 +257,6 @@ nnoremap <leader>ww :wincmd w<CR>
 " window vertical, window horizontal, window resize vertical etc
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>wh :split<CR>
-nnoremap <leader>wrv :vertical resize +3<CR>
-nnoremap <leader>wrh :resize +3<CR>
 
 nnoremap <leader>w <C-w>
 
@@ -278,45 +273,45 @@ function! ReturnHighlightTerm(group, term)
 endfunction
 
 function! ShowWhitespace(flags)
-  let bad = ''
-  let pat = []
-  for c in split(a:flags, '\zs')
-    if c == 'e'
-      call add(pat, '\s\+$')
-    elseif c == 'i'
-      call add(pat, '^\t*\zs \+')
-    elseif c == 's'
-      call add(pat, ' \+\ze\t')
-    elseif c == 't'
-      call add(pat, '[^\t]\zs\t\+')
-    else
-      let bad .= c
-    endif
-  endfor
-  if len(pat) > 0
-    let s = join(pat, '\|')
-    exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
-  else
-    syntax clear ExtraWhitespace
-  endif
-  if len(bad) > 0
-    echo 'ShowWhitespace ignored: '.bad
-  endif
+	let bad = ''
+	let pat = []
+	for c in split(a:flags, '\zs')
+		if c == 'e'
+      		call add(pat, '\s\+$')
+		elseif c == 'i'
+			call add(pat, '^\t*\zs \+')
+		elseif c == 's'
+			call add(pat, ' \+\ze\t')
+		elseif c == 't'
+			call add(pat, '[^\t]\zs\t\+')
+		else
+			let bad .= c
+    	endif
+  	endfor
+  	if len(pat) > 0
+    	let s = join(pat, '\|')
+    	exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
+ 	else
+    	syntax clear ExtraWhitespace
+  	endif
+  	if len(bad) > 0
+    	echo 'ShowWhitespace ignored: '.bad
+  	endif
 endfunction
 
 function! ToggleShowWhitespace()
-  if !exists('b:ws_show')
-    let b:ws_show = 0
-  endif
-  if !exists('b:ws_flags')
-    let b:ws_flags = 'est'  " default (which whitespace to show)
-  endif
-  let b:ws_show = !b:ws_show
-  if b:ws_show
-    call ShowWhitespace(b:ws_flags)
-  else
-    call ShowWhitespace('')
-  endif
+	if !exists('b:ws_show')
+		let b:ws_show = 0
+	endif
+  	if !exists('b:ws_flags')
+  	  	let b:ws_flags = 'est'  " default (which whitespace to show)
+  	endif
+  	let b:ws_show = !b:ws_show
+  	if b:ws_show
+  		call ShowWhitespace(b:ws_flags)
+  	else
+  	  	call ShowWhitespace('')
+  	endif
 endfunction
 
 nnoremap <Leader>ws :call ToggleShowWhitespace()<CR>
@@ -326,5 +321,4 @@ highlight ExtraWhitespace ctermbg=white guibg=white
 " LUA SECTION
 " -----------
 
-" let g:cyclecolo_attach_events = ['dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")']
 lua require('config')

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/booperlv/Projects/neovimplugins/NvChad'
+let g:netrw_dirhist_2='/home/booperlv/Projects/neovimplugins/NvChad/lua'
+let g:netrw_dirhist_1='/usr/share/fontconfig'
+let g:netrw_dirhist_0='/usr/share/fontconfig/conf.default'
+let g:netrw_dirhist_9='/home/booperlv/.config/nvim/lua'
+let g:netrw_dirhist_8='/home/booperlv/.config/nvim'
+let g:netrw_dirhist_7='/home/booperlv/Projects/reactblog/src'
+let g:netrw_dirhist_6='/home/booperlv/Projects/reactblog'
+let g:netrw_dirhist_5='/home/booperlv/Projects/reactblog/src'
+let g:netrw_dirhist_4='/home/booperlv/Projects/reactblog'

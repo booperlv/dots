@@ -8,7 +8,7 @@ set $up period
 set $right slash
 
 set $term foot
-set $browser brave
+set $browser firefox
 
 # Clipboard manager
 exec wl-paste -t text --watch clipman store
