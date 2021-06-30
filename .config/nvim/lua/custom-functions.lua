@@ -1,26 +1,36 @@
 local M = {}
 local api = vim.api
 
---Delete the buffers that are named directories and empty on file read
-function M.exibuf()
-    local buffers = api.nvim_list_bufs()
-    for buffer in ipairs(buffers) do
-        local buffername = api.nvim_buf_get_name(buffer)
-        if vim.fn.isdirectory(buffername) == 1 then
-            local currentbufferlines = api.nvim_buf_get_lines(buffer, 1, -1, true)
-            if next(currentbufferlines) == nil then
-                if api.nvim_buf_get_name(buffer) ~= '' then
-                    api.nvim_buf_delete(buffer, {})
-                end
-            end
-        end
-    end
+--Delete buffers that are named directories, empty, and is not readable
+--function M.exibuf()
+--local buffers = api.nvim_list_bufs()
+--    for buffer in ipairs(buffers) do
+--        local buffername = api.nvim_buf_get_name(buffer)
+--        if vim.fn.isdirectory(buffername) == 1 then
+--            local currentbufferlines = api.nvim_buf_get_lines(buffer, 1, -1, true)
+--            if next(currentbufferlines) == nil then
+--                if vim.fn.filereadable(buffername) == true then
+--                    api.nvim_buf_delete(buffer, {})
+--                end
+--            end
+--        end
+--    end
+--end
+--vim.cmd("command! Exi lua require('custom-functions').exibuf()")
+--vim.cmd([[
+--    augroup ExiBuf
+--    autocmd BufRead * Exi
+--    augroup END
+--]])
+
+--Set Value of Tabstop and shiftwidth
+function M.tabchange()
+    local newChar = vim.fn.nr2char(vim.fn.getchar())
+    local toSet = math.floor(newChar)
+    vim.o.tabstop = toSet
+    vim.o.shiftwidth = toSet
+    print('Tab size changed to '..toSet..'!')
 end
-vim.cmd("command! Exi lua require('custom-functions').exibuf()")
-vim.cmd([[
-    augroup ExiBuf
-    autocmd BufRead * Exi
-    augroup END
-]])
+vim.cmd("nnoremap <silent><leader>tab :lua require('custom-functions').tabchange()<CR>")
 
 return M

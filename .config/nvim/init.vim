@@ -9,6 +9,7 @@ call plug#begin("~/.config/nvim/plugged")
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Colors
+Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'Shatur/neovim-ayu'
 Plug 'booperlv/miramare'
 Plug 'folke/tokyonight.nvim'
@@ -34,7 +35,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File Tree
-Plug 'kyazdani42/nvim-tree.lua'
+"Plug 'kyazdani42/nvim-tree.lua'
 
 " Auto Closer
 " Plug 'tmsvg/pear-tree'
@@ -46,7 +47,7 @@ Plug 'tpope/vim-surround'
 " Vim Move
 Plug 'matze/vim-move'
 " Commenter
-Plug 'gennaro-tedesco/nvim-commaround'
+Plug 'terrortylor/nvim-comment'
 
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
@@ -57,10 +58,13 @@ Plug 'folke/zen-mode.nvim'
 " Colorscheme picker
 Plug 'booperlv/cyclecolo.lua'
 
+" Game :D
+Plug 'alec-gibson/nvim-tetris'
+
 " Development
-" Plug '~/Projects/gomove.nvim'
-"Plug '~/Projects/cyclecolo.lua'
-"Plug '~/Projects/neovimplugins/exibuf.nvim'
+Plug '~/Projects/neovimplugins/nvim-tree.lua'
+"Plug '~/Projects/neovimplugins/cyclecolo.lua'
+Plug '~/Projects/neovimplugins/multiact.nvim'
 
 call plug#end()
 
@@ -98,7 +102,7 @@ set wrap!
 set fillchars=eob:\ 
 
 " Tab Width
-set shiftwidth=4 tabstop=4
+set shiftwidth=2 tabstop=2
 set autoindent smartindent
 set expandtab
 
@@ -160,6 +164,7 @@ nmap <A-.> <Plug>MoveLineUp
 nmap <A-/> <Plug>MoveCharRight
 
 " nvim bufferline
+set autochdir
 nnoremap <silent><leader>/ :BufferLineCycleNext<CR>
 nnoremap <silent><leader>m :BufferLineCyclePrev<CR>
 " These commands will move the current buffer backwards or forwards in the bufferline
@@ -191,16 +196,13 @@ nnoremap <leader>tt :NvimTreeToggle<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tf :NvimTreeFindFile<CR>
 let g:nvim_tree_side = 'left' "left by default
-let g:nvim_tree_width = 25 "30 by default
-"let g:nvim_tree_width_as_percent = v:true
-"let g:nvim_tree_width = 20 
+let g:nvim_tree_width = '30%' "30 by default
 let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
 let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
 let g:nvim_tree_quit_on_open = 1
 let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
-let g:nvim_tree_width_allow_resize  = 1 "0 by default, will not resize the tree when opening a file
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,

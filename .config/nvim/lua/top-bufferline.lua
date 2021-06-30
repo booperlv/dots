@@ -8,7 +8,7 @@ require "bufferline".setup {
         right_trunc_marker = " ",
         tab_size = 18,
         show_tab_indicators = true,
-        enforce_regular_tabs = false,
+        enforce_regular_tabs = true,
         show_buffer_close_icons = false,
         view = "default",
         separator_style = {"",""},

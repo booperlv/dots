@@ -11,15 +11,16 @@ local function isempty(s)
   return s == nil or s == ''
 end
 if isempty(vim.g.TabLineSelBackground) then
-    vim.g.TabLineSelBackground = vim.fn.ReturnHighlightTerm('Normal', 'guibg')
+  vim.g.TabLineSelBackground = vim.fn.ReturnHighlightTerm('Normal', 'guibg')
 end
-if isempty(vim.g.TabLineSelForeground) then 
-    vim.g.TabLineSelForeground = vim.fn.ReturnHighlightTerm('Normal', 'guifg')
+if isempty(vim.g.TabLineSelForeground) then
+  vim.g.TabLineSelForeground = vim.fn.ReturnHighlightTerm('Normal', 'guifg')
 end
 
 -- Color table for highlights
 local colors = {
   bg       = vim.g.StatusLineBackground,
+  normbg   = vim.fn.ReturnHighlightTerm('Normal', 'guibg'),
   fg       = vim.g.StatusLineForeground,
   split    = vim.g.StatusLineHorizontalSplit,
   colbg    = vim.g.TabLineSelBackground,
@@ -100,18 +101,27 @@ end
 
 
 ins_left {
- function() return '▌' end,
- color = {fg=colors.fg, bg=colors.colbg},
- padding = 0
+  function() return '▌' end,
+  color = {fg=colors.fg, bg=colors.colbg},
+  padding = 0
 }
 
+local function checkBG()
+  local value
+  if colors.colbg == colors.bg or colors.colbg == colors.normbg then
+    value = colors.colfg
+  else
+    value = colors.colbg
+  end
+  return value
+end
 
 ins_left {
   -- mode component
   function()
     -- auto change color according to neovims mode
     local mode_color = {
-      n      = colors.colbg,
+      n      = checkBG(),
       i      = colors.red,
       v      = colors.yellow,
       [''] = colors.yellow,
@@ -132,10 +142,10 @@ ins_left {
       ['!']  = colors.red,
       t      = colors.remagentad
     }
-    vim.api.nvim_command('hi! LualineMode guifg=' ..colors.colfg .." guibg="..mode_color[vim.fn.mode()])
+    vim.api.nvim_command('hi! LualineMode guifg=' ..mode_color[vim.fn.mode()].." guibg="..colors.bg)
     return '  ﲎ '
   end,
-  color = "LualineMode", 
+  color = "LualineMode"
 }
 
 ins_left {
@@ -181,9 +191,9 @@ ins_right {
 }
 
 ins_right {
-    'fileformat',
-    icons_enabled = true,
-    color = {fg = colors.colfg, bg=colors.colbg, gui='bold'},
+  'fileformat',
+  icons_enabled = true,
+  color = {fg = checkBG(), bg=colors.bg, gui = 'bold'},
 }
 
 ins_right {
@@ -201,7 +211,7 @@ ins_right {
     end
     return msg
   end,
-  color = {fg = colors.colfg, bg=colors.colbg, gui = 'bold'},
+  color = {fg = checkBG(), bg=colors.bg, gui = 'bold'},
 }
 
 ins_right {

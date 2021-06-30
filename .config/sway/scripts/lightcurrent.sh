@@ -7,7 +7,6 @@ file=(~/.cache/swaywal)
 wal -n -l -i $file
 
 killall -q waybar
-waybar &
 
 killall -q mako
 mako &

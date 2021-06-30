@@ -68,6 +68,7 @@ font pango:JetBrains Mono 9
 
 # Start a terminal
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec alacritty
 # Start browser
 bindsym $mod+b exec $browser
 

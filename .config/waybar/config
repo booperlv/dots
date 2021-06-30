@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 22, // Waybar height (to be removed for auto height)
+    //"height": , // Waybar height (to be removed for auto height)
 
     "modules-left": [ "sway/workspaces", "custom/separate",  "custom/memory", "custom/separate",  "cpu", "custom/separate",  "sway/mode", "custom/separate"],
     "modules-center": ["sway/window"],
