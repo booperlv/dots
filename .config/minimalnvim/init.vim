@@ -3,10 +3,7 @@
 " --------------
 
 " Vim-plug
-call plug#begin("~/.config/nvim/plugged")
-
-" Treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+call plug#begin("~/.config/minimalnvim/plugged")
 
 " Colors
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -14,17 +11,6 @@ Plug 'Shatur/neovim-ayu'
 Plug 'booperlv/miramare'
 Plug 'folke/tokyonight.nvim'
 Plug 'shaunsingh/seoul256.nvim'
-" Colors for LSP when the colorscheme doesn't support it
-Plug 'folke/lsp-colors.nvim'
-" Css Colorizer
-Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
-
-" Language Servers
-Plug 'neovim/nvim-lspconfig'
-" Completion
-Plug 'hrsh7th/nvim-compe'
-" Lsp signatures
-Plug 'ray-x/lsp_signature.nvim'
 
 " TabLine
 Plug 'akinsho/nvim-bufferline.lua'
@@ -40,7 +26,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 " FAST AS HECC BOIIII
 Plug 'ggandor/lightspeed.nvim'
 " Auto Closer
-" Plug 'tmsvg/pear-tree'
 Plug 'windwp/nvim-autopairs'
 " Emmet
 Plug 'mattn/emmet-vim'
@@ -53,20 +38,10 @@ Plug 'terrortylor/nvim-comment'
 
 " Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim'
-" Pretty LSP Errors and Things indicator
-Plug 'folke/trouble.nvim'
 " Zen Mode, focus :D
 Plug 'folke/zen-mode.nvim'
 " Colorscheme picker
 Plug 'booperlv/cyclecolo.lua'
-
-" Game :D
-Plug 'alec-gibson/nvim-tetris'
-
-" Development
-"Plug '~/Projects/neovimplugins/nvim-tree.lua'
-"Plug '~/Projects/neovimplugins/cyclecolo.lua'
-"Plug '~/Projects/neovimplugins/multiact.nvim'
 
 call plug#end()
 
@@ -80,6 +55,8 @@ let g:ayu_mirage=v:true
 let background="dark"
 let g:seoul256_borders = v:true
 colorscheme tokyonight
+
+"let &runtimepath.=','.$XDG_CONFIG_HOME.'/minimalnvim'
 
 " Set Font for GUI
 set guifont=Iosevka:h11
@@ -175,21 +152,6 @@ nnoremap <silent><leader>M :BufferLineMovePrev<CR>
 " Close buffer
 nnoremap <silent><leader>q :bwipeout<CR>
 
-" nvim-compe
-set completeopt=menuone,noselect
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-" lsp trouble mapping
-nnoremap <leader>xx :TroubleToggle<cr>
-nnoremap <leader>xw :TroubleToggle lsp_workspace_diagnostics<cr>
-nnoremap <leader>xd :TroubleToggle lsp_document_diagnostics<cr>
-nnoremap <leader>xq :TroubleToggle quickfix<cr>
-nnoremap <leader>xl :TroubleToggle loclist<cr>
-
 " zen-mode mapping
 nnoremap <leader>zm :ZenMode<cr>
 
@@ -210,12 +172,6 @@ let g:nvim_tree_show_icons = {
     \ 'folders': 1,
     \ 'files': 1,
     \ }
-
-" Telescope.nvim
-" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " overwrite defaults
 nnoremap <leader>y "+y 
@@ -310,7 +266,7 @@ function! ToggleShowWhitespace()
   	if !exists('b:ws_flags')
   	  	let b:ws_flags = 'est'  " default (which whitespace to show)
   	endif
-  	let b:ws_show = !b:ws_show
+    let b:ws_show = !b:ws_show
   	if b:ws_show
   		call ShowWhitespace(b:ws_flags)
   	else
@@ -325,4 +281,4 @@ highlight ExtraWhitespace ctermbg=white guibg=white
 " LUA SECTION
 " -----------
 
-lua require('config')
+lua require('minimalnvim.config')

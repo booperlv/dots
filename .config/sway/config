@@ -54,10 +54,10 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Set the Gaps or Margin
-gaps inner 8
+gaps inner 12
 
 # Border, Remove Title Bar
-default_border none
+default_border pixel 4
 
 # Font
 font pango:JetBrains Mono 9
@@ -70,7 +70,8 @@ font pango:JetBrains Mono 9
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec alacritty
 # Start browser
-bindsym $mod+b exec $browser
+bindsym $mod+b exec vimb
+bindsym $mod+Shift+b exec firefox
 
 # Kill focused window
 bindsym $mod+q kill
@@ -91,25 +92,25 @@ bindsym $mod+Ctrl+r reload
 bindsym $mod+Ctrl+q exec swaymsg exit
 
 # Change Wallpaper
-mode "wallpaper select change refresh light" {
+mode "wallpaper select pick change refresh light" {
     bindsym c exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode default
     bindsym r exec bash /home/booperlv/.config/sway/scripts/resetcurrentwal.sh; mode default
     bindsym s exec bash /home/booperlv/.config/sway/scripts/changewalselect.sh; mode default
     bindsym l exec bash /home/booperlv/.config/sway/scripts/lightcurrent.sh; mode default
+    bindsym p exec bash /home/booperlv/.config/sway/scripts/settocolor.sh; mode default
     
     bindsym space mode default
     bindsym q mode default
     bindsym $mod+backslash mode default
     bindsym escape mode default
 }
-bindsym $mod+backslash mode "wallpaper select change refresh light"
+bindsym $mod+backslash mode "wallpaper select pick change refresh light"
 
 # Toggle Gaps and Borders
-bindsym $mod+Ctrl+b border toggle
 mode "gaps inner outer default" {
     bindsym i mode "gaps inner plus minus"
     bindsym o mode "gaps outer plus minus"
-    bindsym d gaps inner 8; mode default
+    bindsym d gaps inner 12; gaps outer 12; mode default
     
     bindsym space mode default
     bindsym q mode default
@@ -281,7 +282,7 @@ mode "save focus window screen output area" {
 bar {
     swaybar_command waybar
 }
-bindsym $mod+Shift+b exec bash /home/booperlv/.config/waybar/scripts/togglelaunch.sh
+bindsym $mod+Ctrl+b exec bash /home/booperlv/.config/waybar/scripts/togglelaunch.sh
 
 # Gtk Fix:
 set $gnome-schema org.gnome.desktop.interface

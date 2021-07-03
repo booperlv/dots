@@ -1,15 +1,18 @@
 set number
-colorscheme evening
+" colorscheme evening
+colorscheme default
 syntax on
+set nowrap
 
 " Mouse
 set mouse=a
 
 " Tab Width
-set shiftwidth=4 tabstop=4
+set shiftwidth=2 tabstop=2
 set autoindent smartindent
 
 " Search and Replace
+set incsearch
 set ignorecase
 set smartcase
 set gdefault
@@ -103,67 +106,57 @@ nnoremap <leader>wrh :resize +3<CR>
 nnoremap <leader>w <C-w>
 
 " Extra Functions for some functionality
-let g:NetrwIsOpen=0
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Lexplore
-    endif
-endfunction
-nnoremap <leader>tt :call ToggleNetrw()<CR>
 
+" File tree 
+nnoremap <leader>tt :Lexplore<CR>
+
+" TABLINE
 nnoremap <leader>m :tabprevious<CR>
 nnoremap <leader>/ :tabnext<CR>
+nnoremap <leader>q :bwipeout<CR>
+set autochdir
 
+" SHOW WHITESPACE
 function! ShowWhitespace(flags)
-  let bad = ''
-  let pat = []
-  for c in split(a:flags, '\zs')
-    if c == 'e'
-      call add(pat, '\s\+$')
-    elseif c == 'i'
-      call add(pat, '^\t*\zs \+')
-    elseif c == 's'
-      call add(pat, ' \+\ze\t')
-    elseif c == 't'
-      call add(pat, '[^\t]\zs\t\+')
+    let bad = ''
+    let pat = []
+    for c in split(a:flags, '\zs')
+        if c == 'e'
+            call add(pat, '\s\+$')
+        elseif c == 'i'
+            call add(pat, '^\t*\zs \+')
+        elseif c == 's'
+            call add(pat, ' \+\ze\t')
+        elseif c == 't'
+            call add(pat, '[^\t]\zs\t\+')
+        else
+            let bad .= c
+        endif
+    endfor
+    if len(pat) > 0
+        let s = join(pat, '\|')
+        exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
     else
-      let bad .= c
+        syntax clear ExtraWhitespace
     endif
-  endfor
-  if len(pat) > 0
-    let s = join(pat, '\|')
-    exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
-  else
-    syntax clear ExtraWhitespace
-  endif
-  if len(bad) > 0
-    echo 'ShowWhitespace ignored: '.bad
-  endif
+    if len(bad) > 0
+        echo 'ShowWhitespace ignored: '.bad
+    endif
 endfunction
 
 function! ToggleShowWhitespace()
-  if !exists('b:ws_show')
-    let b:ws_show = 0
-  endif
-  if !exists('b:ws_flags')
-    let b:ws_flags = 'est'  " default (which whitespace to show)
-  endif
-  let b:ws_show = !b:ws_show
-  if b:ws_show
-    call ShowWhitespace(b:ws_flags)
-  else
-    call ShowWhitespace('')
-  endif
+    if !exists('b:ws_show')
+        let b:ws_show = 0
+    endif
+    if !exists('b:ws_flags')
+        let b:ws_flags = 'est'  " default (which whitespace to show)
+    endif
+    let b:ws_show = !b:ws_show
+    if b:ws_show
+        call ShowWhitespace(b:ws_flags)
+    else
+        call ShowWhitespace('')
+    endif
 endfunction
 
 nnoremap <Leader>ws :call ToggleShowWhitespace()<CR>
@@ -171,11 +164,11 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 
 " Testing
 function! WrapAWord(...)
-	let localchar = getchar()
-	let @s = nr2char(localchar)
-	normal eb
-	normal "sP
-	normal e
-	normal "sp
+    let localchar = getchar()
+    let @s = nr2char(localchar)
+    normal eb
+    normal "sP
+    normal e
+    normal "sp
 endfunction
 nnoremap <silent> <leader>ss :call WrapAWord()<CR>

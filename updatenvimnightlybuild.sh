@@ -3,6 +3,9 @@
 # I made this for arch and don't really have much error handling or the likes here,
 # So you probably shouldn't use this. 0.5.0 is close to being pushed to stable anyway B)
 
+# SO 0.5.0 is finally pushed to stable!! I'll be keeping the script here, in case 
+# I find a reason to use 0.6 nightly soon, and it'll be handy to have a reference again :D
+
 function install {
     neovimpath=$(whereis nvim | grep -o '/[^ ]*')
 #You probably shouldn't use this it's pretty unsecure LOL
