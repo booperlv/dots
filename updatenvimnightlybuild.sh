@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# I made this for arch and don't really have much error handling or the likes here,
-# So you probably shouldn't use this. 0.5.0 is close to being pushed to stable anyway B)
-
-# SO 0.5.0 is finally pushed to stable!! I'll be keeping the script here, in case 
-# I find a reason to use 0.6 nightly soon, and it'll be handy to have a reference again :D
+# If I find a reason to use 0.6 nightly soon, this might be handy :)
 
 function install {
     neovimpath=$(whereis nvim | grep -o '/[^ ]*')
@@ -58,7 +54,7 @@ function confirminstall {
     fi
 }
 
-currentrelease=$(wget https://api.github.com/repos/neovim/neovim/releases -q -O - | jq -r '.[] | .name' | grep 'NVIM v0.5.0')
+currentrelease=$(wget https://api.github.com/repos/neovim/neovim/releases -q -O - | jq -r '.[] | .name' | grep 'NVIM v0.6.0')
 echo "Current Release is $currentrelease"
 currentversion=$(nvim -v | grep 'NVIM v' || : )
 echo "Current Version is $currentversion"

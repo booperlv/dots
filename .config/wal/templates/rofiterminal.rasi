@@ -33,10 +33,6 @@
 	border-radius: 0;
 	border-color: @border-color;
 	width: 40%;
-	location: south west;
-    anchor: south west;
-	x-offset: 8;
-	y-offset: -8;
 }}
 
 #mainbox {{

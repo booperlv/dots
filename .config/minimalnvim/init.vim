@@ -3,45 +3,36 @@
 " --------------
 
 " Vim-plug
-call plug#begin("~/.config/minimalnvim/plugged")
+call plug#begin("~/.config/nvim/plugged")
 
 " Colors
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'Shatur/neovim-ayu'
-Plug 'booperlv/miramare'
 Plug 'folke/tokyonight.nvim'
-Plug 'shaunsingh/seoul256.nvim'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
-" TabLine
-Plug 'akinsho/nvim-bufferline.lua'
-" Status Line
-Plug 'hoob3rt/lualine.nvim'
-
-" Icons
+" UI Changes
 Plug 'kyazdani42/nvim-web-devicons'
-
-" File Tree
+Plug 'akinsho/nvim-bufferline.lua'
+Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'camspiers/snap'
 
-" FAST AS HECC BOIIII
+" Coding helpers
 Plug 'ggandor/lightspeed.nvim'
-" Auto Closer
 Plug 'windwp/nvim-autopairs'
-" Emmet
 Plug 'mattn/emmet-vim'
-" Vim Surround
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Vim Move
-Plug 'matze/vim-move'
-" Commenter
-Plug 'terrortylor/nvim-comment'
+Plug 'b3nj5m1n/kommentary'
 
-" Indent Guides
+" Nice to haves
+Plug 'folke/which-key.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
-" Zen Mode, focus :D
 Plug 'folke/zen-mode.nvim'
-" Colorscheme picker
 Plug 'booperlv/cyclecolo.lua'
+
+Plug '~/Projects/neovimplugins/gomove.nvim'
 
 call plug#end()
 
@@ -55,8 +46,6 @@ let g:ayu_mirage=v:true
 let background="dark"
 let g:seoul256_borders = v:true
 colorscheme tokyonight
-
-"let &runtimepath.=','.$XDG_CONFIG_HOME.'/minimalnvim'
 
 " Set Font for GUI
 set guifont=Iosevka:h11
@@ -131,19 +120,20 @@ nnoremap <leader>cp :Pick<CR>
 let g:user_emmet_leader_key='<C-Z>'
 nnoremap <leader>em :call feedkeys("<C-Z>,")<CR>
 
-" vim-move mappings
-let g:move_map_keys = 0
-xmap <A-m> <Plug>MoveBlockLeft
-xmap <A-,> <Plug>MoveBlockDown
-xmap <A-.> <Plug>MoveBlockUp
-xmap <A-/> <Plug>MoveBlockRight
-nmap <A-m> <Plug>MoveCharLeft
-nmap <A-,> <Plug>MoveLineDown
-nmap <A-.> <Plug>MoveLineUp
-nmap <A-/> <Plug>MoveCharRight
+" gomove mappings
+xmap <A-m> <Plug>VisualMoveLeft
+xmap <A-,> <Plug>VisualMoveDown
+xmap <A-.> <Plug>VisualMoveUp
+xmap <A-/> <Plug>VisualMoveRight
+nmap <A-m> <Plug>NormalMoveLeft
+nmap <A-,> <Plug>NormalMoveDown
+nmap <A-.> <Plug>NormalMoveUp
+nmap <A-/> <Plug>NormalMoveRight
+
+nmap <A-d> <Plug>MoveDuplicateMode
+xmap <A-d> <Plug>MoveDuplicateMode
 
 " nvim bufferline
-set autochdir
 nnoremap <silent><leader>/ :BufferLineCycleNext<CR>
 nnoremap <silent><leader>m :BufferLineCyclePrev<CR>
 " These commands will move the current buffer backwards or forwards in the bufferline
@@ -172,6 +162,8 @@ let g:nvim_tree_show_icons = {
     \ 'folders': 1,
     \ 'files': 1,
     \ }
+" Remove the statusline on the tree
+au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == 'NvimTree' | set laststatus=0 | else | set laststatus=2 | endif
 
 " overwrite defaults
 nnoremap <leader>y "+y 

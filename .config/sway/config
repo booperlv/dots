@@ -33,10 +33,10 @@ exec python3 /home/booperlv/.config/sway/swayfader/swayfader.py
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 # Set the Keyboard Layout to Colemak
-input * {
-    xkb_layout "us"
-    xkb_variant "colemak"
-    xkb_options "caps:backspace"
+input "type:keyboard" {
+    xkb_layout us,us
+    xkb_variant colemak, 
+    xkb_options grp:win_space_toggle
 }
 input "1267:42:Elan_Touchpad" {
     dwt enabled
@@ -46,7 +46,6 @@ input "1267:42:Elan_Touchpad" {
 # Autostart Ibus
 exec ibus-daemon --xim --daemonize -r
 exec ibus engine xkb:us:colemak:eng
-bindsym $mod+Ctrl+i exec bash /home/booperlv/.config/sway/scripts/inputmethodtoggle.sh 
 
 # Fix for sway gtk launch taking too long
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK

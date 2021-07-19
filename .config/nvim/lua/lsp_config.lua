@@ -10,13 +10,13 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 --Deno Language Server (Javascript)
---require'lspconfig'.denols.setup{
---	init_options = {
---		enable = true,
---		lint= true,
---		unstable = false
---	}
---}
+-- require'lspconfig'.denols.setup{
+--   init_options = {
+--     enable = true,
+--     lint= true,
+--     unstable = false
+--   }
+-- }
 
 --Typescript Language Server (Javascript, Typescript)
 require'lspconfig'.tsserver.setup{}

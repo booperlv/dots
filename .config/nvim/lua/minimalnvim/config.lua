@@ -1,6 +1,6 @@
 --Require custom functions
 require('custom-functions')
-
+require('snap-config')
 
 --Lightspeed
 require'lightspeed'.setup {
@@ -19,11 +19,28 @@ require'lightspeed'.setup {
 require("nvim-autopairs").setup()
 
 --Commentor
-require('nvim_comment').setup()
+require'kommentary.config'.configure_language("default", {
+  prefer_single_line_comments = true,
+  use_consistent_indentation = true,
+  ignore_whitespace = true
+})
+vim.g.kommentary_create_default_bindings=false
+vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
+vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
+vim.api.nvim_set_keymap("v", "<leader>c", "<Plug>kommentary_visual_default", {})
 
 --Color Selector
-vim.g.cyclecolo_attach_events = { 'dofile("/home/booperlv/.config/minimalnvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/minimalnvim/lua/top-bufferline.lua")',}
-require("cyclecolo").setup()
+require("cyclecolo").setup{
+  attach_events = { 'dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")',},
+  filter_colorschemes = 'defaults',
+  child_cycles = {
+    { colorscheme = "tokyonight", variable = "vim.g.tokyonight_style", values = {
+      "storm", "night", "day"
+    }},
+  },
+}
+
+require("gomove").setup()
 
 --Zen Mode
 require("zen-mode").setup {}

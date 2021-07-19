@@ -3,10 +3,13 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 22, // Waybar height (to be removed for auto height)
 
-    "modules-left": [ "sway/workspaces", "custom/separate",  "custom/memory", "custom/separate",  "cpu", "custom/separate",  "sway/mode", "custom/separate"],
-    "modules-center": ["sway/window"],
+    "modules-left": [ "sway/workspaces", "custom/separate",  "custom/memory", "custom/separate",  "cpu", "custom/separate",  "sway/mode", "custom/separate", "tray",],
+    "modules-center": [ "sway/window"],
     "modules-right": [ "custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate"],
 
+    "tray": {
+          "spacing": 10
+    },
     "sway/workspaces": {
          "disable-scroll": true,
          "all-outputs": true,

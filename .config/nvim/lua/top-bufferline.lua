@@ -6,7 +6,6 @@ require "bufferline".setup {
         close_icon = " ",
         left_trunc_marker = " ",
         right_trunc_marker = " ",
-        tab_size = 18,
         show_tab_indicators = true,
         enforce_regular_tabs = true,
         show_buffer_close_icons = false,

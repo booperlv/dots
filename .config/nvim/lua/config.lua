@@ -1,11 +1,9 @@
---Require custom functions
+--Files
 require('custom-functions')
---Require Language Server Configuration File
-require('lsp_config')
---Require Treesitter Configuration File
+require('new_lspconfig')
 require('treesitter')
---Require Nvim-Compe Configuration File
 require('compe-completion')
+require('snap-config')
 
 --Lightspeed
 require'lightspeed'.setup {
@@ -23,28 +21,39 @@ require'lightspeed'.setup {
 --Autopairs and stuff
 require("nvim-autopairs").setup()
 
+--Which Key
+require("which-key").setup()
+
+--Colorizer
+require'colorizer'.setup()
+
 --Commentor
-require('nvim_comment').setup()
+require'kommentary.config'.configure_language("default", {
+  prefer_single_line_comments = true,
+  use_consistent_indentation = true,
+})
+vim.g.kommentary_create_default_bindings=false
+vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
+vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
+vim.api.nvim_set_keymap("v", "<leader>c", "<Plug>kommentary_visual_default", {})
 
 --Color Selector
-vim.g.cyclecolo_attach_events = { 'dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")',}
-require("cyclecolo").setup()
+require("cyclecolo").setup{
+  attach_events = { 'dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")',},
+  filter_colorschemes = 'defaults',
+  child_cycles = {
+    { colorscheme = "tokyonight", variable = "vim.g.tokyonight_style", values = {
+      "storm", "night", "day"
+    }},
+  },
+}
+
+require("gomove").setup()
 
 --Trouble/LSP error indicator
 require("trouble").setup {}
-
 --Zen Mode
 require("zen-mode").setup {}
-
---LSP Signatures
-require'lsp_signature'.on_attach({
-    bind = true,
-    hint_enable = true,
-    hint_prefix = " ",
-    handler_opts = {
-        border = "none"
-    }
-})
 
 --Require Status Line Configuration File
 dofile("/home/booperlv/.config/nvim/lua/statusline.lua")
