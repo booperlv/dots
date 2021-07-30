@@ -56,10 +56,11 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 gaps inner 12
 
 # Border, Remove Title Bar
-default_border pixel 4
+default_border pixel 2
+# default_border none
 
 # Font
-font pango:JetBrains Mono 9
+font pango:Iosevka 9
 
 
 ### Key bindings
@@ -69,7 +70,7 @@ font pango:JetBrains Mono 9
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec alacritty
 # Start browser
-bindsym $mod+b exec vimb
+bindsym $mod+b exec chromium
 bindsym $mod+Shift+b exec firefox
 
 # Kill focused window

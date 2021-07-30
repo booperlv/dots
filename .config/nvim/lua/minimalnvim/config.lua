@@ -42,9 +42,6 @@ require("cyclecolo").setup{
 
 require("gomove").setup()
 
---Zen Mode
-require("zen-mode").setup {}
-
 --Require Status Line Configuration File
 dofile("/home/booperlv/.config/minimalnvim/lua/statusline.lua")
 

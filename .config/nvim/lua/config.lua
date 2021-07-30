@@ -21,9 +21,6 @@ require'lightspeed'.setup {
 --Autopairs and stuff
 require("nvim-autopairs").setup()
 
---Which Key
-require("which-key").setup()
-
 --Colorizer
 require'colorizer'.setup()
 
@@ -31,6 +28,7 @@ require'colorizer'.setup()
 require'kommentary.config'.configure_language("default", {
   prefer_single_line_comments = true,
   use_consistent_indentation = true,
+  ignore_whitespace = false,
 })
 vim.g.kommentary_create_default_bindings=false
 vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
@@ -39,21 +37,29 @@ vim.api.nvim_set_keymap("v", "<leader>c", "<Plug>kommentary_visual_default", {})
 
 --Color Selector
 require("cyclecolo").setup{
+  window_border = 'double',
+  -- hover_colors = true,
   attach_events = { 'dofile("/home/booperlv/.config/nvim/lua/statusline.lua")', 'dofile("/home/booperlv/.config/nvim/lua/top-bufferline.lua")',},
   filter_colorschemes = 'defaults',
   child_cycles = {
-    { colorscheme = "tokyonight", variable = "vim.g.tokyonight_style", values = {
-      "storm", "night", "day"
-    }},
+    { colorscheme = "tokyonight", variable = "vim.g.tokyonight_style", values = {"storm", "night", "day"}},
+    { colorscheme = "material", variable = "vim.g.material_style", values = {"palenight", "oceanic", "darker", "lighter", "deep ocean"}},
   },
 }
 
-require("gomove").setup()
+require("gomove").setup{
+  -- map_keys = true,
+}
+
+-- --Telescope
+-- require("telescope").setup {
+--   defaults = {
+--     borderchars = {"─", "│", "─", "│", "┌", "┐", "┘", "└"},
+--   }
+-- }
 
 --Trouble/LSP error indicator
 require("trouble").setup {}
---Zen Mode
-require("zen-mode").setup {}
 
 --Require Status Line Configuration File
 dofile("/home/booperlv/.config/nvim/lua/statusline.lua")

@@ -27,9 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'b3nj5m1n/kommentary'
 
 " Nice to haves
-Plug 'folke/which-key.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'folke/zen-mode.nvim'
 Plug 'booperlv/cyclecolo.lua'
 
 Plug '~/Projects/neovimplugins/gomove.nvim'

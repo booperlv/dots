@@ -1,6 +1,6 @@
 require "bufferline".setup {
     options = {
-        offsets = {{filetype = "NvimTree", text = "Explorer"}},
+        offsets = {{filetype = "NvimTree", text = ""}},
         buffer_close_icon = "",
         modified_icon = "",
         close_icon = " ",
@@ -9,7 +9,7 @@ require "bufferline".setup {
         show_tab_indicators = true,
         enforce_regular_tabs = true,
         show_buffer_close_icons = false,
-        view = "default",
+        view = "multiwindow",
         separator_style = {"",""},
         indicator_icon = "",
         mappings = "true"
@@ -28,7 +28,7 @@ require "bufferline".setup {
         buffer_selected = {
             guifg = {attribute="fg",highlight="TabLineSel"},
             guibg = {attribute="bg",highlight="TabLineSel"},
-            gui = "bold"
+            gui = "none"
         },
         buffer_visible = {
             guifg = {attribute="fg",highlight="TabLine"},

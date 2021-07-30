@@ -11,6 +11,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'Shatur/neovim-ayu'
 Plug 'folke/tokyonight.nvim'
+Plug 'mhartington/oceanic-next'
+Plug 'marko-cerovac/material.nvim'
 " TODO:: FORK THIS JUST TO FIX THE DAMNED STATUSLINE AND TABLINE
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'folke/lsp-colors.nvim'
@@ -34,21 +36,16 @@ Plug 'ggandor/lightspeed.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+Plug 'chaoren/vim-wordmotion'
 Plug 'b3nj5m1n/kommentary'
-Plug 'preservim/tagbar'
 
 " Nice things to have
-Plug 'folke/which-key.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'folke/trouble.nvim'
-Plug 'folke/zen-mode.nvim'
-Plug 'booperlv/cyclecolo.lua'
-
-" Game :D
-Plug 'alec-gibson/nvim-tetris'
+" Plug 'booperlv/cyclecolo.lua'
 
 " Development
-" Plug '~/Projects/neovimplugins/cyclecolo.lua'
+Plug '~/Projects/neovimplugins/cyclecolo.lua'
 Plug '~/Projects/neovimplugins/gomove.nvim'
 
 call plug#end()
@@ -63,90 +60,85 @@ let g:ayu_mirage=v:true
 let g:material_borders = v:true
 let background="dark"
 let g:seoul256_borders = v:true
-colorscheme tokyonight
+colorscheme OceanicNext
 
-" Set Font for GUI
-set guifont=Iosevka:h11
-
-" Allow Buffer Change No Save
 set hidden
-
-" Mouse
+set noshowmode
 set mouse=a
-
-" Cursor Offset from top and bottom
 set scrolloff=1
 set display+=lastline
-
-" Line Numbers
 set number
-
-" No Wrap
 set wrap!
-
-" Replace ~ EndOfBuffer
 set fillchars=eob:\ 
-
-" Tab Width
 set shiftwidth=2 tabstop=2
 set autoindent smartindent
 set expandtab
-
-" Search and Replace
 set ignorecase
 set smartcase
 set gdefault
-
-" Update Files when changed from other source
 set autoread
-
-"Alternative to indent guides since it can be a bit of a hassle sometimes
-"set cursorcolumn
-"set cursorline
-
-" Set Key Timeout
-set timeoutlen=500
-"set notimeout
 
 " Remap Esc -command switch to normal
 inoremap nz n
 inoremap nn <esc>
 inoremap nx nn
-
-" Map Leader to space
-nnoremap <SPACE> <NOP>
 let mapleader=" "
 
 " -------------------------------------
 " PLUGIN CONFIG AND KEYBINDINGS SECTION
 " -------------------------------------
 
-" IndentLine and Indent-blankline
-let g:indentLine_enabled = 1
 let g:indent_blankline_char = "▏"
 let g:indent_blankline_show_first_indent_level = v:false
-" let g:indent_blankline_show_trailing_blankline_indent = v:false
+let g:indent_blankline_show_trailing_blankline_indent = v:false
 
 " Cycle Colorscheme
 nnoremap <leader>ct :ColoToggle<CR>
 
 " emmet vim
-let g:user_emmet_leader_key='<C-Z>'
-nnoremap <leader>em :call feedkeys("<C-Z>,")<CR>
+nnoremap <leader>em :call feedkeys("<C-Y>,")<CR>
 
 " gomove mappings
-xmap <A-m> <Plug>VisualMoveLeft
-xmap <A-,> <Plug>VisualMoveDown
-xmap <A-.> <Plug>VisualMoveUp
-xmap <A-/> <Plug>VisualMoveRight
-nmap <A-m> <Plug>NormalMoveLeft
-nmap <A-,> <Plug>NormalMoveDown
-nmap <A-.> <Plug>NormalMoveUp
-nmap <A-/> <Plug>NormalMoveRight
+nmap <A-m> <Plug>NormalMoveBlockLeft
+nmap <A-,> <Plug>NormalMoveLineDown
+nmap <A-.> <Plug>NormalMoveLineUp
+nmap <A-/> <Plug>NormalMoveBlockRight
 
-nmap <A-d> <Plug>MoveDuplicateMode
-xmap <A-d> <Plug>MoveDuplicateMode
+xmap <A-m> <Plug>VisualMoveBlockLeft
+xmap <A-,> <Plug>VisualMoveLineDown
+xmap <A-.> <Plug>VisualMoveLineUp
+xmap <A-/> <Plug>VisualMoveBlockRight
 
+nmap <A-M> <Plug>NormalDuplicateBlockLeft
+nmap <A-<> <Plug>NormalDuplicateLineDown
+nmap <A->> <Plug>NormalDuplicateLineUp
+nmap <A-?> <Plug>NormalDuplicateBlockRight
+
+xmap <A-M> <Plug>VisualDuplicateBlockLeft
+xmap <A-<> <Plug>VisualDuplicateLineDown
+xmap <A->> <Plug>VisualDuplicateLineUp
+xmap <A-?> <Plug>VisualDuplicateBlockRight
+
+
+nmap <A-h> <Plug>NormalMoveLineLeft
+nmap <A-n> <Plug>NormalMoveBlockDown
+nmap <A-e> <Plug>NormalMoveBlockUp
+nmap <A-i> <Plug>NormalMoveLineRight
+
+xmap <A-h> <Plug>VisualMoveLineLeft
+xmap <A-n> <Plug>VisualMoveBlockDown
+xmap <A-e> <Plug>VisualMoveBlockUp
+xmap <A-i> <Plug>VisualMoveLineRight
+
+nmap <A-S-h> <Plug>NormalDuplicateLineLeft
+nmap <A-S-n> <Plug>NormalDuplicateBlockDown
+nmap <A-S-e> <Plug>NormalDuplicateBlockUp
+nmap <A-S-i> <Plug>NormalDuplicateLineRight
+
+xmap <A-S-h> <Plug>VisualDuplicateLineLeft
+xmap <A-S-n> <Plug>VisualDuplicateBlockDown
+xmap <A-S-e> <Plug>VisualDuplicateBlockUp
+xmap <A-S-i> <Plug>VisualDuplicateLineRight
 
 " nvim bufferline
 nnoremap <silent><leader>/ :BufferLineCycleNext<CR>
@@ -193,15 +185,6 @@ let g:nvim_tree_show_icons = {
             \ }
 " Remove the statusline on the tree
 au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == 'NvimTree' | set laststatus=0 | else | set laststatus=2 | endif
-
-" TagBar
-nnoremap <leader>tb :TagbarToggle<CR>
-
-" Telescope.nvim
-" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " overwrite defaults
 nnoremap <leader>y "+y 
@@ -266,51 +249,6 @@ function! ReturnHighlightTerm(group, term)
     let output = execute('hi ' . a:group)
     return matchstr(output, a:term.'=\zs\S*')
 endfunction
-
-function! ShowWhitespace(flags)
-    let bad = ''
-    let pat = []
-    for c in split(a:flags, '\zs')
-        if c == 'e'
-            call add(pat, '\s\+$')
-        elseif c == 'i'
-            call add(pat, '^\t*\zs \+')
-        elseif c == 's'
-            call add(pat, ' \+\ze\t')
-        elseif c == 't'
-            call add(pat, '[^\t]\zs\t\+')
-        else
-            let bad .= c
-        endif
-    endfor
-    if len(pat) > 0
-        let s = join(pat, '\|')
-        exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
-    else
-        syntax clear ExtraWhitespace
-    endif
-    if len(bad) > 0
-        echo 'ShowWhitespace ignored: '.bad
-    endif
-endfunction
-
-function! ToggleShowWhitespace()
-    if !exists('b:ws_show')
-        let b:ws_show = 0
-    endif
-    if !exists('b:ws_flags')
-        let b:ws_flags = 'est'  " default (which whitespace to show)
-    endif
-    let b:ws_show = !b:ws_show
-    if b:ws_show
-        call ShowWhitespace(b:ws_flags)
-    else
-        call ShowWhitespace('')
-    endif
-endfunction
-
-nnoremap <Leader>ws :call ToggleShowWhitespace()<CR>
-highlight ExtraWhitespace ctermbg=white guibg=white
 
 " -----------
 " LUA SECTION

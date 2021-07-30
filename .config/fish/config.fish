@@ -5,5 +5,5 @@ alias ara="yay"
 alias mvim="nvim -u ~/.config/minimalnvim/init.vim"
 export PAGER=vimpager
 export EDITOR=nvim
-#fish_vi_key_bindings
-fish_default_key_bindings
+fish_vi_key_bindings
+#fish_default_key_bindings
