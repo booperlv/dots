@@ -1,4 +1,8 @@
 # dots
+
+I literally just use this as a google drive of sorts, take the bits you want but
+I'm too lazy to make it something you can just copy and it'd just work :P
+
 I'm on a low resolution 11.6 inch screen, so things might look different.
 
 # Take Note!

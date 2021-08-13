@@ -1,6 +1,6 @@
 local M = {}
-local api = vim.api
 
+-- local api = vim.api
 -- --Delete buffers that are named directories, empty, and is not readable
 -- function M.exibuf()
 --   local buffers = api.nvim_list_bufs()
@@ -29,6 +29,10 @@ function M.tabchange()
   vim.bo.shiftwidth = toSet
   print('Tab size changed to '..toSet..'!')
 end
-vim.cmd("nnoremap <silent><leader>tab :lua require('custom-functions').tabchange()<CR>")
+
+vim.api.nvim_set_keymap(
+  'n', ' tab', ':lua require("custom-functions").tabchange()<CR>',
+  {silent = true, nowait = true}
+)
 
 return M
