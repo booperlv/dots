@@ -16,6 +16,7 @@ return packer.startup(
       event = "VimEnter"
     }
 
+    --Colors
 		use {'bluz71/vim-nightfly-guicolors'}
 		use {'Shatur/neovim-ayu'}
 		use {'folke/tokyonight.nvim'}
@@ -29,6 +30,7 @@ return packer.startup(
 	    event = "BufRead"
 	  }
 
+    --LSP Plugins
 		use {
 	    'neovim/nvim-lspconfig',
       event = "BufRead",
@@ -44,28 +46,43 @@ return packer.startup(
 	    after = "nvim-compe",
 	    config = function() require('nvim-autopairs').setup() end
 	  }
-
+    
+    --Appearance helps
 		use {
 			'nvim-treesitter/nvim-treesitter',
       event = "BufRead",
 			run = ":TSUpdate",
 	    config = function() require('plugins.treesitter') end
 		}
+		use {'lukas-reineke/indent-blankline.nvim', event = "BufRead"}
 
-	  use {'kyazdani42/nvim-web-devicons', opt = true}
+    --UI Plugins
 		use {
 	    'akinsho/nvim-bufferline.lua',
+      requires = {'kyazdani42/nvim-web-devicons'},
 	    config = function() require('plugins.bufferline') end
 	  }
 		use {
 	    'kyazdani42/nvim-tree.lua',
+      requires = {'kyazdani42/nvim-web-devicons'},
       cmd = "NvimTreeToggle"
 	  }
 		use {
 	    'camspiers/snap',
 	    config = function() require('plugins.snap') end
 	  }
+		use {
+	    'folke/trouble.nvim',
+      event = "BufRead",
+      requires = {'kyazdani42/nvim-web-devicons'},
+	    config = function() require('trouble').setup() end
+	  }
+		use {
+	    'booperlv/cyclecolo.lua',
+	    config = function() require('plugins.cyclecolo') end
+	  }
 
+    --Navigation or Convenient Code Manipulation :DD
 		use {
 	    'ggandor/lightspeed.nvim',
       event = "BufRead",
@@ -80,16 +97,14 @@ return packer.startup(
       event = "BufRead",
 	    config = function() require('plugins.kommentary') end
 	  }
-
-		use {'lukas-reineke/indent-blankline.nvim', event = "BufRead"}
-		use {
-	    'folke/trouble.nvim',
+    
+    --Others
+    use {
+      'lewis6991/gitsigns.nvim',
       event = "BufRead",
-	    config = function() require('trouble').setup() end
-	  }
-		use {
-	    'booperlv/cyclecolo.lua',
-	    config = function() require('plugins.cyclecolo') end
-	  }
+      requires = {'nvim-lua/plenary.nvim'},
+      config = function() require('gitsigns').setup() end
+    }
+    
 	end
 )

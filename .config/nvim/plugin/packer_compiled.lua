@@ -84,6 +84,12 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/emmet-vim"
   },
+  ["gitsigns.nvim"] = {
+    config = { "\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -163,9 +169,8 @@ _G.packer_plugins = {
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
+    loaded = true,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["oceanic-next"] = {
     loaded = true,
@@ -175,6 +180,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   snap = {
     config = { "\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17plugins.snap\frequire\0" },
@@ -232,7 +241,7 @@ vim.cmd [[au!]]
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'better-escape.vim', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'indent-blankline.nvim', 'trouble.nvim', 'vim-wordmotion', 'vim-surround', 'kommentary', 'nvim-lspconfig', 'nvim-colorizer.lua', 'emmet-vim', 'lightspeed.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'nvim-colorizer.lua', 'lightspeed.nvim', 'trouble.nvim', 'nvim-lspconfig', 'vim-surround', 'kommentary', 'emmet-vim', 'indent-blankline.nvim', 'gitsigns.nvim', 'vim-wordmotion'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

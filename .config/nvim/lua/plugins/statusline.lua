@@ -5,7 +5,7 @@ local api = vim.api
 M.trunc_width = {
   filename   = 140,
   diagnostic = 90,
-  git_status = 70,
+  git_status = 90,
   mode       = 50,
 }
 M.is_truncated = function(width)
@@ -72,8 +72,12 @@ end
 
 
 M.get_filename = function()
-  if M.is_truncated(M.trunc_width.filename) then return "%<%f" end
-  return "%<%F"
+  local filename = vim.fn.expand('%:t')
+  if filename == '' then filename = '[No Name]' end
+  local relativepath = vim.fn.expand('%:~:.')
+
+  if M.is_truncated(M.trunc_width.filename) then return filename end
+  return relativepath
 end
 
 local function ReturnHighlightTerm(group)
@@ -102,25 +106,25 @@ M.get_lsp_diagnostic = function()
     if result['errors'] ~= 0 then
       local foreground = ReturnHighlightTerm('LspDiagnosticsSignError')['fg']
       local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusError  guifg = "..foreground.." guibg = "..background) 
+      vim.cmd("hi LuaStatusError  guifg = "..foreground.." guibg = "..background)
       table.insert(tab_of_strings, "%#LuaStatusError# :"..result['errors'].." ")
     end
     if result['warnings'] ~= 0 then
       local foreground = ReturnHighlightTerm('LspDiagnosticsSignWarning')['fg']
       local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusWarning guifg = "..foreground.." guibg = "..background) 
+      vim.cmd("hi LuaStatusWarning guifg = "..foreground.." guibg = "..background)
       table.insert(tab_of_strings, "%#LuaStatusWarning# :"..result['warnings'].." ")
     end
     if result['info'] ~= 0 then
       local foreground = ReturnHighlightTerm('LspDiagnosticsSignInformation')['fg']
       local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusInformation guifg = "..foreground.." guibg = "..background) 
+      vim.cmd("hi LuaStatusInformation guifg = "..foreground.." guibg = "..background)
       table.insert(tab_of_strings, "%#LuaStatusInformation# :"..result['info'].." ")
     end
     if result['hints'] ~= 0 then
       local foreground = ReturnHighlightTerm('LspDiagnosticsSignHint')['fg']
       local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusHint guifg = "..foreground.." guibg = "..background) 
+      vim.cmd("hi LuaStatusHint guifg = "..foreground.." guibg = "..background)
       table.insert(tab_of_strings, "%#LuaStatusHint# :"..result['hints'])
     end
     return table.concat(tab_of_strings)
@@ -132,10 +136,20 @@ end
 
 
 M.get_git_status = function()
-  --TODO
-  --The general idea is I basically have three things to make here
-  --the added, changed, removed, and the head.
-  
+  -- use fallback because it doesn't set this variable on the initial `BufEnter`
+  local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
+  local is_head_empty = signs.head ~= ''
+
+  if M.is_truncated(M.trunc_width.git_status) then
+    return is_head_empty and string.format(' %s', signs.head or '') or ''
+  end
+
+  return is_head_empty
+    and string.format(
+      '+%s ~%s -%s |  %s',
+      signs.added, signs.changed, signs.removed, signs.head
+    )
+    or ''
 end
 
 M.get_line_col = function()
@@ -171,15 +185,17 @@ M.set_active = function()
   local right_sep = colors.inactive .. M.separators['right_block']
 
   local mode =  M.get_current_mode()
-  local filename =  M.get_filename()
+  local git = M.get_git_status()
   local diagnostics =  M.get_lsp_diagnostic()
+
+  local filename =  M.get_filename()
 
   local line_col =  M.get_line_col()
   local progress =  M.get_progress()
   local lsp_name =  M.get_lsp_server_name()
 
   return table.concat({
-    colors.active, left_sep, mode, sep, diagnostics, sep,
+    colors.active, left_sep, mode, sep, git, sep, diagnostics, sep,
     '%=', filename, '%=',
     sep, line_col, sep, progress, sep, lsp_name, right_sep
   })
@@ -188,7 +204,7 @@ end
 M.set_inactive = function()
   local left_sep = M.colors.inactive .. M.separators['left_block']
   local right_sep = M.colors.inactive .. M.separators['right_block']
-  
+
   return table.concat({M.colors.inactive, left_sep, '%= %F %=', right_sep})
 end
 
