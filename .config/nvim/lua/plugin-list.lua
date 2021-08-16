@@ -15,6 +15,12 @@ return packer.startup(
       'wbthomason/packer.nvim',
       event = "VimEnter"
     }
+    --Fennel :)
+    use {
+      'rktjmp/hotpot.nvim',
+      after = 'packer.nvim',
+      config = function() require('hotpot') end
+    }
 
     --Colors
 		use {'bluz71/vim-nightfly-guicolors'}
@@ -33,7 +39,6 @@ return packer.startup(
     --LSP Plugins
 		use {
 	    'neovim/nvim-lspconfig',
-      event = "BufRead",
 	    config = function() require('plugins.lspconfig') end
 	  }
 		use {
@@ -46,7 +51,7 @@ return packer.startup(
 	    after = "nvim-compe",
 	    config = function() require('nvim-autopairs').setup() end
 	  }
-    
+
     --Appearance helps
 		use {
 			'nvim-treesitter/nvim-treesitter',
@@ -79,6 +84,7 @@ return packer.startup(
 	  }
 		use {
 	    'booperlv/cyclecolo.lua',
+      -- '~/Projects/neovimplugins/cyclecolo.lua',
 	    config = function() require('plugins.cyclecolo') end
 	  }
 
@@ -97,7 +103,7 @@ return packer.startup(
       event = "BufRead",
 	    config = function() require('plugins.kommentary') end
 	  }
-    
+
     --Others
     use {
       'lewis6991/gitsigns.nvim',
@@ -105,6 +111,6 @@ return packer.startup(
       requires = {'nvim-lua/plenary.nvim'},
       config = function() require('gitsigns').setup() end
     }
-    
+
 	end
 )

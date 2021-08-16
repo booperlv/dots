@@ -4,6 +4,6 @@ require('mappings')
 
 require('options')
 
-require('plugins.statusline')
+require('custom-components.statusline')
 
 require('custom-functions')

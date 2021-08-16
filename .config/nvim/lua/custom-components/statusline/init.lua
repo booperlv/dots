@@ -6,19 +6,12 @@ M.trunc_width = {
   filename   = 140,
   diagnostic = 90,
   git_status = 90,
-  mode       = 50,
+  mode       = 60,
 }
 M.is_truncated = function(width)
   local current_width = api.nvim_win_get_width(0)
   return current_width < width
 end
-
-
-M.colors = {
-  active        = '%#StatusLine#',
-  inactive      = '%#StatusLineNC#',
-  normal        = '%#Normal#',
-}
 
 M.separators = {
   line = " | ",
@@ -34,6 +27,8 @@ local active_sep = 'line'
 -- I only ever use like a few components,
 -- +Mode, +Filename, +Diagnostics
 -- Git, +Progress, +Line-Column, +LSP Server Name
+
+-------------Left side-------------
 
 M.modes = {
   ['n']  = {'NORMAL', 'N'};
@@ -63,76 +58,10 @@ M.modes = {
 M.get_current_mode = function()
   local current_mode = vim.fn.mode()
   if M.is_truncated(M.trunc_width.mode) then
-    -- return string.format('%s', M.modes[current_mode][2])
     return M.modes[current_mode][2]
   end
-  -- return string.format('%s', M.modes[current_mode][1])
     return M.modes[current_mode][1]
 end
-
-
-M.get_filename = function()
-  local filename = vim.fn.expand('%:t')
-  if filename == '' then filename = '[No Name]' end
-  local relativepath = vim.fn.expand('%:~:.')
-
-  if M.is_truncated(M.trunc_width.filename) then return filename end
-  return relativepath
-end
-
-local function ReturnHighlightTerm(group)
-  local output = vim.fn.execute('hi '..group)
-  return {
-    fg = vim.fn.matchstr(output, "guifg"..[[=\zs\S*]]),
-    bg = vim.fn.matchstr(output, "guibg"..[[=\zs\S*]]),
-    gui = vim.fn.matchstr(output, "gui"..[[=\zs\S*]]),
-  }
-end
-M.get_lsp_diagnostic = function()
-  local result = {}
-  local levels = {
-    errors = 'Error',
-    warnings = 'Warning',
-    info = 'Information',
-    hints = 'Hint'
-  }
-  for k, level in pairs(levels) do
-    result[k] = vim.lsp.diagnostic.get_count(0, level)
-  end
-  if M.is_truncated(M.trunc_width.diagnostic) then
-    return ''
-  else
-    local tab_of_strings = {}
-    if result['errors'] ~= 0 then
-      local foreground = ReturnHighlightTerm('LspDiagnosticsSignError')['fg']
-      local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusError  guifg = "..foreground.." guibg = "..background)
-      table.insert(tab_of_strings, "%#LuaStatusError# :"..result['errors'].." ")
-    end
-    if result['warnings'] ~= 0 then
-      local foreground = ReturnHighlightTerm('LspDiagnosticsSignWarning')['fg']
-      local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusWarning guifg = "..foreground.." guibg = "..background)
-      table.insert(tab_of_strings, "%#LuaStatusWarning# :"..result['warnings'].." ")
-    end
-    if result['info'] ~= 0 then
-      local foreground = ReturnHighlightTerm('LspDiagnosticsSignInformation')['fg']
-      local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusInformation guifg = "..foreground.." guibg = "..background)
-      table.insert(tab_of_strings, "%#LuaStatusInformation# :"..result['info'].." ")
-    end
-    if result['hints'] ~= 0 then
-      local foreground = ReturnHighlightTerm('LspDiagnosticsSignHint')['fg']
-      local background = ReturnHighlightTerm('StatusLine')['bg']
-      vim.cmd("hi LuaStatusHint guifg = "..foreground.." guibg = "..background)
-      table.insert(tab_of_strings, "%#LuaStatusHint# :"..result['hints'])
-    end
-    return table.concat(tab_of_strings)
-  end
-end
-
-
--------------Right side time-------------
 
 
 M.get_git_status = function()
@@ -152,6 +81,78 @@ M.get_git_status = function()
     or ''
 end
 
+
+--echo synIDattr(synIDtrans(hlID('StatusLine')), 'bold')
+local function get_color(group, attr)
+  local fn = vim.fn
+  return fn.synIDattr(fn.synIDtrans(fn.hlID(group)), attr)
+end
+
+M.get_lsp_diagnostic = function()
+  local result = {}
+  local levels = {
+    errors = 'Error',
+    warnings = 'Warning',
+    info = 'Information',
+    hints = 'Hint'
+  }
+  for k, level in pairs(levels) do
+    result[k] = vim.lsp.diagnostic.get_count(0, level)
+  end
+  if M.is_truncated(M.trunc_width.diagnostic) then
+    return ''
+  else
+    local tab_of_strings = {}
+    local background = get_color('StatusLine', 'bg#')
+
+    local gui = {}
+    local gui_values = {'bold', 'italic', 'reverse', 'inverse', 'standout', 'underline', 'undercurl', 'strikethrough'}
+    --Get the gui tags
+    for _, value in ipairs(gui_values) do
+      if get_color('StatusLine', value) == "1" then
+        table.insert(gui, value)
+      end
+    end
+    gui = (next(gui) == nil and '' or ' gui='..table.concat(gui,","))
+
+    if result['errors'] ~= 0 then
+      local foreground = get_color('LspDiagnosticsDefaultError', 'fg#')
+      vim.cmd("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
+      table.insert(tab_of_strings, "%#LuaStatusError# :"..result['errors'].." ")
+    end
+    if result['warnings'] ~= 0 then
+      local foreground = get_color('LspDiagnosticsDefaultWarning', 'fg#')
+      vim.cmd("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
+      table.insert(tab_of_strings, "%#LuaStatusWarning# :"..result['warnings'].." ")
+    end
+    if result['info'] ~= 0 then
+      local foreground = get_color('LspDiagnosticsDefaultInformation', 'fg#')
+      vim.cmd("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
+      table.insert(tab_of_strings, "%#LuaStatusInformation# :"..result['info'].." ")
+    end
+    if result['hints'] ~= 0 then
+      local foreground = get_color('LspDiagnosticsDefaultHint', 'fg#')
+      vim.cmd("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
+      table.insert(tab_of_strings, "%#LuaStatusHint# :"..result['hints'])
+    end
+    table.insert(tab_of_strings, "%#StatusLine#")
+    return table.concat(tab_of_strings)
+  end
+end
+
+
+-------------Center time-------------
+M.get_filename = function()
+  local filename = vim.fn.expand('%:t')
+  if filename == '' then filename = '[No Name]' end
+  local relativepath = vim.fn.expand('%:~:.')
+
+  if M.is_truncated(M.trunc_width.filename) then return filename end
+  return relativepath
+end
+-------------Right side time-------------
+
+
 M.get_line_col = function()
   return '%l,%c'
 end
@@ -161,7 +162,21 @@ M.get_progress = function()
 end
 
 M.get_lsp_server_name = function ()
-  local msg = 'none'
+  local function lsp_progress()
+    local lsp = vim.lsp.util.get_progress_messages()[1]
+    if lsp then
+      local name = lsp.name or ""
+      local msg = lsp.message or ""
+      local percentage = lsp.percentage or 0
+      local title = lsp.title or ""
+      return string.format(" %%<%s: %s %s (%s%%%%) ", name, title, msg, percentage)
+    end
+    return ""
+  end
+  local progress = lsp_progress()
+  if progress ~= "" then return progress end
+
+  local msg = "none"
   local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
   local clients = vim.lsp.get_active_clients()
   if next(clients) == nil then return msg end
@@ -178,11 +193,9 @@ end
 --------------Main section--------------
 
 M.set_active = function()
-  local colors = M.colors
-
-  local sep = colors.inactive .. M.separators[active_sep]
-  local left_sep = colors.inactive .. M.separators['left_block']
-  local right_sep = colors.inactive .. M.separators['right_block']
+  local sep = M.separators[active_sep]
+  local left_sep =  M.separators['left_block']
+  local right_sep = M.separators['right_block']
 
   local mode =  M.get_current_mode()
   local git = M.get_git_status()
@@ -195,24 +208,23 @@ M.set_active = function()
   local lsp_name =  M.get_lsp_server_name()
 
   return table.concat({
-    colors.active, left_sep, mode, sep, git, sep, diagnostics, sep,
+    left_sep, mode, sep, git, sep, diagnostics, sep,
     '%=', filename, '%=',
     sep, line_col, sep, progress, sep, lsp_name, right_sep
   })
 end
 
 M.set_inactive = function()
-  local left_sep = M.colors.inactive .. M.separators['left_block']
-  local right_sep = M.colors.inactive .. M.separators['right_block']
-
-  return table.concat({M.colors.inactive, left_sep, '%= %F %=', right_sep})
+  local left_sep = M.separators['left_block']
+  local right_sep = M.separators['right_block']
+  return table.concat({left_sep, '%= %t %=', right_sep})
 end
 
 M.set_explorer = function()
   local title = '   '
   local title_alt = M.separators[active_sep]
 
-  return table.concat({ M.colors.active, title, title_alt })
+  return table.concat({title, title_alt})
 end
 
 

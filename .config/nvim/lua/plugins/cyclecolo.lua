@@ -1,9 +1,9 @@
 --Color Selector
 require("cyclecolo").setup{
-  window_border = 'double',
+  window_border = 'rounded',
   hover_colors = true,
   attach_events = {
-    'dofile("/home/booperlv/.config/nvim/lua/plugins/statusline.lua")',
+    'dofile("/home/booperlv/.config/nvim/lua/custom-components/statusline/init.lua")',
     'dofile("/home/booperlv/.config/nvim/lua/plugins/bufferline.lua")',
   },
   filter_colorschemes = 'defaults',

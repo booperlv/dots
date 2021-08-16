@@ -2,7 +2,7 @@ local opt = vim.opt
 local g = vim.g
 
 opt.shell = '/bin/bash'
-opt.lazyredraw = true
+-- opt.lazyredraw = true
 
 --Colorschemes
 opt.termguicolors = true
@@ -15,8 +15,6 @@ g.colors_name = 'OceanicNext'
 opt.hidden = true
 opt.showmode = false
 opt.mouse = 'a'
---opt.scrolloff = 1
---opt.display = vim.o.display + vim.o.lastline
 opt.number = true
 opt.wrap = false
 opt.fillchars = {eob = " "}
