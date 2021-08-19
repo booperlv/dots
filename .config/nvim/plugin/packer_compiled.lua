@@ -90,6 +90,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
+  ["gomove.nvim"] = {
+    config = { "\27LJ\1\0024\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\vgomove\frequire\0" },
+    loaded = true,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/gomove.nvim"
+  },
   ["hotpot.nvim"] = {
     config = { "\27LJ\1\2&\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\vhotpot\frequire\0" },
     load_after = {
@@ -128,18 +133,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/neovim-ayu"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
+  },
   ["nvcode-color-schemes.vim"] = {
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim"
-  },
-  ["nvim-autopairs"] = {
-    config = { "\27LJ\1\2<\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
-    load_after = {
-      ["nvim-compe"] = true
-    },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-bufferline.lua"] = {
     config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.bufferline\frequire\0" },
@@ -152,7 +152,7 @@ _G.packer_plugins = {
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
-    after = { "nvim-autopairs" },
+    after = { "pears.nvim" },
     after_files = { "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
     config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.completion\frequire\0" },
     loaded = false,
@@ -189,6 +189,15 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  },
+  ["pears.nvim"] = {
+    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18plugins.pears\frequire\0" },
+    load_after = {
+      ["nvim-compe"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/pears.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -234,14 +243,18 @@ time([[Config for nvim-bufferline.lua]], false)
 time([[Config for nvim-lspconfig]], true)
 try_loadstring("\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugins.lspconfig\frequire\0", "config", "nvim-lspconfig")
 time([[Config for nvim-lspconfig]], false)
--- Config for: snap
-time([[Config for snap]], true)
-try_loadstring("\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17plugins.snap\frequire\0", "config", "snap")
-time([[Config for snap]], false)
 -- Config for: cyclecolo.lua
 time([[Config for cyclecolo.lua]], true)
 try_loadstring("\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugins.cyclecolo\frequire\0", "config", "cyclecolo.lua")
 time([[Config for cyclecolo.lua]], false)
+-- Config for: snap
+time([[Config for snap]], true)
+try_loadstring("\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17plugins.snap\frequire\0", "config", "snap")
+time([[Config for snap]], false)
+-- Config for: gomove.nvim
+time([[Config for gomove.nvim]], true)
+try_loadstring("\27LJ\1\0024\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\vgomove\frequire\0", "config", "gomove.nvim")
+time([[Config for gomove.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -254,7 +267,7 @@ vim.cmd [[au!]]
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'better-escape.vim', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'indent-blankline.nvim', 'emmet-vim', 'lightspeed.nvim', 'trouble.nvim', 'kommentary', 'vim-surround', 'nvim-colorizer.lua', 'vim-wordmotion', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'vim-surround', 'indent-blankline.nvim', 'trouble.nvim', 'emmet-vim', 'vim-wordmotion', 'nvim-colorizer.lua', 'gitsigns.nvim', 'kommentary', 'lightspeed.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

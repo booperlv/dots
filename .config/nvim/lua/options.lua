@@ -2,16 +2,18 @@ local opt = vim.opt
 local g = vim.g
 
 opt.shell = '/bin/bash'
--- opt.lazyredraw = true
+opt.lazyredraw = true
 
 --Colorschemes
 opt.termguicolors = true
 
 g.ayu_mirage = true
 g.material_borders = true
-g.colors_name = 'OceanicNext'
+g.nightfox_style = 'palefox'
+g.colors_name = 'nightfox'
 
 --Options
+opt.foldmethod = "marker"
 opt.hidden = true
 opt.showmode = false
 opt.mouse = 'a'
@@ -41,6 +43,7 @@ g.indent_blankline_show_trailing_blankline_indent = false
 
 g.nvim_tree_side = 'right'
 g.nvim_tree_width = '30%'
+g.nvim_tree_auto_open = 1
 g.nvim_tree_auto_close = 1
 g.nvim_tree_quit_on_open = 1
 g.nvim_tree_follow = 1

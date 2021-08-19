@@ -29,6 +29,7 @@ return packer.startup(
 		use {'mhartington/oceanic-next'}
 		use {'marko-cerovac/material.nvim'}
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
+    use {'EdenEast/nightfox.nvim'}
 
 	  use {'folke/lsp-colors.nvim'}
 		use {
@@ -47,9 +48,9 @@ return packer.startup(
 	    config = function() require('plugins.completion') end
 	  }
 		use {
-	    'windwp/nvim-autopairs',
+	    'steelsojka/pears.nvim',
 	    after = "nvim-compe",
-	    config = function() require('nvim-autopairs').setup() end
+	    config = function() require('plugins.pears') end
 	  }
 
     --Appearance helps
@@ -112,5 +113,10 @@ return packer.startup(
       config = function() require('gitsigns').setup() end
     }
 
+    --Development
+    use {
+      '~/Projects/gomove.nvim',
+      config = function() require('gomove').setup() end
+    }
 	end
 )

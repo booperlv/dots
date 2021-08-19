@@ -73,14 +73,17 @@ map({
 
 	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>'},
 
-	{'n', ' /', ':BufferLineCycleNext<CR>'},
-	{'n', ' m', ':BufferLineCyclePrev<CR>'},
-	{'n', ' ?', ':BufferLineMoveNext<CR>'},
-	{'n', ' M', ':BufferLineMovePrev<CR>'},
+	{'n', ' m', ':BufferLineCycleNext<CR>'},
+	{'n', ' /', ':BufferLineCyclePrev<CR>'},
+	{'n', ' M', ':BufferLineMoveNext<CR>'},
+	{'n', ' ?', ':BufferLineMovePrev<CR>'},
+  {'n', ' bp', ':BufferLinePick<CR>'},
+  {'n', ' bq', ':BufferLinePickClose<CR>'},
+	{'n', ' bd', ':bdelete<CR>'},
 	{'n', ' q', ':bwipeout<CR>'},
 
 	{'i', '<C-Space>', 'compe#complete()', {silent = true, expr = true} },
-	{'i', '<CR>', 'compe#confirm("<CR>")', {silent = true, expr = true} },
+	--{'i', '<CR>', 'compe#confirm("<CR>")', {silent = true, expr = true} },
 	{'i', '<C-e>', 'compe#close("<C-e>")', {silent = true, expr = true} },
 
 	{'n', ' xx', ':TroubleToggle<CR>'},
@@ -88,8 +91,49 @@ map({
 	{'n', ' xd', ':TroubleToggle lsp_document_diagnostics<CR>'},
 	{'n', ' xq', ':TroubleToggle quickfix<CR>'},
 	{'n', ' xl', ':TroubleToggle loclist<CR>'},
-	
+
 	{'n', ' tt', ':NvimTreeToggle<CR>'},
 	{'n', ' tr', ':NvimTreeRefresh<CR>'},
 
+  --This is kind of a temp thing
+
+  {'n', '<A-m>', '<Plug>NormalMoveBlockLeft'},
+  {'n', '<A-,>', '<Plug>NormalMoveLineDown'},
+  {'n', '<A-.>', '<Plug>NormalMoveLineUp'},
+  {'n', '<A-/>', '<Plug>NormalMoveBlockRight'},
+
+  {'x', '<A-m>', '<Plug>VisualMoveBlockLeft'},
+  {'x', '<A-,>', '<Plug>VisualMoveLineDown'},
+  {'x', '<A-.>', '<Plug>VisualMoveLineUp'},
+  {'x', '<A-/>', '<Plug>VisualMoveBlockRight'},
+
+  {'n', '<A-M>', '<Plug>NormalDuplicateBlockLeft'},
+  {'n', '<A-<>', '<Plug>NormalDuplicateLineDown'},
+  {'n', '<A->>', '<Plug>NormalDuplicateLineUp'},
+  {'n', '<A-?>', '<Plug>NormalDuplicateBlockRight'},
+
+  {'x', '<A-M>', '<Plug>VisualDuplicateBlockLeft'},
+  {'x', '<A-<>', '<Plug>VisualDuplicateLineDown'},
+  {'x', '<A->>', '<Plug>VisualDuplicateLineUp'},
+  {'x', '<A-?>', '<Plug>VisualDuplicateBlockRight'},
+
+  {'n', '<A-h>', '<Plug>NormalMoveLineLeft'},
+  {'n', '<A-j>', '<Plug>NormalMoveBlockDown'},
+  {'n', '<A-k>', '<Plug>NormalMoveBlockUp'},
+  {'n', '<A-l>', '<Plug>NormalMoveLineRight'},
+
+  {'x', '<A-h>', '<Plug>VisualMoveLineLeft'},
+  {'x', '<A-j>', '<Plug>VisualMoveBlockDown'},
+  {'x', '<A-k>', '<Plug>VisualMoveBlockUp'},
+  {'x', '<A-l>', '<Plug>VisualMoveLineRight'},
+
+  {'n', '<A-H>', '<Plug>NormalDuplicateLineLeft'},
+  {'n', '<A-J>', '<Plug>NormalDuplicateBlockDown'},
+  {'n', '<A-K>', '<Plug>NormalDuplicateBlockUp'},
+  {'n', '<A-L>', '<Plug>NormalDuplicateLineRight'},
+
+  {'x', '<A-H>', '<Plug>VisualDuplicateLineLeft'},
+  {'x', '<A-J>', '<Plug>VisualDuplicateBlockDown'},
+  {'x', '<A-K>', '<Plug>VisualDuplicateBlockUp'},
+  {'x', '<A-L>', '<Plug>VisualDuplicateLineRight'},
 })
