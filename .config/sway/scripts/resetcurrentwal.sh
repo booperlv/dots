@@ -12,4 +12,4 @@ killall -q mako
 mako &
 
 # will take long
-bash ~/.cache/wal/walchangepics.sh
+bash ~/.cache/wal/walchangepics.sh &

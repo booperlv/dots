@@ -71,15 +71,18 @@ map({
 
 	{'n', ' ct', ':ColoToggle<CR>'},
 
+	{'n', ' clt', ':ColorizerToggle<CR>'},
+
 	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>'},
 
-	{'n', ' m', ':BufferLineCycleNext<CR>'},
-	{'n', ' /', ':BufferLineCyclePrev<CR>'},
-	{'n', ' M', ':BufferLineMoveNext<CR>'},
-	{'n', ' ?', ':BufferLineMovePrev<CR>'},
-  {'n', ' bp', ':BufferLinePick<CR>'},
-  {'n', ' bq', ':BufferLinePickClose<CR>'},
-	{'n', ' bd', ':bdelete<CR>'},
+  {'n', ' m', ':BufferLineCyclePrev<CR>'},
+  {'n', ' /', ':BufferLineCycleNext<CR>'},
+  {'n', ' M', ':BufferLineMovePrev<CR>'},
+  {'n', ' ?', ':BufferLineMoveNext<CR>'},
+
+  {'n', ' lp', ':BufferLinePick<CR>'},
+  {'n', ' lq', ':BufferLinePickClose<CR>'},
+	{'n', ' ld', ':bdelete<CR>'},
 	{'n', ' q', ':bwipeout<CR>'},
 
 	{'i', '<C-Space>', 'compe#complete()', {silent = true, expr = true} },

@@ -1,32 +1,87 @@
 @import "/home/booperlv/.cache/wal/colors-waybar.css";
 
 * {
-    border:        none;
-    border-radius: 0;
-    font-family:   Iosevka, Symbols Nerd Font;
-    font-size: 11.5px;
-    font-weight: 600;
-    min-height: 0;
-    margin: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrains Mono";
+  font-weight: bold;
 }
 
 window#waybar {
-    background: @background;
-    color: @foreground;
+  background: @background;
+  color: @foreground;
+}
+
+#workspaces {
+  font-weight: normal;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 10px;
+  background-color: @color10;
+  color: @background;
+  border-radius: 10px;
+  font-size: 11px;
 }
 
 #workspaces button {
-    padding: 2.5px;
-    background: @color6;
-    color: @color3;
+  padding: 0px 5px;
+  opacity: 0.3;
 }
 
-#workspaces button.focused {
-    background: @color3;
-    color: @background;
+#workspaces button.focused,
+#workspaces button:hover {
+  opacity: 1;
+  color: @foreground;
+  font-weight: bold;
 }
 
-#custom-separate {
-    padding: 0 12px;
-    color: @color5;
+
+#clock, #custom-memory, #cpu, #mode {
+  color: @foreground;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  margin-left: 10px;
+  font-size: 10px;
+}
+#clock {
+  background: @color10;
+}
+#custom-memory {
+  background: @color1;
+  color: @background;
+}
+#cpu {
+  background: @color1;
+  color: @background;
+}
+#mode {
+  background: @color7;
+  color: @background;
+}
+
+#pulseaudio, #backlight, #battery, #network {
+  color: @foreground;
+  padding: 0px 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 10px;
+}
+#pulseaudio {
+  background: @color7;
+  color: @background;
+}
+#backlight {
+  background: @color7;
+  color: @background;
+}
+#battery {
+  background: @color1;
+  color: @background;
+}
+#network {
+  background: @color10;
 }

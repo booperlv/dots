@@ -11,12 +11,12 @@ if [ $basename ]; then
     rm -rf ~/.cache/swaywal
     ln -s $file ~/.cache/swaywal
     wal -n -i $file
-    
+
     killall -q waybar
     
     killall -q mako
     mako &
     
     # will take long
-    bash ~/.cache/wal/walchangepics.sh
+    bash ~/.cache/wal/walchangepics.sh &
 fi

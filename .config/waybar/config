@@ -1,66 +1,97 @@
 {
-    "layer": "top", // Waybar at top layer
+  "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 22, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
 
-    "modules-left": [ "sway/workspaces", "custom/separate",  "custom/memory", "custom/separate",  "cpu", "custom/separate",  "sway/mode", "custom/separate", "tray",],
-    "modules-center": [ "sway/window"],
-    "modules-right": [ "custom/separate", "network", "custom/separate", "battery", "custom/separate", "clock", "custom/separate"],
+    "modules-left": ["clock", "custom/memory", "cpu", "sway/mode"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["backlight", "pulseaudio", "battery", "network"],
 
-    "tray": {
-          "spacing": 10
-    },
     "sway/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
+      "disable-scroll": true,
+      "all-outputs": true,
+      "format": "{icon}",
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": []
+      },
+      "format-icons": {
+        "1": "一",
+        "2": "二",
+        "3": "三",
+        "4": "四",
+        "5": "五",
+        "6": "六",
+        "7": "七",
+        "8": "八",
+        "9": "九",
+        "10": "〇"
+      },
     },
     "sway/window": {},
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        }
-    },
+    "sway/mode": {},
     "clock": {
-        "format": "{: %l:%M   %a,%d %b}",
-        "format-alt": "{:%d-%b-%Y}"
+      "format": "{: %l:%M}",
+      "format-alt": "{:%d-%b-%Y}"
     },
     "cpu": {
-        "format": " {usage}%",
-        "tooltip": false
-    },
-    "memory": {
-        "format": " {}%"
+      "format": " {usage}%",
     },
     "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}{capacity}%",
-        "format-charging": "{icon}{capacity}%  ",
-        "format-plugged": "{icon}{capacity}%  ",
-        "format-alt": "{time} {icon}",
-        "format-icons": [" ", " ", " ", " ", " "]
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon}{capacity}%",
+      "format-charging": "{icon}{capacity}%  ",
+      "format-plugged": "{icon}{capacity}%  ",
+      "format-alt": "{time} {icon}",
+      "format-icons": [" ", " ", " ", " ", " "]
     },
     "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
-        "format-linked": "{ifname} (No IP)  ",
-        "format-disconnected": "Disconnected ⚠ ",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+      "format-wifi": " {essid} ({signalStrength}%)",
+      "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
+      "format-linked": "{ifname} (No IP)  ",
+      "format-disconnected": "Disconnected ⚠ ",
+      "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "custom/memory": {
-        "exec" : "$HOME/.config/waybar/modules/memory.sh",
-        "interval": 2,
-        "format": " {}"
+      "exec" : "$HOME/.config/waybar/modules/memory.sh",
+      "interval": 2,
+      "format": " {}"
     },
-    "custom/separate": {
-        "format": ">"
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol"
+    },
+    "backlight": {
+      "device": "intel_backlight",
+      "format": "{icon} {percent}%",
+      "format-icons": ["", ""],
+      "smooth-scrolling-threshold": 2,
+      "on-scroll-up": "brightnessctl s +5%",
+      "on-scroll-down": "brightnessctl s 5%-",
+      "on-click": "brightnessctl s 1",
+      "on-click-right": "brightnessctl s 100%",
     },
 }

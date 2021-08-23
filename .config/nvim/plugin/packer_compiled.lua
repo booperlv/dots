@@ -147,6 +147,7 @@ _G.packer_plugins = {
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
   ["nvim-colorizer.lua"] = {
+    config = { "\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"

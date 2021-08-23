@@ -7,4 +7,5 @@ do
     newfilename=$(basename -- "${search_dir[$i]}")
     newicon="${search_dir[i]}"
     echo -en ${newfilename}'\0icon\x1f'${newicon}'\n'
+    # echo -en ${newfilename}'\n'
 done

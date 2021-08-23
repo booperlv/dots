@@ -117,22 +117,22 @@ M.get_lsp_diagnostic = function()
 
     if result['errors'] ~= 0 then
       local foreground = get_color('LspDiagnosticsDefaultError', 'fg#')
-      vim.cmd("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
+      api.nvim_command("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusError# :"..result['errors'].." ")
     end
     if result['warnings'] ~= 0 then
       local foreground = get_color('LspDiagnosticsDefaultWarning', 'fg#')
-      vim.cmd("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
+      api.nvim_command("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusWarning# :"..result['warnings'].." ")
     end
     if result['info'] ~= 0 then
       local foreground = get_color('LspDiagnosticsDefaultInformation', 'fg#')
-      vim.cmd("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
+      api.nvim_command("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusInformation# :"..result['info'].." ")
     end
     if result['hints'] ~= 0 then
       local foreground = get_color('LspDiagnosticsDefaultHint', 'fg#')
-      vim.cmd("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
+      api.nvim_command("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusHint# :"..result['hints'])
     end
     table.insert(tab_of_strings, "%#StatusLine#")
@@ -233,13 +233,24 @@ end
 Statusline = function(mode)
   return M["set_" .. mode]()
 end
+StatuslineLoad = function(mode)
+  vim.cmd("setlocal statusline=%!v:lua.Statusline('"..mode.."')")
+end
 
-api.nvim_exec([[
-  augroup Statusline
-    au BufWinEnter,WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-    au BufWinEnter,WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
-  augroup END
-]], false)
+local events = { 'ColorScheme', 'FileType','BufWinEnter','BufReadPost','BufWritePost',
+  'BufEnter','WinEnter','FileChangedShellPost','VimResized','TermOpen'}
 
+api.nvim_command("augroup Statusline")
+  local all_active_command = string.format(
+    "au %s * lua StatuslineLoad('active')",
+    table.concat(events, ",")
+  )
+  api.nvim_command(all_active_command)
+  local nvim_tree_command = string.format(
+    "au %s,FileType NvimTree lua StatuslineLoad('explorer')",
+    table.concat(events, ",")
+  )
+  api.nvim_command(nvim_tree_command)
+  api.nvim_command("au WinLeave * lua StatuslineLoad('inactive')")
+api.nvim_command("augroup END")
 return M

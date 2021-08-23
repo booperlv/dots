@@ -19,9 +19,9 @@ set $c14 {color14}
 set $c15 {color15}
 
 # class                 border  backgr. text indicator child_border
-client.focused          $fg     $c3     $bg  $c5       $fg
-client.focused_inactive $fg     $c3     $fg  $c5       $fg
-client.unfocused        $c1     $c0     $fg  $fg       $c1
-client.urgent           $c5     $c0     $fg  $c5       $c5
-client.placeholder      $bg     $c0     $fg  $c5       $bg
+client.focused          $fg     $fg     $bg  $c4       $fg
+client.focused_inactive $fg     $fg     $bg  $c4       $fg
+client.unfocused        $c1     $c1     $fg  $c4       $c1
+client.urgent           $c4     $c0     $fg  $c4       $c4
+client.placeholder      $bg     $c0     $fg  $c4       $bg
 client.background       $bg

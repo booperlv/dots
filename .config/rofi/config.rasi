@@ -11,4 +11,5 @@ configuration {
  	hide-scrollbar: true; 
 	sidebar-mode: false;	
 	separator-style: "solid";
+  matching: "fuzzy";
 }

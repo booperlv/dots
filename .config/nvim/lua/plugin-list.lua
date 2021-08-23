@@ -34,7 +34,8 @@ return packer.startup(
 	  use {'folke/lsp-colors.nvim'}
 		use {
 	    'norcalli/nvim-colorizer.lua',
-	    event = "BufRead"
+	    event = "BufRead",
+      config = function() require('colorizer').setup() end,
 	  }
 
     --LSP Plugins
