@@ -133,10 +133,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/neovim-ayu"
   },
-  ["nightfox.nvim"] = {
-    loaded = true,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
-  },
   ["nvcode-color-schemes.vim"] = {
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim"
@@ -268,7 +264,7 @@ vim.cmd [[au!]]
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'better-escape.vim', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'vim-surround', 'indent-blankline.nvim', 'trouble.nvim', 'emmet-vim', 'vim-wordmotion', 'nvim-colorizer.lua', 'gitsigns.nvim', 'kommentary', 'lightspeed.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'indent-blankline.nvim', 'lightspeed.nvim', 'vim-wordmotion', 'trouble.nvim', 'vim-surround', 'emmet-vim', 'nvim-colorizer.lua', 'gitsigns.nvim', 'kommentary'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

@@ -29,7 +29,7 @@ return packer.startup(
 		use {'mhartington/oceanic-next'}
 		use {'marko-cerovac/material.nvim'}
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
-    use {'EdenEast/nightfox.nvim'}
+    -- use {'EdenEast/nightfox.nvim'}
 
 	  use {'folke/lsp-colors.nvim'}
 		use {

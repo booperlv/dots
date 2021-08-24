@@ -12,6 +12,23 @@ window#waybar {
   color: @foreground;
 }
 
+
+#workspaces button {
+  padding: 0px 5px;
+  opacity: 0.3;
+}
+#workspaces button:hover {
+  opacity: 1;
+  color: @foreground;
+  background: transparent;
+  font-weight: bold;
+}
+#workspaces button.focused {
+  opacity: 1;
+  color: @foreground;
+  font-weight: bold;
+}
+
 #workspaces {
   font-weight: normal;
   margin-top: 3px;
@@ -21,18 +38,6 @@ window#waybar {
   color: @background;
   border-radius: 10px;
   font-size: 11px;
-}
-
-#workspaces button {
-  padding: 0px 5px;
-  opacity: 0.3;
-}
-
-#workspaces button.focused,
-#workspaces button:hover {
-  opacity: 1;
-  color: @foreground;
-  font-weight: bold;
 }
 
 
@@ -49,17 +54,18 @@ window#waybar {
   background: @color10;
 }
 #custom-memory {
-  background: @color1;
+  background: @color8;
   color: @background;
 }
 #cpu {
-  background: @color1;
+  background: @color8;
   color: @background;
 }
 #mode {
   background: @color7;
   color: @background;
 }
+
 
 #pulseaudio, #backlight, #battery, #network {
   color: @foreground;
@@ -79,7 +85,7 @@ window#waybar {
   color: @background;
 }
 #battery {
-  background: @color1;
+  background: @color8;
   color: @background;
 }
 #network {
