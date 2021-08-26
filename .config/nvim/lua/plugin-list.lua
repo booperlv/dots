@@ -43,15 +43,13 @@ return packer.startup(
 	    'neovim/nvim-lspconfig',
 	    config = function() require('plugins.lspconfig') end
 	  }
+    use {
+      'alexaandru/nvim-lspupdate',
+    }
 		use {
 	    'hrsh7th/nvim-compe',
 	    event = "InsertEnter",
 	    config = function() require('plugins.completion') end
-	  }
-		use {
-	    'steelsojka/pears.nvim',
-	    after = "nvim-compe",
-	    config = function() require('plugins.pears') end
 	  }
 
     --Appearance helps
@@ -92,6 +90,11 @@ return packer.startup(
 
     --Navigation or Convenient Code Manipulation :DD
 		use {
+	    'steelsojka/pears.nvim',
+	    after = "nvim-compe",
+	    config = function() require('plugins.pears') end
+	  }
+		use {
 	    'ggandor/lightspeed.nvim',
       event = "BufRead",
 	    config = function() require('plugins.lightspeed') end
@@ -105,6 +108,7 @@ return packer.startup(
       event = "BufRead",
 	    config = function() require('plugins.kommentary') end
 	  }
+
 
     --Others
     use {
