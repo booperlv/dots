@@ -36,13 +36,13 @@ vim.api.nvim_set_keymap(
 )
 
 --Remember folds and cursors
-vim.g.viewoptions="folds, cursor, unix"
-vim.cmd([[
-  augroup remember_folds
-    autocmd!
-    autocmd BufWinLeave *.* mkview
-    autocmd BufWinEnter *.* silent! loadview
-  augroup END
-]])
+-- vim.g.viewoptions="folds, cursor, unix"
+-- vim.cmd([[
+--   augroup remember_folds
+--     autocmd!
+--     autocmd BufWinLeave *.* mkview
+--     autocmd BufWinEnter *.* silent! loadview
+--   augroup END
+-- ]])
 
 return M

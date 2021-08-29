@@ -1,14 +1,13 @@
-include /home/booperlv/.cache/wal/swayconfig
+# Colors
+  include /home/booperlv/.cache/wal/swayconfig
 
-set $mod Mod4
+# Variables
+  set $mod Mod4
 
-set $left m
-set $down comma
-set $up period
-set $right slash
-
-set $term foot
-set $browser firefox
+  set $left m
+  set $down comma
+  set $up period
+  set $right slash
 
 # Clipboard manager
   exec wl-paste -t text --watch clipman store
@@ -54,8 +53,6 @@ set $browser firefox
 
 
 # Start a terminal
-  # bindsym $mod+Return exec $term
-  # bindsym $mod+Shift+Return exec alacritty
   bindsym $mod+Return exec alacritty
   bindsym $mod+Shift+Return exec foot
 # Start browser
@@ -165,32 +162,50 @@ bindsym $mod+x exec emptywindow
   bindsym $mod+Ctrl+Right resize shrink width 10px
 
 
-# Workspaces:
+# Workspaces and Monitor:
+
+set $output-primary eDP-1
+set $output-secondary HDMI-A-1
+
+# workspace to displays
+
+workspace 1 output $output-primary
+workspace 2 output $output-primary
+workspace 3 output $output-primary
+workspace 4 output $output-primary
+workspace 5 output $output-primary
+
+workspace 6 output $output-secondary
+workspace 7 output $output-secondary
+workspace 8 output $output-secondary
+workspace 9 output $output-secondary
+workspace 10 output $output-secondary
 
 
 # Switch to workspace
-  bindsym $mod+1 workspace number 1
-  bindsym $mod+2 workspace number 2
-  bindsym $mod+3 workspace number 3
-  bindsym $mod+4 workspace number 4
-  bindsym $mod+5 workspace number 5
-  bindsym $mod+6 workspace number 6
-  bindsym $mod+7 workspace number 7
-  bindsym $mod+8 workspace number 8
-  bindsym $mod+9 workspace number 9
-  bindsym $mod+0 workspace number 10
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # Move focused container to workspace
-  bindsym $mod+Shift+1 move container to workspace number 1
-  bindsym $mod+Shift+2 move container to workspace number 2
-  bindsym $mod+Shift+3 move container to workspace number 3
-  bindsym $mod+Shift+4 move container to workspace number 4
-  bindsym $mod+Shift+5 move container to workspace number 5
-  bindsym $mod+Shift+6 move container to workspace number 6
-  bindsym $mod+Shift+7 move container to workspace number 7
-  bindsym $mod+Shift+8 move container to workspace number 8
-  bindsym $mod+Shift+9 move container to workspace number 9
-  bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 
 # Layout stuff:

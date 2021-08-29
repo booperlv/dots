@@ -9,7 +9,7 @@ opt.termguicolors = true
 
 g.ayu_mirage = true
 g.material_borders = true
-g.colors_name = 'tokyonight'
+g.colors_name = 'nightfox'
 
 --Options
 opt.foldmethod = "marker"
