@@ -1,1 +1,1 @@
-bash ~/.config/fish/conf.d/launch.sh
+bash ~/.config/fish/conf.d/launch.bash
