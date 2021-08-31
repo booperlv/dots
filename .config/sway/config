@@ -46,7 +46,7 @@
   default_border pixel 3
 
 # Font
-  font pango:Iosevka 10
+  font pango:Sarasa Mono SC 10
 
 
 ### Key bindings

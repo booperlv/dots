@@ -1,9 +1,9 @@
 font:
   normal:
-    family: Iosevka
+    family: Sarasa Mono SC
     style: Regular
 
-  size: 13
+  size: 14
 
 window:
   padding:
