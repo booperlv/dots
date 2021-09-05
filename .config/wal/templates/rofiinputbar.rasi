@@ -33,6 +33,7 @@
   border-radius: 2%;
   border-color: @border-color;
   width: 60%;
+  height: 54%;
   location: center;
   x-offset: 0;
   y-offset: 0;
@@ -76,6 +77,7 @@
 
 #listview {{
   background-color: @background;
+  columns: 4;
   spacing: 0;
   margin: 0;
   border: 3px;
@@ -96,16 +98,18 @@
 }}
 
 #element-text {{
+  background-color: inherit;
+  text-color: inherit;
   expand: true;
   padding:0;
   vertical-align: 0.5;
 }}
 
 #element selected {{
-  background-color:@active-background;
+  background-color: @active-background;
   text-color: @background;
   border: 0% 0% 0.3% 0.3%;
-  border-color:@active-background;
+  border-color: @active-background;
   border-radius: 1%;
 }}
 
@@ -125,6 +129,7 @@
 }}
 
 #element-icon {{
-size: 5ch;
-border: 0;
+  background-color: inherit;
+  size: 5ch;
+  border: 0;
 }}

@@ -63,10 +63,8 @@
   bindsym $mod+q kill
 
 # Start your launcher
-  bindsym $mod+d exec rofi -show drun -theme /home/booperlv/.cache/wal/rofiinputbar.rasi | xargs swaymsg exec --
-  bindsym $mod+g exec rofi -show drun -theme /home/booperlv/.cache/wal/rofinobar.rasi | xargs swaymsg exec --
+  bindsym $mod+d exec rofi -show drun -theme  /home/booperlv/.cache/wal/rofiinputbar.rasi | xargs swaymsg exec --
   bindsym $mod+p exec rofi -show power -theme /home/booperlv/.cache/wal/rofipowermenu.rasi | xargs swaymsg exec --
-  bindsym $mod+t exec rofi -dmenu -p 'Run Command' -theme /home/booperlv/.cache/wal/rofiterminal.rasi -lines 1 | xargs swaymsg exec --
 
 # Mouse management
   floating_modifier $mod normal
