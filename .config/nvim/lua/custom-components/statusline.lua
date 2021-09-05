@@ -164,6 +164,7 @@ end
 
 
 -------------Center time-------------
+
 M.get_filename = function()
   local filename = vim.fn.expand('%:t')
   if filename == '' then filename = '[No Name]' end
@@ -172,6 +173,7 @@ M.get_filename = function()
   if M.is_truncated(M.trunc_width.filename) then return filename end
   return relativepath
 end
+
 -------------Right side time-------------
 
 

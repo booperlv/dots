@@ -9,6 +9,8 @@ whitefg=$(tput setaf 7)
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 
+  clear
+
   all_execs=()
   all_names=()
   all_indexes=()

@@ -74,26 +74,25 @@ return packer.startup(
       cmd = "NvimTreeToggle"
 	  }
 		use {
-	    'camspiers/snap',
-	    config = function() require('plugins.snap') end
-	  }
-		use {
 	    'folke/trouble.nvim',
       event = "BufRead",
       requires = {'kyazdani42/nvim-web-devicons'},
 	    config = function() require('trouble').setup() end
 	  }
-		use {
-	    'booperlv/cyclecolo.lua',
-      -- '~/Projects/neovimplugins/cyclecolo.lua',
-	    config = function() require('plugins.cyclecolo') end
-	  }
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        {'nvim-lua/plenary.nvim'},
+        {'~/Projects/telescope-cyclecolo.nvim'},
+      },
+      config = function() require('plugins.telescope') end
+    }
 
     --Navigation or Convenient Code Manipulation :DD
 		use {
-	    'steelsojka/pears.nvim',
+	    'windwp/nvim-autopairs',
 	    after = "nvim-compe",
-	    config = function() require('plugins.pears') end
+	    config = function() require('plugins.autopairs').setup() end
 	  }
 		use {
 	    'ggandor/lightspeed.nvim',

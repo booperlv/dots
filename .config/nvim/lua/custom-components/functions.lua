@@ -45,4 +45,10 @@ vim.api.nvim_set_keymap(
 --   augroup END
 -- ]])
 
+--Refresh bufferline file highlights
+local conf_home = os.getenv('HOME')
+vim.cmd('augroup ColorschemeChange')
+  vim.cmd('autocmd ColorScheme * lua dofile("'..conf_home..'/.config/nvim/lua/plugins/bufferline.lua")')
+vim.cmd('augroup END')
+
 return M

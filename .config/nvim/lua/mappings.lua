@@ -1,6 +1,8 @@
+local M = {}
+
 vim.g.mapleader = ' '
 
-local function map(allkeys)
+function M.map(allkeys)
 	for index, value in pairs(allkeys) do
 		if type(value) == "table" then
 			-- mode, key, value, opts
@@ -17,7 +19,7 @@ local function map(allkeys)
 	return true
 end
 
-map({
+M.map({
 
 	--Arrow keys
 	{'n', 'm', 'h', {noremap = true}},
@@ -69,7 +71,7 @@ map({
 	--Plugins
 	{'n', ' ibt', ':IndentBlanklineToggle<CR>'},
 
-	{'n', ' ct', ':ColoToggle<CR>'},
+	-- {'n', ' ct', ':ColoToggle<CR>'},
 
 	{'n', ' clt', ':ColorizerToggle<CR>'},
 
@@ -140,3 +142,5 @@ map({
   {'x', '<A-K>', '<Plug>VisualDuplicateBlockUp'},
   {'x', '<A-L>', '<Plug>VisualDuplicateLineRight'},
 })
+
+return M
