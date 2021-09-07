@@ -53,8 +53,8 @@
 
 
 # Start a terminal
-  bindsym $mod+Return exec alacritty
-  bindsym $mod+Shift+Return exec foot
+  bindsym $mod+Shift+Return exec alacritty
+  bindsym $mod+Return exec foot
 # Start browser
   bindsym $mod+b exec chromium
   bindsym $mod+Shift+b exec firefox
@@ -120,7 +120,7 @@ bindsym $mod+backslash mode "wallpaper select pick change refresh light"
 bindsym $mod+Ctrl+g mode "gaps inner outer default"
 
 # Empty Window
-bindsym $mod+x exec emptywindow
+  bindsym $mod+x exec /home/booperlv/.local/bin/emptywindow
 
 
 # Arrow Movement

@@ -88,11 +88,11 @@ return packer.startup(
       config = function() require('plugins.telescope') end
     }
 
-    --Navigation or Convenient Code Manipulation :DD
+    --Navigation or Convenient Editing related Things
 		use {
 	    'windwp/nvim-autopairs',
 	    after = "nvim-compe",
-	    config = function() require('plugins.autopairs').setup() end
+	    config = function() require('plugins.autopairs') end
 	  }
 		use {
 	    'ggandor/lightspeed.nvim',

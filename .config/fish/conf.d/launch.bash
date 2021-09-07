@@ -29,6 +29,7 @@ if [ "$(tty)" = "/dev/tty1" ]; then
     execute=$(grep '^Exec=' /usr/share/wayland-sessions/$file | tail -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^"//g' | sed 's/" *$//g')
     
     all_names+=("$filename")
+    # all_execs+=("$execute && kill -9 $PPID")
     all_execs+=("$execute &> /dev/null && kill -9 $PPID")
     all_indexes+=("$counter")
   
@@ -44,9 +45,10 @@ if [ "$(tty)" = "/dev/tty1" ]; then
       tail -1 | sed 's/^Name=//')
     printf "\n$filename $greenfg$bold($counter)$normal$whitefg"
     execute=$(grep '^Exec=' /usr/share/xsessions/$file | tail -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^"//g' | sed 's/" *$//g')
+    execute=$(which $execute)
 
     all_names+=("$filename")
-    all_execs+=("startx $execute &> /dev/null && kill -9 $PPID")
+    all_execs+=("($execute || startx $execute) && kill -9 $PPID")
     all_indexes+=("$counter")
     
     counter="$((counter+1))"
