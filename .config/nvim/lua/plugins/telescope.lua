@@ -9,12 +9,7 @@ conf.map({
   {'n', ' fdw', ':Telescope lsp_workspace_diagnostics<CR>'},
 })
 
-local telescope = require('telescope')
-telescope.setup {
-  -- extensions = {
-  --   cyclecolo = {
-  --     enable_preview = true,
-  --   },
-  -- },
+require('telescope').setup{
+  defaults = {
+  },
 }
--- telescope.load_extension('cyclecolo')

@@ -7,12 +7,12 @@
 function install {
   neovimpath=$(whereis nvim | grep -o '/[^ ]*')
   printf 'Downloading Appimage...'
-  wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -P ~/.cache
-  printf ' Downloaded Appimage!'
+  curl -L --progress-bar https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output ~/.cache/nvim.appimage
+  printf 'Downloaded Appimage!'
 
   echo
   pacmannvimexists=$(pacman -Qsq neovim)
-  if [ "$pacmannvimexists" ]; then
+  if [ "$pacmannvimexists" == "neovim" ]; then
     printf 'Found neovim package in Pacman...'
 
     printf "Would you like to delete the Pacman Package?" ; printf ' [Y/n]' ; read -n 1 -r response
@@ -39,7 +39,7 @@ function install {
   echo
   printf 'Adding Permissions to New Binaries...'
   sudo chmod 775 /usr/local/bin/nvim
-  printf ' Permissions Added to New Binaries!'
+  printf 'Permissions Added to New Binaries!'
 
   printf "\n\nInstalled Neovim in $neovimpath"
 }
@@ -48,16 +48,16 @@ function install {
 function confirminstall {
   printf "$1" ; printf ' [Y/n]' ; read -n 1 -r response
   if [[ $response =~ ^[Yy]$ ]]; then
-    printf "\n\n Installing..."
+    printf "\n\nInstalling..."
     echo
     echo
     install 
   else
-    printf "\n\n Not Installing"
+    printf "\n\nNot Installing"
   fi
 }
 
-currentrelease=$(wget https://api.github.com/repos/neovim/neovim/releases -q -O - | jq -r '.[] | .name' | grep 'NVIM v0.6.0')
+currentrelease=$(curl -s https://api.github.com/repos/neovim/neovim/releases | jq -r '.[] | .name' | grep 'NVIM v0.6.0')
 echo "Current Release is $currentrelease"
 currentversion=$(nvim -v | grep 'NVIM v' || : )
 echo "Current Version is $currentversion"
