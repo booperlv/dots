@@ -1,3 +1,17 @@
+# Just a heads up to myself, these programs are pretty good good
+# grimshot
+# wf-recorder
+# wl-clipboard
+# clipman
+# pywal
+# rofi
+# mako
+# waybar
+# imv
+# foot
+# swaylock
+# also: nice editor: shotcut
+
 # Colors
   include /home/booperlv/.cache/wal/swayconfig
 
@@ -12,7 +26,7 @@
 # Clipboard manager
   exec wl-paste -t text --watch clipman store
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# Default wallpaper
   output * bg /home/booperlv/.cache/swaywal fill
 
 # Picom ish thing

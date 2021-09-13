@@ -130,6 +130,7 @@
 
 #element-icon {{
   background-color: inherit;
+  vertical-align: 0.5;
   size: 5ch;
   border: 0;
 }}

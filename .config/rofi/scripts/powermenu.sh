@@ -19,7 +19,7 @@ elif [[ "$@" == "$REBOOT" ]]; then
 	systemctl reboot
 elif [[ "$@" == "$LOCK" ]]; then
 	killall -q rofi
-	sxlock
+  swaylock -i ~/.cache/swaywal
 elif [[ "$@" == "$SUSPEND" ]]; then
 	killall -q rofi
 	systemctl suspend

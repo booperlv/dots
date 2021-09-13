@@ -1,5 +1,4 @@
 require('plugin-list')
---require('plugins')
 
 require('mappings')
 

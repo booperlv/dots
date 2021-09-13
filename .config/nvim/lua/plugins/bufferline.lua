@@ -87,6 +87,5 @@ require "bufferline".setup {
       guifg = {attribute="bg",highlight="TabLine"},
       guibg = {attribute="bg",highlight="TabLine"}
     },
-
   }
 }

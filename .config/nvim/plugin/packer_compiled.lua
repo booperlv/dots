@@ -78,6 +78,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/better-escape.vim"
   },
+  ["bufferline.nvim"] = {
+    config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.bufferline\frequire\0" },
+    loaded = true,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
+  },
   ["emmet-vim"] = {
     loaded = false,
     needs_bufread = false,
@@ -90,7 +95,7 @@ _G.packer_plugins = {
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
   ["gomove.nvim"] = {
-    config = { "\27LJ\1\0024\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\vgomove\frequire\0" },
+    config = { "\27LJ\1\2i\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\2\26move_past_end_of_file\2\26move_past_end_of_line\2\nsetup\vgomove\frequire\0" },
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/gomove.nvim"
   },
@@ -116,9 +121,8 @@ _G.packer_plugins = {
   },
   ["lightspeed.nvim"] = {
     config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.lightspeed\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/lightspeed.nvim"
+    loaded = true,
+    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/lightspeed.nvim"
   },
   ["lsp-colors.nvim"] = {
     loaded = true,
@@ -149,11 +153,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
-  ["nvim-bufferline.lua"] = {
-    config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.bufferline\frequire\0" },
-    loaded = true,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
-  },
   ["nvim-colorizer.lua"] = {
     config = { "\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0" },
     loaded = false,
@@ -179,6 +178,7 @@ _G.packer_plugins = {
   },
   ["nvim-tree.lua"] = {
     commands = { "NvimTreeToggle" },
+    config = { "\27LJ\1\0020\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\21plugins.nvimtree\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
@@ -207,10 +207,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
-  ["telescope-cyclecolo.nvim"] = {
-    loaded = true,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/telescope-cyclecolo.nvim"
-  },
   ["telescope.nvim"] = {
     config = { "\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugins.telescope\frequire\0" },
     loaded = true,
@@ -219,12 +215,6 @@ _G.packer_plugins = {
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/home/booperlv/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
-  },
-  ["trouble.nvim"] = {
-    config = { "\27LJ\1\0025\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\ftrouble\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/booperlv/.local/share/nvim/site/pack/packer/opt/trouble.nvim"
   },
   ["vim-nightfly-guicolors"] = {
     loaded = true,
@@ -243,22 +233,26 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-bufferline.lua
-time([[Config for nvim-bufferline.lua]], true)
-try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.bufferline\frequire\0", "config", "nvim-bufferline.lua")
-time([[Config for nvim-bufferline.lua]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugins.telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
+-- Config for: gomove.nvim
+time([[Config for gomove.nvim]], true)
+try_loadstring("\27LJ\1\2i\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\2\26move_past_end_of_file\2\26move_past_end_of_line\2\nsetup\vgomove\frequire\0", "config", "gomove.nvim")
+time([[Config for gomove.nvim]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.bufferline\frequire\0", "config", "bufferline.nvim")
+time([[Config for bufferline.nvim]], false)
+-- Config for: lightspeed.nvim
+time([[Config for lightspeed.nvim]], true)
+try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.lightspeed\frequire\0", "config", "lightspeed.nvim")
+time([[Config for lightspeed.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 try_loadstring("\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugins.lspconfig\frequire\0", "config", "nvim-lspconfig")
 time([[Config for nvim-lspconfig]], false)
--- Config for: gomove.nvim
-time([[Config for gomove.nvim]], true)
-try_loadstring("\27LJ\1\0024\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\vgomove\frequire\0", "config", "gomove.nvim")
-time([[Config for gomove.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -271,7 +265,7 @@ vim.cmd [[au!]]
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'better-escape.vim', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'indent-blankline.nvim', 'vim-surround', 'emmet-vim', 'gitsigns.nvim', 'lightspeed.nvim', 'trouble.nvim', 'nvim-colorizer.lua', 'vim-wordmotion', 'kommentary'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'indent-blankline.nvim', 'vim-wordmotion', 'vim-surround', 'kommentary', 'emmet-vim', 'nvim-colorizer.lua', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

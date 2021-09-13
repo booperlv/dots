@@ -40,17 +40,5 @@ g.indent_blankline_char = "▏"
 g.indent_blankline_show_first_indent_level = false
 g.indent_blankline_show_trailing_blankline_indent = false
 
-g.nvim_tree_side = 'right'
-g.nvim_tree_width = '25%'
-g.nvim_tree_auto_open = 1
-g.nvim_tree_auto_close = 1
-g.nvim_tree_quit_on_open = 1
-g.nvim_tree_follow = 1
-g.nvim_tree_indent_markers = 1
-g.nvim_tree_git_hl = 1
-g.nvim_tree_show_icons = {
-	git = 1, folders = 1, files = 1
-}
-
 g.better_escape_shortcut = { 'jj', 'nn' }
 g.better_escape_interval = 250

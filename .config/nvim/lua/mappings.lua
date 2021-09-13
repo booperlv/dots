@@ -43,7 +43,7 @@ M.map({
 	{'x', '<C-_>', '/', {noremap = true}},
 
 
-	--Extras
+	--Registers
 	{'n', ' y', '"+y'},
 	{'x', ' y', '"+y'},
 
@@ -52,8 +52,15 @@ M.map({
 	{'n', ' p', '"+p'},
 	{'x', ' p', '"+p'},
 
-	{'n', ' d', '"_d'},
-	{'x', ' d', '"_d'},
+	{'n', ' x', '"+x'},
+	{'x', ' x', '"+x'},
+	{'n', ' d', '"+d'},
+	{'x', ' d', '"+d'},
+
+	{'n', ' X', '"_x'},
+	{'x', ' X', '"_x'},
+	{'n', ' D', '"_d'},
+	{'x', ' D', '"_d'},
 
 	--Windows
 	{'n', ' wm', ':wincmd h<CR>'},
@@ -71,31 +78,27 @@ M.map({
 	--Plugins
 	{'n', ' ibt', ':IndentBlanklineToggle<CR>'},
 
-	-- {'n', ' ct', ':ColoToggle<CR>'},
-
 	{'n', ' clt', ':ColorizerToggle<CR>'},
 
+  --Emmet
 	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>'},
 
   {'n', ' m', ':BufferLineCyclePrev<CR>'},
   {'n', ' /', ':BufferLineCycleNext<CR>'},
   {'n', ' M', ':BufferLineMovePrev<CR>'},
   {'n', ' ?', ':BufferLineMoveNext<CR>'},
+  -- {'n', ' h', ':BufferLineCyclePrev<CR>'},
+  -- {'n', ' l', ':BufferLineCycleNext<CR>'},
+  -- {'n', ' H', ':BufferLineMovePrev<CR>'},
+  -- {'n', ' L', ':BufferLineMoveNext<CR>'},
 
-  {'n', ' lp', ':BufferLinePick<CR>'},
-  {'n', ' lq', ':BufferLinePickClose<CR>'},
-	{'n', ' ld', ':bdelete<CR>'},
+  {'n', ' bp', ':BufferLinePick<CR>'},
+  {'n', ' bq', ':BufferLinePickClose<CR>'},
+	{'n', ' bd', ':bdelete<CR>'},
 	{'n', ' q', ':bwipeout<CR>'},
 
 	{'i', '<C-Space>', 'compe#complete()', {silent = true, expr = true} },
-	--{'i', '<CR>', 'compe#confirm("<CR>")', {silent = true, expr = true} },
 	{'i', '<C-e>', 'compe#close("<C-e>")', {silent = true, expr = true} },
-
-	{'n', ' xx', ':TroubleToggle<CR>'},
-	{'n', ' xw', ':TroubleToggle lsp_workspace_diagnostics<CR>'},
-	{'n', ' xd', ':TroubleToggle lsp_document_diagnostics<CR>'},
-	{'n', ' xq', ':TroubleToggle quickfix<CR>'},
-	{'n', ' xl', ':TroubleToggle loclist<CR>'},
 
 	{'n', ' tt', ':NvimTreeToggle<CR>'},
 	{'n', ' tr', ':NvimTreeRefresh<CR>'},

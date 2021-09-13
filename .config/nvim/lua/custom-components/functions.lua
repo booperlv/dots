@@ -1,6 +1,6 @@
 local M = {}
+local api = vim.api
 
--- local api = vim.api
 -- --Delete buffers that are named directories, empty, and is not readable
 -- function M.exibuf()
 --   local buffers = api.nvim_list_bufs()
@@ -30,7 +30,7 @@ function M.tabchange()
   print('Tab size changed to '..toSet..'!')
 end
 
-vim.api.nvim_set_keymap(
+api.nvim_set_keymap(
   'n', ' tab', ':lua require("custom-functions").tabchange()<CR>',
   {silent = true, nowait = true}
 )
@@ -45,10 +45,18 @@ vim.api.nvim_set_keymap(
 --   augroup END
 -- ]])
 
---Refresh bufferline file highlights
-local conf_home = os.getenv('HOME')
-vim.cmd('augroup ColorschemeChange')
-  vim.cmd('autocmd ColorScheme * lua dofile("'..conf_home..'/.config/nvim/lua/plugins/bufferline.lua")')
-vim.cmd('augroup END')
+--Random Colorscheme
+function M.RandColorScheme()
+  local colorschemes = vim.fn.getcompletion("", "color")
+  local rand_num_between = tonumber(vim.fn.system(
+    "echo $((1 + $RANDOM % "..#colorschemes.."))"
+  ))
+  vim.cmd('colorscheme '..colorschemes[rand_num_between])
+  print("switching to "..colorschemes[rand_num_between].."!")
+end
+api.nvim_set_keymap(
+  'n', ' cr', ":lua require('custom-components.functions').RandColorScheme()<CR>",
+  {silent = true, nowait = true}
+)
 
 return M

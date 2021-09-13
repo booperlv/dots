@@ -13,7 +13,7 @@ return packer.startup(
 	function()
 		use {
       'wbthomason/packer.nvim',
-      event = "VimEnter"
+      event = 'VimEnter',
     }
     --Fennel :)
     use {
@@ -64,26 +64,20 @@ return packer.startup(
 
     --UI Plugins
 		use {
-	    'akinsho/nvim-bufferline.lua',
+	    'akinsho/bufferline.nvim',
       requires = {'kyazdani42/nvim-web-devicons'},
 	    config = function() require('plugins.bufferline') end
 	  }
 		use {
 	    'kyazdani42/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
-      cmd = "NvimTreeToggle"
-	  }
-		use {
-	    'folke/trouble.nvim',
-      event = "BufRead",
-      requires = {'kyazdani42/nvim-web-devicons'},
-	    config = function() require('trouble').setup() end
+      cmd = "NvimTreeToggle",
+      config = function() require('plugins.nvimtree') end
 	  }
     use {
       'nvim-telescope/telescope.nvim',
       requires = {
         {'nvim-lua/plenary.nvim'},
-        {'~/Projects/telescope-cyclecolo.nvim'},
       },
       config = function() require('plugins.telescope') end
     }
@@ -96,7 +90,6 @@ return packer.startup(
 	  }
 		use {
 	    'ggandor/lightspeed.nvim',
-      event = "BufRead",
 	    config = function() require('plugins.lightspeed') end
 	  }
     use {'jdhao/better-escape.vim', event = 'InsertEnter'}
@@ -121,7 +114,10 @@ return packer.startup(
     --Development
     use {
       '~/Projects/gomove.nvim',
-      config = function() require('gomove').setup() end
+      config = function() require('gomove').setup({
+        move_past_end_of_line = true,
+        move_past_end_of_file = true,
+      }) end
     }
 	end
 )
