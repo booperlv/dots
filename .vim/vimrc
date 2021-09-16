@@ -1,5 +1,4 @@
 set number
-" colorscheme evening
 colorscheme default
 syntax on
 set nowrap

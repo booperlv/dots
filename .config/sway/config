@@ -70,7 +70,7 @@
   bindsym $mod+Shift+Return exec alacritty
   bindsym $mod+Return exec foot
 # Start browser
-  bindsym $mod+b exec chromium
+  bindsym $mod+b exec google-chrome-stable
   bindsym $mod+Shift+b exec firefox
 
 # Kill focused window
