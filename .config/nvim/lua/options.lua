@@ -9,7 +9,8 @@ opt.termguicolors = true
 
 g.ayu_mirage = true
 g.material_borders = true
-vim.cmd("colorscheme nightfox")
+
+vim.cmd("colorscheme catppuccino")
 
 --Options
 opt.foldmethod = "marker"

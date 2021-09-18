@@ -291,8 +291,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 
   exec_always {
     gsettings set $gnome-schema gtk-theme 'walgtk'
-      gsettings set $gnome-schema icon-theme 'Vimix-Black'
-      gsettings set $gnome-schema cursor-theme 'Vimix'
+      gsettings set $gnome-schema icon-theme 'Papirus'
       gsettings set $gnome-schema font-name 'Cantarell 10'
   }
 

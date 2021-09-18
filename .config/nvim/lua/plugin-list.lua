@@ -69,7 +69,8 @@ return packer.startup(
 	    config = function() require('plugins.bufferline') end
 	  }
 		use {
-	    'kyazdani42/nvim-tree.lua',
+	    -- 'kyazdani42/nvim-tree.lua',
+      '~/Projects/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
       cmd = "NvimTreeToggle",
       config = function() require('plugins.nvimtree') end
@@ -95,7 +96,7 @@ return packer.startup(
     use {'jdhao/better-escape.vim', event = 'InsertEnter'}
 	  use {'mattn/emmet-vim', event = "BufRead"}
 	  use {'tpope/vim-surround', event = "BufRead"}
-		-- use {'chaoren/vim-wordmotion', event = "BufRead"}
+		use {'chaoren/vim-wordmotion', event = "BufRead"}
 		use {
 	    'b3nj5m1n/kommentary',
       event = "BufRead",

@@ -3,29 +3,14 @@
 I literally just use this as a google drive of sorts, take the bits you want but
 I'm too lazy to make it something you can just copy and it'd just work :P
 
-I'm on a low resolution 11.6 inch screen, so things might look different.
+The scripts here (especially in .config/sway/scripts) don't all work as is,
+because I keep the gtk theme assets and other files in a different repository (as it would make this repo unneccesarily bloated)
 
-# Take Note!
-These dotfiles are ever changing as I am still keep finding more ways to make my experience better :D
+The more interesting and "usable" bits outside of my system are the configs in .config/waybar .config/nvim.
+Everything else is not of much use, to be honest.
 
-If you ever wonder why this repository is big, I store a two copies of all the gtk theme assets here for color generation so :D
+The Wallpapers I have in local/share/pictures with LAM on the name are modified
+versions from [LAM's](https://www.pixiv.net/en/users/17429) art.
 
-I am using colemak, so my bindings are rather unusual.
-
-As you may see from a little peek into the configs, these dotfiles are NOT made for general use. You will have to edit a number of paths and place these files in their corresponding places.
-
-Maybe you can steal a few things here and there instead.
-
-The Wallpapers I have in local/share/pictures named feh(index) are modified versions from [LAM's](https://www.pixiv.net/en/users/17429) art.
-Others are either taken from reddit or somewhere on the internet.
-
-## What is emptywindow.c?
-It is literally just an empty window that's transparent if you have a compositor. Like a placeholder in a tiling wm.
-Compile with "gcc -lX11 emptywindow.c -o emptywindow". You can copy the binary file to any directory in your path to execute.
-
-## What is updatenvimnightlybuild.sh?
-A small bash script I created for adding the appimage into my path. Pretty sure it's not a great idea to use it though LOL.
-Neovim 5.0 is being pushed to stable soon anyway! :)
-
-
-Self note: using Papirus and Vimix Black Icon themes, Breeze and Vimix Cursor Themes
+Others are either taken from reddit or somewhere on the internet. A reverse
+image search would do wonders, I don't really keep the sources - sorry.

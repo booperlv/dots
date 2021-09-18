@@ -82,7 +82,8 @@
         "default": ["", ""]
       },
       "scroll-step": 1,
-      "on-click": "pavucontrol"
+      "on-click": "amixer set Master toggle",
+      "on-click-right": "pavucontrol",
     },
     "backlight": {
       "device": "intel_backlight",

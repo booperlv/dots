@@ -1,3 +1,5 @@
+local M = {}
+
 local nvim_lsp = require('lspconfig')
 
 -- General Settings
@@ -11,9 +13,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
--- Use an on_attach function to only map the following keys
+-- Use an M.on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+M.on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -45,23 +47,22 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "tsserver", "html", "cssls", "vimls", "bashls", "jedi_language_server", "clangd" }
-for _, lsp in ipairs(servers) do
+M.servers = { "tsserver", "html", "cssls", "vimls", "bashls", "jedi_language_server", "clangd" }
+for _, lsp in ipairs(M.servers) do
   nvim_lsp[lsp].setup {
-    on_attach = on_attach,
+    on_attach = M.on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
   }
 end
-
 
 -- Special case, lua lang server
 local sumneko_root_path = '/usr'
 local sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
 nvim_lsp.sumneko_lua.setup {
-  on_attach = on_attach,
+  on_attach = M.on_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
@@ -89,3 +90,91 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
+
+
+M.servers = { "tsserver", "html", "cssls", "vimls", "bashls", "jedi_language_server", "clangd" }
+local enabled = true
+function M.ToggleLSPAutostart()
+  if enabled then
+    vim.cmd('LspStop')
+    for _, lsp in ipairs(M.servers) do
+      nvim_lsp[lsp].setup {
+        on_attach = M.on_attach,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        },
+        autostart = false,
+      }
+    end
+    nvim_lsp.sumneko_lua.setup {
+      on_attach = M.on_attach,
+      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT',
+            path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+            globals = {'vim'},
+          },
+          workspace = {
+            library = {
+              [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            },
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+      autostart = false
+    }
+    enabled = false
+  else
+    for _, lsp in ipairs(M.servers) do
+      nvim_lsp[lsp].setup {
+        on_attach = M.on_attach,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        },
+        autostart = true,
+      }
+    end
+    nvim_lsp.sumneko_lua.setup {
+      on_attach = M.on_attach,
+      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT',
+            path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+            globals = {'vim'},
+          },
+          workspace = {
+            library = {
+              [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            },
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+      autostart = true
+    }
+    enabled = true
+  end
+end
+vim.api.nvim_set_keymap (
+  'n', ' lsts', ":lua require('plugins.lspconfig').ToggleLSPAutostart()<CR>",
+  {silent = true, nowait = true}
+)
+
+return M
