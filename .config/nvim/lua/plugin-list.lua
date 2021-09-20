@@ -1,10 +1,7 @@
-local present, _ = pcall(require, "packerInit")
-local packer
+local present, packer = pcall(require, "packerInit")
 
-if present then
-  packer = require "packer"
-else
-  return false
+if not present then
+   return false
 end
 
 local use = packer.use
@@ -46,6 +43,7 @@ return packer.startup(
 	  }
     use {
       'alexaandru/nvim-lspupdate',
+      run = ":LspUpdate"
     }
 		use {
 	    'hrsh7th/nvim-compe',

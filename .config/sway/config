@@ -2,7 +2,6 @@
 # grimshot
 # wf-recorder
 # wl-clipboard
-# clipman
 # pywal
 # rofi
 # mako
@@ -22,9 +21,6 @@
   set $down comma
   set $up period
   set $right slash
-
-# Clipboard manager
-  exec wl-paste -t text --watch clipman store
 
 # Default wallpaper
   output * bg /home/booperlv/.cache/swaywal fill
