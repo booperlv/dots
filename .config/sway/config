@@ -26,7 +26,7 @@
   output * bg /home/booperlv/.cache/swaywal fill
 
 # Picom ish thing
-  exec python3 /home/booperlv/.config/sway/scripts/swayfader.py
+  exec python /home/booperlv/.config/sway/scripts/swayfader.py
 
 # Set the Keyboard Layout to Colemak
   input "type:keyboard" {
