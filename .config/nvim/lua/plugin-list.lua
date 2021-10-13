@@ -1,10 +1,7 @@
-local present, _ = pcall(require, "packerInit")
-local packer
+local present, packer = pcall(require, "packerInit")
 
-if present then
-  packer = require "packer"
-else
-  return false
+if not present then
+   return false
 end
 
 local use = packer.use
@@ -29,6 +26,7 @@ return packer.startup(
 		use {'mhartington/oceanic-next'}
 		use {'marko-cerovac/material.nvim'}
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
+    use {'ful1e5/onedark.nvim'}
     use {'EdenEast/nightfox.nvim'}
     use {"Pocco81/Catppuccino.nvim"}
 
@@ -46,6 +44,7 @@ return packer.startup(
 	  }
     use {
       'alexaandru/nvim-lspupdate',
+      run = ":LspUpdate"
     }
 		use {
 	    'hrsh7th/nvim-compe',
@@ -69,8 +68,8 @@ return packer.startup(
 	    config = function() require('plugins.bufferline') end
 	  }
 		use {
-	    -- 'kyazdani42/nvim-tree.lua',
-      '~/Projects/nvim-tree.lua',
+	    'kyazdani42/nvim-tree.lua',
+      -- '~/Projects/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
       cmd = "NvimTreeToggle",
       config = function() require('plugins.nvimtree') end
@@ -98,11 +97,10 @@ return packer.startup(
 	  use {'tpope/vim-surround', event = "BufRead"}
 		use {'chaoren/vim-wordmotion', event = "BufRead"}
 		use {
-	    'b3nj5m1n/kommentary',
+	    'numToStr/Comment.nvim',
       event = "BufRead",
-	    config = function() require('plugins.kommentary') end
+	    config = function() require('Comment').setup() end
 	  }
-
 
     --Others
     use {

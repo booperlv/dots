@@ -2,7 +2,6 @@
 # grimshot
 # wf-recorder
 # wl-clipboard
-# clipman
 # pywal
 # rofi
 # mako
@@ -23,14 +22,11 @@
   set $up period
   set $right slash
 
-# Clipboard manager
-  exec wl-paste -t text --watch clipman store
-
 # Default wallpaper
   output * bg /home/booperlv/.cache/swaywal fill
 
 # Picom ish thing
-  exec python3 /home/booperlv/.config/sway/swayfader/swayfader.py
+  exec python /home/booperlv/.config/sway/scripts/swayfader.py
 
 # Set the Keyboard Layout to Colemak
   input "type:keyboard" {
@@ -90,19 +86,18 @@
   bindsym $mod+Ctrl+q exec swaymsg exit
 
 # Change Wallpaper
-  mode "wallpaper select pick change refresh light" {
-    bindsym c exec bash /home/booperlv/.config/sway/scripts/changewal.sh; mode default
-    bindsym r exec bash /home/booperlv/.config/sway/scripts/resetcurrentwal.sh; mode default
-    bindsym s exec bash /home/booperlv/.config/sway/scripts/changewalselect.sh; mode default
-    bindsym l exec bash /home/booperlv/.config/sway/scripts/lightcurrent.sh; mode default
-    bindsym p exec bash /home/booperlv/.config/sway/scripts/settocolor.sh; mode default
+  mode "wallpaper select pick light refresh" {
+    bindsym r exec bash /home/booperlv/.config/sway/scripts/wallpaper/resetcurrentwal.sh; mode default
+    bindsym s exec bash /home/booperlv/.config/sway/scripts/wallpaper/changewalselect.sh; mode default
+    bindsym l exec bash /home/booperlv/.config/sway/scripts/wallpaper/lightcurrent.sh; mode default
+    bindsym p exec bash /home/booperlv/.config/sway/scripts/wallpaper/settocolor.sh; mode default
 
     bindsym space mode default
     bindsym q mode default
     bindsym $mod+backslash mode default
     bindsym escape mode default
   }
-bindsym $mod+backslash mode "wallpaper select pick change refresh light"
+bindsym $mod+backslash mode "wallpaper select pick light refresh"
 
 # Change Gaps
   mode "gaps inner outer default" {

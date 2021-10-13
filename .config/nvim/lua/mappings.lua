@@ -144,6 +144,8 @@ M.map({
   {'x', '<A-J>', '<Plug>VisualDuplicateBlockDown'},
   {'x', '<A-K>', '<Plug>VisualDuplicateBlockUp'},
   {'x', '<A-L>', '<Plug>VisualDuplicateLineRight'},
+
+  {'n', 'gm', ':lua require("motion-gomove-test").MoveMotion()<CR>', {silent=true}},
 })
 
 return M

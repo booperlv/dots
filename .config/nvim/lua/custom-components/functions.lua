@@ -42,5 +42,34 @@ api.nvim_set_keymap(
   {silent = true, nowait = true}
 )
 
+--Toggle lsp autostart
+local lsp = require("plugins.lspconfig")
+lsp.SetupServers(true)
+
+--Autocmd that handles lspstart
+function M.OwnLSPAutoStart()
+  lsp = require("plugins.lspconfig")
+  if lsp.should_autostart then
+    vim.cmd("LspStart")
+  end
+end
+vim.cmd([[
+  autocmd BufEnter * lua require('custom-components.functions').OwnLSPAutoStart()
+]])
+--Toggle a state
+function M.ToggleLSPAutoStart()
+  lsp = require("plugins.lspconfig")
+  if lsp.should_autostart then
+    lsp.SetupServers(false)
+  else
+    lsp.SetupServers(true)
+  end
+  print("setting server autostart to "..vim.inspect(lsp.should_autostart))
+end
+
+vim.api.nvim_set_keymap (
+  'n', ' lsts', ":lua require('custom-components.functions').ToggleLSPAutoStart()<CR>",
+  {silent = true, nowait = true}
+)
 
 return M
