@@ -43,8 +43,8 @@ return packer.startup(
 	    config = function() require('plugins.lspconfig') end
 	  }
     use {
-      'alexaandru/nvim-lspupdate',
-      run = ":LspUpdate"
+      'williamboman/nvim-lsp-installer',
+      config = function() require('plugins.lspinstall') end
     }
 		use {
 	    'hrsh7th/nvim-compe',

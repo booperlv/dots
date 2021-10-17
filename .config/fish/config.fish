@@ -9,7 +9,6 @@ alias nvim-startup='nvim --startuptime startuplog.txt +x && cat startuplog.txt &
 alias la='ls -1a'
 alias nv='nvim'
 
-export PAGER=vimpager
 export EDITOR=nvim
 
 fish_vi_key_bindings
