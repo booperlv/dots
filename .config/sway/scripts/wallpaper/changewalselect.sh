@@ -9,7 +9,7 @@ if [ $basename ]; then
     echo $file
     
     rm -rf ~/.cache/swaywal
-    ln -s $file ~/.cache/swaywal
+    cp -r $file ~/.cache/swaywal
     wal -n -i $file
 
     killall -q waybar

@@ -105,45 +105,45 @@ M.map({
 
   --This is kind of a temp thing
 
-  {'n', '<A-m>', '<Plug>NormalMoveBlockLeft'},
-  {'n', '<A-,>', '<Plug>NormalMoveLineDown'},
-  {'n', '<A-.>', '<Plug>NormalMoveLineUp'},
-  {'n', '<A-/>', '<Plug>NormalMoveBlockRight'},
+  {'n', '<A-m>', '<Plug>GoNMBlockLeft'},
+  {'n', '<A-,>', '<Plug>GoNMLineDown'},
+  {'n', '<A-.>', '<Plug>GoNMLineUp'},
+  {'n', '<A-/>', '<Plug>GoNMBlockRight'},
 
-  {'x', '<A-m>', '<Plug>VisualMoveBlockLeft'},
-  {'x', '<A-,>', '<Plug>VisualMoveLineDown'},
-  {'x', '<A-.>', '<Plug>VisualMoveLineUp'},
-  {'x', '<A-/>', '<Plug>VisualMoveBlockRight'},
+  {'x', '<A-m>', '<Plug>GoVMBlockLeft'},
+  {'x', '<A-,>', '<Plug>GoVMLineDown'},
+  {'x', '<A-.>', '<Plug>GoVMLineUp'},
+  {'x', '<A-/>', '<Plug>GoVMBlockRight'},
+  --
+  {'n', '<A-M>', '<Plug>GoNDBlockLeft'},
+  {'n', '<A-<>', '<Plug>GoNDLineDown'},
+  {'n', '<A->>', '<Plug>GoNDLineUp'},
+  {'n', '<A-?>', '<Plug>GoNDBlockRight'},
 
-  {'n', '<A-M>', '<Plug>NormalDuplicateBlockLeft'},
-  {'n', '<A-<>', '<Plug>NormalDuplicateLineDown'},
-  {'n', '<A->>', '<Plug>NormalDuplicateLineUp'},
-  {'n', '<A-?>', '<Plug>NormalDuplicateBlockRight'},
+  {'x', '<A-M>', '<Plug>GoVDBlockLeft'},
+  {'x', '<A-<>', '<Plug>GoVDLineDown'},
+  {'x', '<A->>', '<Plug>GoVDLineUp'},
+  {'x', '<A-?>', '<Plug>GoVDBlockRight'},
+  --
+  {'n', '<A-h>', '<Plug>GoNMLineLeft'},
+  {'n', '<A-j>', '<Plug>GoNMBlockDown'},
+  {'n', '<A-k>', '<Plug>GoNMBlockUp'},
+  {'n', '<A-l>', '<Plug>GoNMLineRight'},
 
-  {'x', '<A-M>', '<Plug>VisualDuplicateBlockLeft'},
-  {'x', '<A-<>', '<Plug>VisualDuplicateLineDown'},
-  {'x', '<A->>', '<Plug>VisualDuplicateLineUp'},
-  {'x', '<A-?>', '<Plug>VisualDuplicateBlockRight'},
-
-  {'n', '<A-h>', '<Plug>NormalMoveLineLeft'},
-  {'n', '<A-j>', '<Plug>NormalMoveBlockDown'},
-  {'n', '<A-k>', '<Plug>NormalMoveBlockUp'},
-  {'n', '<A-l>', '<Plug>NormalMoveLineRight'},
-
-  {'x', '<A-h>', '<Plug>VisualMoveLineLeft'},
-  {'x', '<A-j>', '<Plug>VisualMoveBlockDown'},
-  {'x', '<A-k>', '<Plug>VisualMoveBlockUp'},
-  {'x', '<A-l>', '<Plug>VisualMoveLineRight'},
-
-  {'n', '<A-H>', '<Plug>NormalDuplicateLineLeft'},
-  {'n', '<A-J>', '<Plug>NormalDuplicateBlockDown'},
-  {'n', '<A-K>', '<Plug>NormalDuplicateBlockUp'},
-  {'n', '<A-L>', '<Plug>NormalDuplicateLineRight'},
-
-  {'x', '<A-H>', '<Plug>VisualDuplicateLineLeft'},
-  {'x', '<A-J>', '<Plug>VisualDuplicateBlockDown'},
-  {'x', '<A-K>', '<Plug>VisualDuplicateBlockUp'},
-  {'x', '<A-L>', '<Plug>VisualDuplicateLineRight'},
+  {'x', '<A-h>', '<Plug>GoVMLineLeft'},
+  {'x', '<A-j>', '<Plug>GoVMBlockDown'},
+  {'x', '<A-k>', '<Plug>GoVMBlockUp'},
+  {'x', '<A-l>', '<Plug>GoVMLineRight'},
+  --
+  {'n', '<A-H>', '<Plug>GoNDLineLeft'},
+  {'n', '<A-J>', '<Plug>GoNDBlockDown'},
+  {'n', '<A-K>', '<Plug>GoNDBlockUp'},
+  {'n', '<A-L>', '<Plug>GoNDLineRight'},
+  --
+  {'x', '<A-H>', '<Plug>GoVDLineLeft'},
+  {'x', '<A-J>', '<Plug>GoVDBlockDown'},
+  {'x', '<A-K>', '<Plug>GoVDBlockUp'},
+  {'x', '<A-L>', '<Plug>GoVDLineRight'},
 
   {'n', 'gm', ':lua require("motion-gomove-test").MoveMotion()<CR>', {silent=true}},
 })

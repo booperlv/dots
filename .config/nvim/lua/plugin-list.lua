@@ -28,7 +28,7 @@ return packer.startup(
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
     use {'ful1e5/onedark.nvim'}
     use {'EdenEast/nightfox.nvim'}
-    use {"Pocco81/Catppuccino.nvim"}
+    use {"catppuccin/nvim"}
 
 	  use {'folke/lsp-colors.nvim'}
 		use {
@@ -111,12 +111,16 @@ return packer.startup(
     }
 
     --Development
+    -- use {
+    --   '~/Projects/gomove.nvim',
+    --   config = function() require('gomove').setup({
+    --     move_past_end_of_line = true,
+    --     move_past_end_of_file = true,
+    --   }) end
+    -- }
     use {
-      '~/Projects/gomove.nvim',
-      config = function() require('gomove').setup({
-        move_past_end_of_line = true,
-        move_past_end_of_file = true,
-      }) end
+      '~/Projects/nvim-gomove',
+      config = function() require('gomove').setup() end
     }
 	end
 )

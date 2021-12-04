@@ -1,15 +1,6 @@
-# Just a heads up to myself, these programs are pretty good good
-# grimshot
-# wf-recorder
-# wl-clipboard
-# pywal
-# rofi
-# mako
-# waybar
-# imv
-# foot
-# swaylock
-# also: nice editor: shotcut
+
+# Set wal to random if doesn't exist
+  exec bash /home/booperlv/.config/sway/scripts/ifnowal.sh
 
 # Colors
   include /home/booperlv/.cache/wal/swayconfig
