@@ -56,9 +56,6 @@
 # Start a terminal
   bindsym $mod+Shift+Return exec alacritty
   bindsym $mod+Return exec foot
-# Start browser
-  bindsym $mod+b exec google-chrome-stable
-  bindsym $mod+Shift+b exec firefox
 
 # Kill focused window
   bindsym $mod+q kill
@@ -271,6 +268,7 @@ bindsym $mod+Shift+0 move container to workspace 10
   bar {
     swaybar_command waybar
   }
+  bindsym $mod+b exec killall -SIGUSR1 waybar
 
 # Gtk Fix:
   set $gnome-schema org.gnome.desktop.interface
