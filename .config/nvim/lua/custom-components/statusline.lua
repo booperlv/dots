@@ -115,22 +115,22 @@ M.get_lsp_diagnostic = function()
 
   if M.is_truncated(M.trunc_width.diagnostic) then
     if result['errors'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultError', 'fg#')
+      local foreground = get_color('DiagnosticError', 'fg#')
       api.nvim_command("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusError#"..result['errors'].." ")
     end
     if result['warnings'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultWarning', 'fg#')
+      local foreground = get_color('DiagnosticWarning', 'fg#')
       api.nvim_command("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusWarning#"..result['warnings'].." ")
     end
     if result['info'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultInformation', 'fg#')
+      local foreground = get_color('DiagnosticInfo', 'fg#')
       api.nvim_command("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusInformation#"..result['info'].." ")
     end
     if result['hints'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultHint', 'fg#')
+      local foreground = get_color('DiagnosticHint', 'fg#')
       api.nvim_command("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusHint#"..result['hints'])
     end
@@ -138,22 +138,22 @@ M.get_lsp_diagnostic = function()
     return table.concat(tab_of_strings)
   else
     if result['errors'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultError', 'fg#')
+      local foreground = get_color('DiagnosticError', 'fg#')
       api.nvim_command("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusError# :"..result['errors'].." ")
     end
     if result['warnings'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultWarning', 'fg#')
+      local foreground = get_color('DiagnosticWarn', 'fg#')
       api.nvim_command("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusWarning# :"..result['warnings'].." ")
     end
     if result['info'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultInformation', 'fg#')
+      local foreground = get_color('DiagnosticInfo', 'fg#')
       api.nvim_command("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusInformation# :"..result['info'].." ")
     end
     if result['hints'] ~= 0 then
-      local foreground = get_color('LspDiagnosticsDefaultHint', 'fg#')
+      local foreground = get_color('DiagnosticHint', 'fg#')
       api.nvim_command("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
       table.insert(tab_of_strings, "%#LuaStatusHint# :"..result['hints'])
     end
