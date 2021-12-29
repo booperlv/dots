@@ -121,7 +121,7 @@ M.get_lsp_diagnostic = function()
   gui = (next(gui) == nil and '' or 'gui='..table.concat(gui,","))
 
   local error_foreground = "guifg="..get_color('DiagnosticError', 'fg#')
-  local warn_foreground = "guifg="..get_color('DiagnosticWarning', 'fg#')
+  local warn_foreground = "guifg="..get_color('DiagnosticWarn', 'fg#')
   local info_foreground = "guifg="..get_color('DiagnosticInfo', 'fg#')
   local hint_foreground = "guifg="..get_color('DiagnosticHint', 'fg#')
 
@@ -265,7 +265,7 @@ StatuslineLoad = function(mode)
 end
 
 local events = { 'ColorScheme', 'FileType','BufWinEnter','BufReadPost','BufWritePost',
-  'BufEnter','WinEnter','FileChangedShellPost','VimResized','TermOpen', 'DiagnosticChanged'}
+  'BufEnter','WinEnter','FileChangedShellPost','VimResized','TermOpen'}
 
 api.nvim_command("augroup Statusline")
   local all_active_command = string.format(
