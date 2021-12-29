@@ -88,20 +88,27 @@ local function get_color(group, attr)
   return fn.synIDattr(fn.synIDtrans(fn.hlID(group)), attr)
 end
 
-M.get_lsp_diagnostic = function()
+local function get_all_diagnostics()
   local result = {}
   local levels = {
-    errors = 'Error',
-    warnings = 'Warning',
-    info = 'Information',
-    hints = 'Hint'
+    errors = vim.diagnostic.severity.ERROR,
+    warnings = vim.diagnostic.severity.WARN,
+    info = vim.diagnostic.severity.INFO,
+    hints = vim.diagnostic.severity.HINT,
   }
   for k, level in pairs(levels) do
-    result[k] = vim.lsp.diagnostic.get_count(0, level)
+    local count = #vim.diagnostic.get(0, {severity=level})
+    result[k] = count
   end
 
+  return result
+end
+
+M.get_lsp_diagnostic = function()
+  local diagnostics = get_all_diagnostics()
+
   local tab_of_strings = {}
-  local background = get_color('StatusLine', 'bg#')
+  local background = "guibg="..get_color('StatusLine', 'bg#')
 
   local gui = {}
   local gui_values = {'bold', 'italic', 'reverse', 'inverse', 'standout', 'underline', 'undercurl', 'strikethrough'}
@@ -111,55 +118,51 @@ M.get_lsp_diagnostic = function()
       table.insert(gui, value)
     end
   end
-  gui = (next(gui) == nil and '' or ' gui='..table.concat(gui,","))
+  gui = (next(gui) == nil and '' or 'gui='..table.concat(gui,","))
+
+  local error_foreground = "guifg="..get_color('DiagnosticError', 'fg#')
+  local warn_foreground = "guifg="..get_color('DiagnosticWarning', 'fg#')
+  local info_foreground = "guifg="..get_color('DiagnosticInfo', 'fg#')
+  local hint_foreground = "guifg="..get_color('DiagnosticHint', 'fg#')
+
+  api.nvim_command(table.concat({"hi", "LuaStatusError", background, error_foreground, gui}, " "))
+  api.nvim_command(table.concat({"hi", "LuaStatusWarning", background, warn_foreground, gui}, " "))
+  api.nvim_command(table.concat({"hi", "LuaStatusInformation", background, info_foreground, gui}, " "))
+  api.nvim_command(table.concat({"hi", "LuaStatusHint", background, hint_foreground, gui}, " "))
 
   if M.is_truncated(M.trunc_width.diagnostic) then
-    if result['errors'] ~= 0 then
-      local foreground = get_color('DiagnosticError', 'fg#')
-      api.nvim_command("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusError#"..result['errors'].." ")
+    if diagnostics['errors'] ~= 0 then--{{{
+      table.insert(tab_of_strings, "%#LuaStatusError#"..diagnostics['errors'])
     end
-    if result['warnings'] ~= 0 then
-      local foreground = get_color('DiagnosticWarning', 'fg#')
-      api.nvim_command("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusWarning#"..result['warnings'].." ")
+    if diagnostics['warnings'] ~= 0 then
+      table.insert(tab_of_strings, "%#LuaStatusWarning#"..diagnostics['warnings'])
     end
-    if result['info'] ~= 0 then
-      local foreground = get_color('DiagnosticInfo', 'fg#')
-      api.nvim_command("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusInformation#"..result['info'].." ")
+    if diagnostics['info'] ~= 0 then
+      table.insert(tab_of_strings, "%#LuaStatusInformation#"..diagnostics['info'])
     end
-    if result['hints'] ~= 0 then
-      local foreground = get_color('DiagnosticHint', 'fg#')
-      api.nvim_command("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusHint#"..result['hints'])
+    if diagnostics['hints'] ~= 0 then
+      table.insert(tab_of_strings, "%#LuaStatusHint#"..diagnostics['hints'])
     end
-    table.insert(tab_of_strings, "%#StatusLine#")
-    return table.concat(tab_of_strings)
+--}}}
   else
-    if result['errors'] ~= 0 then
-      local foreground = get_color('DiagnosticError', 'fg#')
-      api.nvim_command("hi LuaStatusError guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusError# :"..result['errors'].." ")
+    if diagnostics['errors'] ~= 0 then--{{{
+      table.insert(tab_of_strings, "%#LuaStatusError# :"..diagnostics['errors'])
     end
-    if result['warnings'] ~= 0 then
-      local foreground = get_color('DiagnosticWarn', 'fg#')
-      api.nvim_command("hi LuaStatusWarning guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusWarning# :"..result['warnings'].." ")
+    if diagnostics['warnings'] ~= 0 then
+      table.insert(tab_of_strings, "%#LuaStatusWarning# :"..diagnostics['warnings'])
     end
-    if result['info'] ~= 0 then
-      local foreground = get_color('DiagnosticInfo', 'fg#')
-      api.nvim_command("hi LuaStatusInformation guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusInformation# :"..result['info'].." ")
+    if diagnostics['info'] ~= 0 then
+      table.insert(tab_of_strings, "%#LuaStatusInformation# :"..diagnostics['info'])
     end
-    if result['hints'] ~= 0 then
-      local foreground = get_color('DiagnosticHint', 'fg#')
-      api.nvim_command("hi LuaStatusHint guibg="..background.." guifg="..foreground..gui)
-      table.insert(tab_of_strings, "%#LuaStatusHint# :"..result['hints'])
+    if diagnostics['hints'] ~= 0 then
+      table.insert(tab_of_strings, "%#LuaStatusHint# :"..diagnostics['hints'])
     end
-    table.insert(tab_of_strings, "%#StatusLine#")
-    return table.concat(tab_of_strings)
+--}}}
   end
+
+  table.insert(tab_of_strings, "%#StatusLine#")
+
+  return table.concat(tab_of_strings)
 end
 
 
@@ -262,7 +265,7 @@ StatuslineLoad = function(mode)
 end
 
 local events = { 'ColorScheme', 'FileType','BufWinEnter','BufReadPost','BufWritePost',
-  'BufEnter','WinEnter','FileChangedShellPost','VimResized','TermOpen'}
+  'BufEnter','WinEnter','FileChangedShellPost','VimResized','TermOpen', 'DiagnosticChanged'}
 
 api.nvim_command("augroup Statusline")
   local all_active_command = string.format(
@@ -277,4 +280,5 @@ api.nvim_command("augroup Statusline")
   api.nvim_command(nvim_tree_command)
   api.nvim_command("au WinLeave * lua StatuslineLoad('inactive')")
 api.nvim_command("augroup END")
+
 return M

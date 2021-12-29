@@ -69,7 +69,6 @@ return packer.startup(
 	  }
 		use {
 	    'kyazdani42/nvim-tree.lua',
-      -- '~/Projects/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
       cmd = "NvimTreeToggle",
       config = function() require('plugins.nvimtree') end
@@ -111,16 +110,21 @@ return packer.startup(
     }
 
     --Development
-    -- use {
-    --   '~/Projects/gomove.nvim',
-    --   config = function() require('gomove').setup({
-    --     move_past_end_of_line = true,
-    --     move_past_end_of_file = true,
-    --   }) end
-    -- }
     use {
-      '~/Projects/nvim-gomove',
-      config = function() require('gomove').setup() end
+      'booperlv/nvim-gomove',
+      config = function()
+        require("gomove").setup {
+          map_defaults = true,
+          reindent_mode = "vim-move",
+          move_past_line = true,
+          ignore_indent_lh_dup = true,
+        }
+      end
     }
+    --
+    -- use {
+    --   '~/Projects/nvim-gomove',
+    --   config = function() require('plugins.gomove') end
+    -- }
 	end
 )
