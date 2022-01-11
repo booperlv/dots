@@ -1,3 +1,3 @@
-require('gomove').setup {
-  map_defaults = false
-}
+require("gomove").setup({
+  move_past_end_col = true,
+})

@@ -1,12 +1,8 @@
-local present1, autopairs = pcall(require, "nvim-autopairs")
-local present2, autopairs_completion = pcall(require, "nvim-autopairs.completion.compe")
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
-if not (present1 or present2) then
-   return
-end
 
-autopairs.setup()
-autopairs_completion.setup {
-   map_complete = true, -- insert () func completion
-   map_cr = true,
-}
+-- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
+cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"

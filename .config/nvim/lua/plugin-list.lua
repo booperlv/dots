@@ -38,18 +38,24 @@ return packer.startup(
 	  }
 
     --LSP Plugins
-		use {
-	    'neovim/nvim-lspconfig',
-	    config = function() require('plugins.lspconfig') end
-	  }
     use {
       'williamboman/nvim-lsp-installer',
       config = function() require('plugins.lspinstall') end
     }
 		use {
-	    'hrsh7th/nvim-compe',
-	    event = "InsertEnter",
-	    config = function() require('plugins.completion') end
+	    'hrsh7th/nvim-cmp',
+      requires = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-calc',
+        'hrsh7th/cmp-cmdline',
+      },
+	    config = function() require('plugins.cmp') end
+	  }
+		use {
+	    'neovim/nvim-lspconfig',
+	    config = function() require('plugins.lspconfig') end
 	  }
 
     --Appearance helps
@@ -84,7 +90,6 @@ return packer.startup(
     --Navigation or Convenient Editing related Things
 		use {
 	    'windwp/nvim-autopairs',
-	    after = "nvim-compe",
 	    config = function() require('plugins.autopairs') end
 	  }
 		use {
@@ -111,20 +116,8 @@ return packer.startup(
 
     --Development
     use {
-      'booperlv/nvim-gomove',
-      config = function()
-        require("gomove").setup {
-          map_defaults = true,
-          reindent_mode = "vim-move",
-          move_past_line = true,
-          ignore_indent_lh_dup = true,
-        }
-      end
+      '~/Projects/nvim-gomove',
+      config = function() require('plugins.gomove') end
     }
-    --
-    -- use {
-    --   '~/Projects/nvim-gomove',
-    --   config = function() require('plugins.gomove') end
-    -- }
 	end
 )
