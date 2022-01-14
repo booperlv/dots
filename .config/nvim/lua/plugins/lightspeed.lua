@@ -5,8 +5,10 @@ require'lightspeed'.setup {
   labels = {"t", "n", "s", "e", "r", "i", "a", "o", "f", "u",
             "w", "y", "d", "h", "v", "k", "c", "m", "q", ";"},
   --Keys
-  cycle_group_fwd_key = "<tab>",
-  cycle_group_bwd_key = "<s-tab>",
+  special_keys = {
+    next_match_group = "<tab>",
+    prev_match_group = "<s-tab>",
+  },
 }
 
 require'mappings'.map({
