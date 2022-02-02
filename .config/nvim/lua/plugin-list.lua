@@ -20,15 +20,12 @@ return packer.startup(
     }
 
     --Colors
-		use {'bluz71/vim-nightfly-guicolors'}
 		use {'Shatur/neovim-ayu'}
 		use {'folke/tokyonight.nvim'}
-		use {'mhartington/oceanic-next'}
-		use {'marko-cerovac/material.nvim'}
-		use {'christianchiarulli/nvcode-color-schemes.vim'}
     use {'ful1e5/onedark.nvim'}
     use {'EdenEast/nightfox.nvim'}
     use {"catppuccin/nvim"}
+    use {"projekt0n/github-nvim-theme"}
 
 	  use {'folke/lsp-colors.nvim'}
 		use {
@@ -38,10 +35,6 @@ return packer.startup(
 	  }
 
     --LSP Plugins
-    use {
-      'williamboman/nvim-lsp-installer',
-      config = function() require('plugins.lspinstall') end
-    }
 		use {
 	    'hrsh7th/nvim-cmp',
       requires = {
@@ -61,7 +54,6 @@ return packer.startup(
     --Appearance helps
 		use {
 			'nvim-treesitter/nvim-treesitter',
-      event = "BufRead",
 			run = ":TSUpdate",
 	    config = function() require('plugins.treesitter') end
 		}
@@ -93,8 +85,8 @@ return packer.startup(
 	    config = function() require('plugins.autopairs') end
 	  }
 		use {
-	    'ggandor/lightspeed.nvim',
-	    config = function() require('plugins.lightspeed') end
+	    'rlane/pounce.nvim',
+	    config = function() require('plugins.pounce') end
 	  }
     use {'jdhao/better-escape.vim', event = 'InsertEnter'}
 	  use {'mattn/emmet-vim', event = "BufRead"}

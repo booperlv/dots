@@ -10,7 +10,7 @@ opt.termguicolors = true
 g.ayu_mirage = true
 g.material_borders = true
 
-vim.cmd("colorscheme nordfox")
+vim.cmd("colorscheme github_dark")
 
 --Options
 opt.foldmethod = "marker"

@@ -48,6 +48,7 @@ M.map({
   --Emmet
 	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>'},
 
+  --Bufferline
   {'n', ' h', ':BufferLineCyclePrev<CR>'},
   {'n', ' l', ':BufferLineCycleNext<CR>'},
   {'n', ' H', ':BufferLineMovePrev<CR>'},
@@ -58,11 +59,20 @@ M.map({
 	{'n', ' bd', ':bdelete<CR>'},
 	{'n', ' q', ':bwipeout<CR>'},
 
+  --Small things
+  {'n', ' w', '<C-w>'},
+
+  --Compe
 	{'i', '<C-Space>', 'compe#complete()', {silent = true, expr = true} },
 	{'i', '<C-e>', 'compe#close("<C-e>")', {silent = true, expr = true} },
 
+  --Nvim tree
 	{'n', ' tt', ':NvimTreeToggle<CR>'},
 	{'n', ' tr', ':NvimTreeRefresh<CR>'},
+
+  --Handy Mappings
+  {'n', 'H', '^', {noremap = true}},
+  {'n', 'L', '$', {noremap = true}},
 })
 
 return M
