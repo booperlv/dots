@@ -9,7 +9,7 @@ function M.map(allkeys)
 			if #value >= 4 then
 				vim.api.nvim_set_keymap(value[1], value[2], value[3], value[4])
 			else
-				vim.api.nvim_set_keymap(value[1], value[2], value[3], {})
+				vim.api.nvim_set_keymap(value[1], value[2], value[3], {noremap=true})
 			end
 		else
 			print("mapping has invalid values at index "..index)
@@ -25,8 +25,6 @@ M.map({
 	{'n', ' y', '"+y'},
 	{'x', ' y', '"+y'},
 
-	{'n', ' P', '"+P'},
-	{'x', ' P', '"+P'},
 	{'n', ' p', '"+p'},
 	{'x', ' p', '"+p'},
 
@@ -59,9 +57,6 @@ M.map({
 	{'n', ' bd', ':bdelete<CR>'},
 	{'n', ' q', ':bwipeout<CR>'},
 
-  --Small things
-  {'n', ' w', '<C-w>'},
-
   --Compe
 	{'i', '<C-Space>', 'compe#complete()', {silent = true, expr = true} },
 	{'i', '<C-e>', 'compe#close("<C-e>")', {silent = true, expr = true} },
@@ -71,8 +66,9 @@ M.map({
 	{'n', ' tr', ':NvimTreeRefresh<CR>'},
 
   --Handy Mappings
-  {'n', 'H', '^', {noremap = true}},
-  {'n', 'L', '$', {noremap = true}},
+  {'', 'H', '^'},
+  {'', 'L', '$'},
+  {'', ' w', '<C-w>'},
 })
 
 return M

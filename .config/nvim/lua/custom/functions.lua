@@ -10,7 +10,7 @@ function M.tabchange()
   print('Tab size changed to '..toSet..'!')
 end
 api.nvim_set_keymap(
-  'n', ' tab', ':lua require("custom-functions").tabchange()<CR>',
+  'n', ' tab', ':lua require("custom.functions").tabchange()<CR>',
   {silent = true, nowait = true}
 )
 
@@ -24,7 +24,7 @@ function M.RandColorScheme()
   print("switching to "..colorschemes[rand_num_between].."!")
 end
 api.nvim_set_keymap(
-  'n', ' cr', ":lua require('custom-components.functions').RandColorScheme()<CR>",
+  'n', ' cr', ":lua require('custom.functions').RandColorScheme()<CR>",
   {silent = true, nowait = true}
 )
 
@@ -38,7 +38,7 @@ function M.ToggleTextWidth()
   print('set textwidth to '..vim.bo.textwidth)
 end
 api.nvim_set_keymap(
-  'n', ' tw', ":lua require('custom-components.functions').ToggleTextWidth()<CR>",
+  'n', ' tw', ":lua require('custom.functions').ToggleTextWidth()<CR>",
   {silent = true, nowait = true}
 )
 

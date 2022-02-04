@@ -15,9 +15,7 @@ end
 
 M.separators = {
   line = " | ",
-  blank = " ",
-  left_block = "▌ ",
-  right_block = " ▐"
+  blank = "  ",
 }
 
 local active_sep = 'line'
@@ -221,8 +219,6 @@ end
 
 M.set_active = function()
   local sep = M.separators[active_sep]
-  local left_sep =  M.separators['left_block']
-  local right_sep = M.separators['right_block']
 
   local mode =  M.get_current_mode()
   local git = M.get_git_status()
@@ -235,16 +231,15 @@ M.set_active = function()
   local lsp_name =  M.get_lsp_server_name()
 
   return table.concat({
-    left_sep, mode, sep, git, sep, diagnostics, sep,
+    sep, mode, sep, git, sep, diagnostics, sep,
     '%=', filename, '%=',
-    sep, line_col, sep, progress, sep, lsp_name, right_sep
+    sep, line_col, sep, progress, sep, lsp_name, sep
   })
 end
 
 M.set_inactive = function()
-  local left_sep = M.separators['left_block']
-  local right_sep = M.separators['right_block']
-  return table.concat({left_sep, '%= %t %=', right_sep})
+  local sep = M.separators[active_sep]
+  return table.concat({sep, '%= %t %=', sep})
 end
 
 M.set_explorer = function()

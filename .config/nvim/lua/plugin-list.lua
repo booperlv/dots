@@ -84,10 +84,6 @@ return packer.startup(
 	    'windwp/nvim-autopairs',
 	    config = function() require('plugins.autopairs') end
 	  }
-		use {
-	    'rlane/pounce.nvim',
-	    config = function() require('plugins.pounce') end
-	  }
     use {'jdhao/better-escape.vim', event = 'InsertEnter'}
 	  use {'mattn/emmet-vim', event = "BufRead"}
 	  use {'tpope/vim-surround', event = "BufRead"}
@@ -111,5 +107,9 @@ return packer.startup(
       '~/Projects/nvim-gomove',
       config = function() require('plugins.gomove') end
     }
+		use {
+	    '~/Projects/pounce.nvim',
+	    config = function() require('plugins.pounce') end
+	  }
 	end
 )
