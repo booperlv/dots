@@ -2,7 +2,7 @@
 
 if [ ! -f ~/.cache/swaywal ]
 then
-  randomwallpaper=$(shuf -n1 -e ~/.local/share/pictures/*)
+  randomwallpaper=$(shuf -n1 -e ~/.local/share/wallpapers/*)
   cp -r $randomwallpaper ~/.cache/swaywal
   wal -n -i $randomwallpaper
 

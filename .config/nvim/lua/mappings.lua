@@ -44,18 +44,18 @@ M.map({
 	{'n', ' clt', ':ColorizerToggle<CR>'},
 
   --Emmet
-	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>'},
+	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>', {nowait=true, noremap=true}},
 
   --Bufferline
-  {'n', ' h', ':BufferLineCyclePrev<CR>'},
-  {'n', ' l', ':BufferLineCycleNext<CR>'},
-  {'n', ' H', ':BufferLineMovePrev<CR>'},
-  {'n', ' L', ':BufferLineMoveNext<CR>'},
+  {'n', ' h', ':BufferLineCyclePrev<CR>', {nowait=true, noremap=true}},
+  {'n', ' l', ':BufferLineCycleNext<CR>', {nowait=true, noremap=true}},
+  {'n', ' H', ':BufferLineMovePrev<CR>', {nowait=true, noremap=true}},
+  {'n', ' L', ':BufferLineMoveNext<CR>', {nowait=true, noremap=true}},
 
-  {'n', ' bp', ':BufferLinePick<CR>'},
-  {'n', ' bq', ':BufferLinePickClose<CR>'},
-	{'n', ' bd', ':bdelete<CR>'},
-	{'n', ' q', ':bwipeout<CR>'},
+  {'n', ' bp', ':BufferLinePick<CR>', {nowait=true, noremap=true}},
+  {'n', ' bq', ':BufferLinePickClose<CR>', {nowait=true, noremap=true}},
+	{'n', ' bd', ':bdelete<CR>', {nowait=true, noremap=true}},
+	{'n', ' q', ':bwipeout<CR>', {nowait=true, noremap=true}},
 
   --Compe
 	{'i', '<C-Space>', 'compe#complete()', {silent = true, expr = true} },
