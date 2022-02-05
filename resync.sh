@@ -8,6 +8,10 @@ rm -rf .local/share/wallpapers
 
 cp -r ~/.local/share/wallpapers .local/share/wallpapers
 
+rm -rf .local/share/scripts
+
+cp -r ~/.local/share/scripts .local/share/scripts
+
 git add -A .
 datetime=$(date)
 git commit -m "$datetime"
