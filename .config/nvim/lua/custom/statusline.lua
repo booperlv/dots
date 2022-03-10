@@ -269,7 +269,7 @@ api.nvim_command("augroup Statusline")
   )
   api.nvim_command(all_active_command)
   local nvim_tree_command = string.format(
-    "au %s,FileType NvimTree lua StatuslineLoad('explorer')",
+    "au %s,FileType NvimTree_* lua StatuslineLoad('explorer')",
     table.concat(events, ",")
   )
   api.nvim_command(nvim_tree_command)

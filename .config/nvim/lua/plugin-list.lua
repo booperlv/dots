@@ -80,6 +80,10 @@ return packer.startup(
     }
 
     --Navigation or Convenient Editing related Things
+    use {
+      'ggandor/lightspeed.nvim',
+      config = function() require('plugins.lightspeed') end
+    }
 		use {
 	    'windwp/nvim-autopairs',
 	    config = function() require('plugins.autopairs') end
@@ -107,9 +111,5 @@ return packer.startup(
       '~/Projects/nvim-gomove',
       config = function() require('plugins.gomove') end
     }
-		use {
-	    '~/Projects/pounce.nvim',
-	    config = function() require('plugins.pounce') end
-	  }
 	end
 )

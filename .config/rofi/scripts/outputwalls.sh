@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-search_dir=(~/.local/share/pictures/*)
+search_dir=(~/.local/share/wallpapers/*)
 
 for i in ${!search_dir[@]}
 do

@@ -69,6 +69,8 @@ cmp.setup({
       })
   }),
 
+  snippet = { expand = function() end },
+
   formatting = {
     format = function(entry, item)
       item.kind = lsp_symbols[item.kind]
