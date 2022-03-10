@@ -2,7 +2,7 @@
 
 notify-send '(wal)lpaper is about to change! Pick one!' -t 2000
 
-dir="/home/booperlv/.local/share/pictures/"
+dir="/home/booperlv/.local/share/wallpapers/"
 basename=`bash ~/.config/rofi/scripts/outputwalls.sh | rofi -dmenu -theme ~/.cache/wal/rofiinputbar.rasi || true`
 if [ $basename ]; then
     file=$dir$basename
