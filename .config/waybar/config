@@ -39,7 +39,7 @@
     "sway/window": {},
     "sway/mode": {},
     "clock": {
-      "format": "{: %l:%M}",
+      "format": "{: %r}",
       "format-alt": "{:%d-%b-%Y}"
     },
     "cpu": {
