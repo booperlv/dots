@@ -46,14 +46,14 @@ M.map({
   --Emmet
 	{'n', ' em', ':call feedkeys("<C-Y>,")<CR>', {nowait=true, noremap=true}},
 
-  --Bufferline
-  {'n', ' h', ':BufferLineCyclePrev<CR>', {nowait=true, noremap=true}},
-  {'n', ' l', ':BufferLineCycleNext<CR>', {nowait=true, noremap=true}},
-  {'n', ' H', ':BufferLineMovePrev<CR>', {nowait=true, noremap=true}},
-  {'n', ' L', ':BufferLineMoveNext<CR>', {nowait=true, noremap=true}},
+  --CokeLine
+  {'n', ' h', '<Plug>(cokeline-focus-prev)', {nowait=true, noremap=true}},
+  {'n', ' l', '<Plug>(cokeline-focus-next)', {nowait=true, noremap=true}},
+  {'n', ' H', '<Plug>(cokeline-switch-prev)', {nowait=true, noremap=true}},
+  {'n', ' L', '<Plug>(cokeline-switch-next)', {nowait=true, noremap=true}},
 
-  {'n', ' bp', ':BufferLinePick<CR>', {nowait=true, noremap=true}},
-  {'n', ' bq', ':BufferLinePickClose<CR>', {nowait=true, noremap=true}},
+  {'n', ' bp', '<Plug>(cokeline-pick-focus)', {nowait=true, noremap=true}},
+  {'n', ' bq', '<Plug>(cokeline-pick-close)', {nowait=true, noremap=true}},
 	{'n', ' bd', ':bdelete<CR>', {nowait=true, noremap=true}},
 	{'n', ' q', ':bwipeout<CR>', {nowait=true, noremap=true}},
 

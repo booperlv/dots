@@ -54,8 +54,8 @@
 
 
 # Start a terminal
-  bindsym $mod+Shift+Return exec alacritty
-  bindsym $mod+Return exec foot
+  bindsym $mod+Shift+Return exec foot
+  bindsym $mod+Return exec alacritty 
 
 # Kill focused window
   bindsym $mod+q kill

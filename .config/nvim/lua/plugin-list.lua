@@ -27,7 +27,6 @@ return packer.startup(
     use {"catppuccin/nvim"}
     use {"projekt0n/github-nvim-theme"}
 
-	  use {'folke/lsp-colors.nvim'}
 		use {
 	    'norcalli/nvim-colorizer.lua',
 	    event = "BufRead",
@@ -58,13 +57,17 @@ return packer.startup(
 	    config = function() require('plugins.treesitter') end
 		}
 		use {'lukas-reineke/indent-blankline.nvim', event = "BufRead"}
+    use {
+      'folke/zen-mode.nvim',
+      config = function() require('plugins.zen-mode') end
+    }
 
     --UI Plugins
-		use {
-	    'akinsho/bufferline.nvim',
+    use {
+      'noib3/nvim-cokeline',
       requires = {'kyazdani42/nvim-web-devicons'},
-	    config = function() require('plugins.bufferline') end
-	  }
+	    config = function() require('plugins.cokeline') end
+    }
 		use {
 	    'kyazdani42/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
@@ -77,6 +80,10 @@ return packer.startup(
         {'nvim-lua/plenary.nvim'},
       },
       config = function() require('plugins.telescope') end
+    }
+    use {
+      "folke/which-key.nvim",
+      config = function() require("which-key").setup {} end
     }
 
     --Navigation or Convenient Editing related Things
@@ -109,6 +116,7 @@ return packer.startup(
     --Development
     use {
       '~/Projects/nvim-gomove',
+      -- 'booperlv/nvim-gomove',
       config = function() require('plugins.gomove') end
     }
 	end

@@ -3,8 +3,6 @@ require('nvim-tree').setup({
     side = 'right',
     width = '25%',
   },
-  auto_open = true,
-  auto_close = true,
   update_cwd = true,
 })
 

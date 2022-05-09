@@ -28,7 +28,7 @@ function install {
 
   #cleanup some appimages
   echo
-  printf 'Cleanup Previous Appimages'
+  printf 'Cleanup Previous Appimages '
   whereis nvim | grep -o '/[^ ]*' | while read -r line; do
     sudo rm -rf $line
   done
