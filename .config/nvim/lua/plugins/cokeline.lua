@@ -28,7 +28,7 @@ require('cokeline').setup({
       end
     },
     {
-      text = ' ',
+      text = ' '
     },
     {
       text = function(buffer) return buffer.unique_prefix end,
